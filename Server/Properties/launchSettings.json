@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PharmingBackend": {
+      "commandName": "Project",
+      "commandLineArgs": "--path=..\\..\\..\\..\\Frontend -nexus=testnet"
+    }
+  }
+}
