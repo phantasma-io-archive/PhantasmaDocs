@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>Phantasma Documentation</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="Phantasma Documentation">
+    <link rel="shortcut icon" href="favicon.ico"> 
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
+
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">	    
+        <div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible mr-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="index.html"><img class="logo-icon mr-2" src="assets/images/phantasma.png" alt="logo"><span class="logo-text">Phantasma<span class="text-alt">.io</span></span></a></div>    
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <!--<div class="top-search-box d-none d-lg-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search the docs..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>-->
+	
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/Phantasma-io"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/phantasmachain"><i class="fab fa-twitter fa-fw"></i></a></li>
+		                <li class="list-inline-item"><a href="https://discordapp.com/invite/fkNhmmk"><i class="fab fa-discord fa-fw"></i></a></li>
+		                <li class="list-inline-item"><a href="https://www.reddit.com/r/phantasma/"><i class="fab fa-reddit fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+    <div class="docs-wrapper">
+	    <div id="docs-sidebar" class="docs-sidebar">
+		    <div class="top-search-box d-lg-none p-3">
+                <form class="search-form">
+		            <input type="text" placeholder="Search the docs..." name="search" class="form-control search-input">
+		            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+		        </form>
+            </div>
+		    <nav id="docs-nav" class="docs-nav navbar">
+			    <ul class="section-items list-unstyled nav flex-column pb-3">
+				    <li class="nav-item section-title"><a class="nav-link scrollto active" href="#section-chain"><span class="theme-icon-holder mr-2"><i class="fas fa-microchip"></i></span>Phantasma Chain</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#chain-nexus">Nexus</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#chain-chains">Chains</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#chain-blocks">Blocks</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#chain-txs">Transactions</a></li>					
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-address">Address</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-hash">Hash</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-keys">Keys</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-signatures">Signatures</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-vm">Virtual Machine</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-accounts">Accounts</a></li>					
+				    <li class="nav-item"><a class="nav-link scrollto" href="#chain-daos">Organizations</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-oracles">Oracles</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#chain-contracts">Contracts</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-events">Events</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-tokens">Tokens</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-nft">NFT</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#chain-staking">Staking</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#chain-storage">Storage</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#chain-cosmic">Cosmic Swaps</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-chainswap">Chain Swaps</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-sidechain">Side-chains</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-governance">Governance</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-validator">Validators</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-relay">Relay</a></li>		
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-task">Tasks</a></li>					
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-messages">Messaging</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-market">Market</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-exchange">Exchange</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-leaderboard">Leaderboards</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-serialization">Serialization</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-node">Nodes</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#chain-explorer">Explorers</a></li>					
+				    <li class="nav-item"><a class="nav-link scrollto" href="#chain-wallet">Wallets</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-dapps">Dapps</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#chain-sdk">SDK</a></li>
+
+					<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#economy"><span class="theme-icon-holder mr-2"><i class="fas fa-coins"></i></span>Economy</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#economy-dual">Dual token</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#economy-bps">BPs</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#economy-inflation">Inflation</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#economy-fees">Fees</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#economy-bridge">Chain bridges</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#economy-phantom">Phantom Force</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#economy-exchange">Exchanges</a></li>
+
+					<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#spook"><span class="theme-icon-holder mr-2"><i class="fas fa-laptop-code"></i></span>Spook</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#spook-config">Configuration</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#spook-mempool">Mempool</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#spook-simnet">Simnet</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#spook-testnet">Testnet</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#spook-mainnet">Mainnet</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#spook-sync">Syncing</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#spook-shell">Shell</a></li>
+				    					
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#rest"><span class="theme-icon-holder mr-2"><i class="fas fa-box"></i></span>API</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#api-protocol">Protocol</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#api-clients">Clients</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#api-getXXX">GetXXX</a></li>
+					
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#plink"><span class="theme-icon-holder mr-2"><i class="fas fa-link"></i></span>Phantasma Link</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#plink-protocol">Protocol</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#plink-wallets">Wallet support</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#plink-clients">Clients</a></li>
+					
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#vm"><span class="theme-icon-holder mr-2"><i class="fas fa-stream"></i></span>Phantasma VM</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#vm-types">Types</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#vm-serialization">Serialization</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#vm-contexts">Contexts</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#vm-opcodes">Opcodes</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#vm-assembler">Assembler</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#vm-tomb">TOMB</a></li>
+										
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#tutorials"><span class="theme-icon-holder mr-2"><i class="fas fa-graduation-cap"></i></span>Tutorials</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#tutorials-spook">Configuring Spook</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#tutorials-wallet">Simple wallet</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#tutorials-web-dapp">Web dapp</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#tutorials-unity-dapp">Unity Dapp</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#tutorials-contract">Smart contract</a></li>
+
+			    </ul>
+
+		    </nav><!--//docs-nav-->
+	    </div><!--//docs-sidebar-->
+	    <div class="docs-content">
+		    <div class="container">
+			    <article class="docs-article" id="section-chain">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Introduction <span class="docs-time">Last updated: 2020-10-01</span></h1>
+					    <section class="docs-intro">
+						    <p>Welcome to the Phantasma documentation!<br>Here you will be able to find all information that relates to the Phantasma Ecosystem.</p>
+							
+							<br>
+							<h5>What do you want to learn?</h5>
+							<ul>
+								<li><strong class="mr-1">About the Phantasma economy?</strong> Read the <a href="#economy">economy</a> section.</li>
+								<li><strong class="mr-1">Run your own Phantasma node?</strong> Read about <a href="#spook">Spook</a>.</li>
+								<li><strong class="mr-1">Create your own Phantasma dapp?</strong> Read about <a href="#plink">Phantasma Link</a>.</li>
+								<li><strong class="mr-1">Join our team at Phantasma?</strong> Read about <a href="#economy-phantom">Phantom Force</a>.</li>
+							</ul>
+						</section><!--//docs-intro-->
+																						
+				    </header>
+				    <section class="docs-section" id="chain-nexus">
+						<h2 class="section-heading">Nexus</h2>
+						<p>
+<blockquote class="blockquote">
+  <p class="mb-0">"A connection or series of connections linking two or more things."</p>
+  <footer class="blockquote-footer">From <cite title="Source Title">Oxford Dictionary</cite></footer>
+</blockquote>						
+		</p>
+
+<p>In Phantasma, the Nexus is the entity that binds the whole ecosystem together. It links together the Phantasma mainnet and all associated <a href="#chain-sidechain">side-chains</a>, <a href="#chain-tokens">tokens</a>, <a href="#chain-organizations">organizations</a> and <a href="#chain-dapps">dapps</a>.</p>
+
+<p>A developer wishing to connect their project with Phantasma can easily query a <a href="#spook">node</a> to obtain information about the Nexus contents, using the available <a href="#api-getNexus">REST API</a>.</p>
+<p>It is also possible (and recommended) for a developer to deploy their own <a href="#spook-simnet">local Nexus</a>, in order to easily develop their connections with <a href="#chain-dapps">dapps</a>, <a href="#chain-contracts">contracts</a> and any other kind of development and testing.</p>
+                                                                      
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-chains">
+						<h2 class="section-heading">Chains</h2>
+						<p>Phantasma is not a single blockchain, but rather a collection of multiple chains binded together by the <a href="#chain-nexus">Nexus</a>.<br>However a main chain exists for each Nexus (either the public Nexus or a local development nexus). This chain has the name 'main' and is the result of the creation of a <a href="#chain-genesis">genesis block</a> along with all default economy <a href="#chain-tokens">assets</a> and <a href="#chain-daos">organizations</a>.</p>
+						<p>A developer wishing can easily query a <a href="#spook">Phantasma node</a> to obtain information about a specific Phantasma chain, using the available <a href="#api-getChain">REST API</a>.</p>                                                                      
+						<p>For deeper diving, the code implementation of a Phantasma chain is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Blockchain/Chain.cs">Github</a>.</p>
+					</section><!--//section-->
+					
+				    <section class="docs-section" id="chain-blocks">
+						<h2 class="section-heading">Blocks</h2>
+						<p>A <a href="chain"></a> chain in Phantasma represents a typical blockchain composed of blocks, where each blocks connects to the previous block via a <a href="#chain-hash">hash</a>.<br>The hash of each block is produced from the actual contents of the block, and this together with the linking of the previous block hash is what gives  imutability to a blockchain.<br>In other words, this system ensures that existing data can not be tampered with, making blockchain a unique kind of structure that offers many benefits compared to traditional databases.</p>
+						<p>Unlike most blockchains who continually generate blocks each X seconds, even if the block is empty, in Phantasma blocks are only generated if transactions are available. This is possible due to the <a href="#chain-consensus">consensus mechanism</a> employed in Phantasma and it helps reducing the storage costs.<br>The time required to generate a new block can be as little as a few seconds, depending only on the amount of pending transactions. A <a href="#spook">Phantasma node</a> can be configured with different periods. When the amount of pending transactions is small, it is more space efficient for a Phantasma node to generate blocks less frequently, but packing each one with more transactions. </p>						
+						<p>A developer wishing can easily query a <a href="#spook">Phantasma node</a> to obtain information about a specific block, using the available endpoint <a href="#api-GetBlockByHash">GetBlockByHash</a>.</p>
+						<p>Blocks are also one of Phantasma objects that can be manipulated in raw format via the <a href="#api-GetRawBlockByHash">GetRawBlockByHash</a> endpoint in the REST API.<br>Read more about raw data in the section about <a href="#chain-serialization">serialization</a>.</p>
+						
+						<p>For deeper diving, the code implementation of a Phantasma block is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Blockchain/Block.cs">Github</a>.</p>
+					</section><!--//section-->
+					
+				    <section class="docs-section" id="chain-txs">
+						<h2 class="section-heading">Transactions</h2>
+						<p>A <a href="chain"></a> transaction in Phantasma represents a unit of interaction with the ecosystem.<br>Resumed in a simple way, a transaction is a set of actions that change something in Phantasma chains.</p>
+						<p>Some examples:
+						<ul>
+							<li>An user sending assets from one <a href="#chain-address">address</a> to another.</li>
+							<li>An user interacting with a <a href="#chain-dapps">dapp</a>.</li>
+							<li>An user buying a <a href="#chain-nft">NFT</a> from a <a href="#chain-market">market</a>.</li>
+							<li>An user transfering an asset from Ethereum into Phantasma via <a href="#chain-chainswaps">chain swaps</a>.</li>
+						</ul>
+						</p>
+						
+						<p>Each Phantasma transaction will contain inside a small script, that when executed in a <a href="#chain-vm">virtual machine</a> will tell the nodes what operations the user wanted to do. The user account pays a <a href="#economy-fees">fee</a> which depends on the transaction complexity, more specifically, the amount and type of operations done within, and results of those operations are then commited, making them permanent.</p>
+						
+						<p>A developer wishing can easily query a <a href="#spook">Phantasma node</a> to obtain information about a specific transaction, using the available endpoint <a href="#api-GetTransaction">GetTransaction</a>.</p>
+						<p>Transactions are also one of Phantasma objects that can be manipulated in raw format via the <a href="#api-GetRawTransaction">GetRawTransaction</a> endpoint in the REST API.<br>Read more about raw data in the section about <a href="#chain-serialization">serialization</a>.</p>
+						
+						<p>For deeper diving, the code implementation of a Phantasma transaction is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Blockchain/Transaction.cs">Github</a>.</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-address">
+						<h2 class="section-heading">Address</h2>
+						<p>A <a href="chain"></a> address in Phantasma represents a destination for assets.<br>Each address holds a specific balance of <a href="#chain-tokens">tokens</a>, along with several custom data on <a href="#chain-dapps">dapps</a> and builtin <a href="#chain-contracts">contracts</a>.</p>
+						<p>Internally an address is a 34 byte array, where the first byte represents address type and the rest of the bytes store a <a href="#chain-keys">public key</a>.</p>
+						<p>In order to display it on a human-readable format, those bytes are then encoded using <a href="https://en.bitcoinwiki.org/wiki/Base58">base58</a> format. The byte representing the address type is manipulated in order to specify the first letter of the human-readable address. This makes it possible to identify the type of address with a quick glance.</p>
+						
+						<p>Address types:
+						<ul>
+							<li>Normal addresses start with 'P' and represent a user <a href="#chain-accounts">account</a>.<br>Eg: P2KACviijLauSeNPYDyov9g9Tsqn45eHGw6jCg4D3YzcNsh</li>
+							<li>System addresses start with 'S' and can represent <a href="#chain-contracts">contracts</a>, <a href="#chain-tokens">tokens</a>, <a href="#chain-chains">chains</a> or <a href="#chain-organizations">organizations</a>.<br>Eg: S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4</li>
+							<li>Interop addresses start with 'X' and represent an external address that belongs to other chain (eg: Ethereum or NEO) and are used for <a href="#chain-chainswaps">chain swaps</a>.<br>Eg: X2KK7BD2keGusLwMwuGpd33r1s6Yo3JxYtCbogwDveq2wpZ</li>
+						</ul>
+						</p>
+						
+						<p>The Address is one of the few non-primitive types that have native support in <a href="#vm-types">Phantasma Virtual Machine</a>.</p>
+						
+						<p>For deeper diving, the code implementation of a Phantasma address is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Cryptography/Address.cs">Github</a>.</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-hash">
+						<h2 class="section-heading">Hash</h2>
+						<p>A <a href="chain"></a> address in Phantasma represents a destination for assets.<br>Each address holds a specific balance of <a href="#chain-tokens">tokens</a>, along with several custom data on <a href="#chain-dapps">dapps</a> and builtin <a href="#chain-contracts">contracts</a>.</p>
+						<p>Internally an address is a 34 byte array, where the first byte represents address type and the rest of the bytes store a <a href="#chain-keys">public key</a>.</p>
+						<p>In order to display it on a human-readable format, those bytes are then encoded using <a href="https://en.bitcoinwiki.org/wiki/Base58">base58</a> format. The byte representing the address type is manipulated in order to specify the first letter of the human-readable address. This makes it possible to identify the type of address with a quick glance.</p>
+												
+						<p>The Hash is one of the few non-primitive types that have native support in <a href="#vm-types">Phantasma Virtual Machine</a>.</p>
+												
+						<p>For deeper diving, the code implementation of a Phantasma hash is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Cryptography/Hash.cs">Github</a>.</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-keys">
+						<h2 class="section-heading">Keys</h2>
+						<p>Phantasma uses asymmetric cryptography, also called public-key cryptography for most of it's internals. In simple words, this means that for each public key there is an associated private key. The private key is used to generate <a href="#chain-signatures">signatures</a>, that can be used to mathematically verify that an piece of data was generated by someone who knows the private key of a specific public address, without revealing the private key.<p>
+						<p>A private key is also the only thing that an user of Phantasma really needs to store in it's own possession, everything else from public key to address and any asset held by the user are stored either in distributed nodes or derived from the private key using mathematical formulas.<br>Software used to manage private keys for users is called a <a href="#chain-wallet">wallet</a>.</p>
+						<p>A Phantasma <a href="#chain-address">address</a> is used to encode public keys in a human readable format.<br>
+						<p>For deeper diving, the code implementation of a Phantasma key pair is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Cryptography/KeyPair.cs">Github</a>.</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-signatures">
+						<h2 class="section-heading">Signatures</h2>
+						<p>In blockchain terms, a signature is a piece of pseudo-random data that can be used as mathematical proof (when combined with a public address), in order to verify that another specific piece of data was created by a certain private key that matches the specified public key.<p>
+						<p>A signature is what allows users to sign their own <a href="#chain-txs">transactions</a> and then allow nodes to validate their authenticity.</p>
+						<p>There are many different algorithm to generate signatures. Phantasma currently supports EdDSA as it's prefered signing scheme, due to it's higher performance. It also supports ECDsa signatures for compatibility with older generation blockchains, like Bitcoin, Ethereum and NEO. <br>
+						<p>For deeper diving, the code implementation of a Phantasma signatures is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Cryptography/">Github</a>.</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-vm">
+						<h2 class="section-heading">Virtual Machine</h2>
+						<p>The core of Phantasma is built with powerful support for flexibility and customization, and this required the creation of a custom virtual machine to execute both <a href="#chain-txs">transactions</a> and <a href="#chain-contracts">contracts</a>.</p>
+						<p>The Phantasma Virtual Machine is on a way comparable to Ethereum Virtual Machine (EVM), in a way that both execute custom code that spends <a href="#economy-fees">"gas"</a>, altough Phantasma implementation is separated and built from zero.
+						
+						<p>To understand the full scope of the virtual machine requires a bit of development experience and some time studying it.<br>There is a <a href="#vm">full section</a> describing the inner works of it.</p>
+						
+						<p>For deeper diving, the code implementation of the Phantasma Virtual Machine is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.VM">Github</a>.</p>
+					</section><!--//section-->
+					
+				    <section class="docs-section" id="chain-accounts">
+						<h2 class="section-heading">Accounts</h2>
+						<p>Each user in Phantasma can own one or more accounts, which can hold different types of <a href="#economy-dual">assets</a> and are used to interact with <a href="#chain-dapps">dapps</a>.</p>
+						<p>Each account is identified by it's own <a href="#chain-address">address</a> and optionally can also have a name associated with it.<br>The name is a lower-case string without spaces, which can contain letters, numbers and underscore. The length must be between 3 and 15 characters in total.<br>The account names are integrated deeply into Phantasma inner core, so any place that requires an address can also accept a name instead, which will be automatically resolved into the equivalent address.</p>
+						<p>An account can also optionally have a contract attached to it, which allows to customize the behaviour of the account, which includes for example support multi-signature wallets.<br>Also note that all operations done on accounts are done via the builtin account contract</p>
+						
+						<p>For deeper diving, the code implementation of the acount native contract is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Blockchain/Contracts/AccountContract.cs">Github</a>.</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-daos">
+						<h2 class="section-heading">Organizations</h2>
+						<p>Phantasma has builtin support for decentralized organizations. The organization system is used to power <a href="#economy-phantom">Phantom Force</a>.</p>
+						<p>An organization behaves similar to an account, and so it is also identified by it's own <a href="#chain-address">address</a>. However the main difference is that it can add other accounts as members of it, and then any operation done by the organization requires signatures from the majority of it's members.</p>
+						<p>An organization can also optionally have a contract attached to it, which allows to customize the behaviour of the organization, which includes for example custom rules for members and how the assets are transfered.</p>
+						
+						<p>For deeper diving, the code implementation of the organization is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Blockchain/Organization.cs">Github</a>.</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-oracles">
+						<h2 class="section-heading">Oracles</h2>
+						<p>Phantasma has builtin support for oracles. In a blockchain that supports contracts, the contracts have their own defined rules, however they can only work with data that is readily available to them, and usually this means the data stored in the chain, like account balances. An oracle is then a data source that allows contracts to obtain data from real world in a secure way.</p>
+						<p>There are two types of oracles available in Phantasma:</p>
+						<ul>
+						<li>Native feeds - Those are the oracle data sources that come builtin with Phantasma. It includes supports for fetching prices of different assets, and also transaction fees costs for different platforms. The data itself is gathered by <a href="#economy-bps">block producers</a>.</li>
+						<li>Custom feeds - Those are the oracle data sources that are created for custom data feeds. It allows to connect Phantasma to third-party oracle providers like Chainlink.</li>
+						</ul>
+						<p>Once a contract or transaction does an oracle read request, the data read from an oracle is appended to the current block. This ensures that the chain contents can be reproduced and verified later, using exactly the same data as the first time the block was generated.</p>
+						
+						<p>For deeper diving, the code implementation of the oracles is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Blockchain/Oracle.cs">Github</a>.</p>
+					</section><!--//section-->
+					
+				    <section class="docs-section" id="chain-contracts">					
+						<h2 class="section-heading">Smart Contracts</h2>
+						<p>Phantasma has builtin support for smart contracts. Smart contracts are a set of pre-defined operations and rules that once deployed in a blockchain, are imutable.</p>
+						<p>Smart contracts in Phantasma are defined by a set of components:</p>
+						<ul>
+						<li>Name - This is an identifier in same format as <a href="#chain-accounts">account</a> names. Each contract name also has an equivalent system <a href="#chain-address">address</a> </li>
+						<li>Script - This a binary data blob of compiled code for the Phantasma <a href="#chain-vm">Virtual Machine</a>.</li>
+						<li>Interface - This a list of public methods and <a href="#chain-event">events</a> supported by the contract.</li>
+						</ul>
+						<p>Deploying a contract is normally done via a <a href="#chain-transaction">transaction</a> altough can be done in other ways, for example a contract can deploy other contract. Deployment requires an extra cost, besides the normal <a href="#economy-fees">fees</a>.</p>
+						
+						<p>For deeper diving, the code implementation of the contracts is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Blockchain/Contracts">Github</a>.</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-events">					
+						<h2 class="section-heading">Events</h2>
+						<p>When a Phantasma <a href="#chain-transaction">transaction</a> is executed, whoever executed it will want to know whatever really happened, because while with simple transactions the fact that they were accepted is enough to know the result, with more complex transactions different outcomes can happen.<br>A transaction or contract can then trigger events, which are readable via the <a href="#api">API</a>.</p>
+						<p>A Phantasma event is composed of:</p>
+						<ul>
+						<li>Kind - This is kind of event, which can be one of the <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Domain/Event.cs">builtin events</a> or a custom event</li>
+						<li>Address - The <a href="#chain-address">address</a> associated with the event.</li>
+						<li>Data - Binary data that depends on the event kind. Can be numbers, strings, structs or any other <a href="#vm-types">type</a>.</li>
+						</ul>
+						<p>For custom events used by contracts, the <a href="#chain-contracts">contract</a> interface will define the actual content of the event, to make it easier for third-parties to read and use it.</p>					
+					</section><!--//section-->
+					
+				    <section class="docs-section" id="chain-tokens">					
+						<h2 class="section-heading">Tokens</h2>
+						<p>Phantasma has native support for tokens, which represent the different kinds of assets that a blockchain can use for interact with the real world.</p>
+						<p>Tokens can be divided into two categories:</p>
+						<ul>
+						<li>Fungible - Usually represent some kind of monetary unit or quantities of something. Each instance of a fungible token is completly indistinguishable from each other.</li>
+						<li>Non-Fungible - A non-fungible represents some kind of unique item, for example a game sword or a web domain. Check the section about <a href="#chain-nft">NFTs</a> for more details.</li>
+						</ul>
+						<p>For deeper diving, the code implementation of the tokens is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Blockchain/Token">Github</a>.</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-nft">
+						<h2 class="section-heading">NFTs</h2>
+						<p>Phantasma native support for tokens also include proper builtin support for non-fungible tokens (aka NFTs), which can be minted on demand, with a single transaction currently being able to mint up to 100 NFTs, at a almost free cost.</p>
+						<p>NFTs in Phantasma support the following features:</p>
+						<ul>
+						<li>TokenID - A unique 256-bit number used to identify a NFT instance.</li>
+						<li>SeriesID - A number that specifies which series a NFT instance belongs to.</li>
+						<li>MintID - A sequential number that indicates the order in which this instance was minted in it's series.<li>
+						<li>ROM - Each NFT instance contains it's own ROM area, where read-only data can reside. This data is saved during mint, and can't never be modified. The hash of this data is used to generate an unique ID for the NFT, meaning that each NFT instance must have unique ROM data. The ROM can be used to store what makes each instance unique, for example in a game that uses NFTs for characters, the ROM data could contain the character name and stats.</li>
+						<li>RAM - The counterpart to the ROM, the RAM is the data in a NFT that can change over a NFT lifetime. </li>
+						<li>
+						</ul>
+						<p>Both ROM and ROM of a NFT just represent a variable size byte array, it's up for the dapps developers to chose the data structure of this blob. The <a href="#vm-tomb">TOMB compiler</a> abstracts both ROM and RAM into developer friendly custom structs, that make easy to read and write those fields.</p>
+						<p>A developer wishing can easily query a <a href="#spook">Phantasma node</a> to obtain information about a specific NFT instance, using the available endpoint <a href="#api-GetNFT">GetNFT</a>.</p>
+						<p>For deeper diving, the code implementation of the tokens is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Blockchain/NFTUtils.cs">Github</a>.</p>						
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-staking">
+						<h2 class="section-heading">Staking</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-storage">
+						<h2 class="section-heading">Storage</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-cosmic">
+						<h2 class="section-heading">Cosmic Swaps</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-chainswap">
+						<h2 class="section-heading">Chain Swaps</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-sidechain">
+						<h2 class="section-heading">Side Chains</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-governance">
+						<h2 class="section-heading">Governance</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-validator">
+						<h2 class="section-heading">Validator</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-relay">
+						<h2 class="section-heading">Relay</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-tasks">
+						<h2 class="section-heading">Tasks</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-messaging">
+						<h2 class="section-heading">Messaging</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+					
+				    <section class="docs-section" id="chain-market">
+						<h2 class="section-heading">Markets</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="chain-exchange">
+						<h2 class="section-heading">Exchanges</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+
+				    <section class="docs-section" id="chain-leaderboard">
+						<h2 class="section-heading">Leaderboards</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+
+				    <section class="docs-section" id="chain-serialization">
+						<h2 class="section-heading">Serialization</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+
+				    <section class="docs-section" id="chain-node">
+						<h2 class="section-heading">Nodes</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+
+				    <section class="docs-section" id="chain-explorer">
+						<h2 class="section-heading">Explorers</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+
+				    <section class="docs-section" id="chain-dapps">
+						<h2 class="section-heading">Dapps</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+					
+				    <section class="docs-section" id="chain-sdk">
+						<h2 class="section-heading">SDKs</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+					
+			    </article>
+			    
+			    <article class="docs-article" id="section-economy">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Economy</h1>
+					    <section class="docs-intro">
+						    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque finibus condimentum nisl id vulputate. Praesent aliquet varius eros interdum suscipit. Donec eu purus sed nibh convallis bibendum quis vitae turpis. Duis vestibulum diam lorem, vitae dapibus nibh facilisis a. Fusce in malesuada odio.</p>
+						</section><!--//docs-intro-->
+				    </header>
+
+
+				    <section class="docs-section" id="economy-dual">
+						<h2 class="section-heading">Dual Token</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+					
+				    <section class="docs-section" id="economy-bps">
+						<h2 class="section-heading">Block Producers</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="economy-inflation">
+						<h2 class="section-heading">Inflation</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="economy-fees">
+						<h2 class="section-heading">Fees</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="economy-bridge">
+						<h2 class="section-heading">Bridge</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="economy-phantom">
+						<h2 class="section-heading">Phantom Force</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="economy-exchanges">
+						<h2 class="section-heading">Exchanges</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+			    </article><!--//docs-article-->
+			    
+			    
+			    <article class="docs-article" id="section-spook">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Spook</h1>
+					    <section class="docs-intro">
+						    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque finibus condimentum nisl id vulputate. Praesent aliquet varius eros interdum suscipit. Donec eu purus sed nibh convallis bibendum quis vitae turpis. Duis vestibulum diam lorem, vitae dapibus nibh facilisis a. Fusce in malesuada odio.</p>
+						</section><!--//docs-intro-->
+				    </header>
+
+
+				    <section class="docs-section" id="spook-config">
+						<h2 class="section-heading">Configuration</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+					
+				    <section class="docs-section" id="spook-mempool">
+						<h2 class="section-heading">Mempool</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="spook-simnet">
+						<h2 class="section-heading">Sim Net</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="spook-testnet">
+						<h2 class="section-heading">Test Net</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="spook-mainnet">
+						<h2 class="section-heading">Main Net</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="spook-sync">
+						<h2 class="section-heading">Syncronization</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+				    <section class="docs-section" id="spook-shell">
+						<h2 class="section-heading">Shell</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+			    </article><!--//docs-article-->
+			    
+
+			    <article class="docs-article" id="section-api">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">API</h1>
+					    <section class="docs-intro">
+						    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque finibus condimentum nisl id vulputate. Praesent aliquet varius eros interdum suscipit. Donec eu purus sed nibh convallis bibendum quis vitae turpis. Duis vestibulum diam lorem, vitae dapibus nibh facilisis a. Fusce in malesuada odio.</p>
+						</section><!--//docs-intro-->
+				    </header>
+
+
+				    <section class="docs-section" id="api-protocol">
+						<h2 class="section-heading">Protocols</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+					
+				    <section class="docs-section" id="api-clients">
+						<h2 class="section-heading">Clients</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+			    </article><!--//docs-article-->
+			    
+			    <article class="docs-article" id="section-link">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Phantasma Link</h1>
+					    <section class="docs-intro">
+						    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque finibus condimentum nisl id vulputate. Praesent aliquet varius eros interdum suscipit. Donec eu purus sed nibh convallis bibendum quis vitae turpis. Duis vestibulum diam lorem, vitae dapibus nibh facilisis a. Fusce in malesuada odio.</p>
+						</section><!--//docs-intro-->
+				    </header>
+
+
+				    <section class="docs-section" id="api-protocol">
+						<h2 class="section-heading">Protocols</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+					
+				    <section class="docs-section" id="api-clients">
+						<h2 class="section-heading">Clients</h2>
+						<p>TODO</p>
+					</section><!--//section-->
+
+			    </article><!--//docs-article-->
+
+			    <article class="docs-article" id="section-3">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">APIs</h1>
+					    <section class="docs-intro">
+						    <p>Section intro goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque finibus condimentum nisl id vulputate. Praesent aliquet varius eros interdum suscipit. Donec eu purus sed nibh convallis bibendum quis vitae turpis. Duis vestibulum diam lorem, vitae dapibus nibh facilisis a. Fusce in malesuada odio.</p>
+						</section><!--//docs-intro-->
+				    </header>
+				     <section class="docs-section" id="item-3-1">
+						<h2 class="section-heading">Section Item 3.1</h2>
+						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-3-2">
+						<h2 class="section-heading">Section Item 3.2</h2>
+						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-3-3">
+						<h2 class="section-heading">Section Item 3.3</h2>
+						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
+					</section><!--//section-->
+			    </article><!--//docs-article-->
+			    
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+					    <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+				        <small class="copyright">Designed with <i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+						    <li class="list-inline-item"><a href="#"><i class="fab fa-github fa-fw"></i></a></li> 
+				            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
+				            <li class="list-inline-item"><a href="#"><i class="fab fa-slack fa-fw"></i></a></li>
+				            <li class="list-inline-item"><a href="#"><i class="fab fa-product-hunt fa-fw"></i></a></li>
+				            <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f fa-fw"></i></a></li>
+				            <li class="list-inline-item"><a href="#"><i class="fab fa-instagram fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+    
+   
+       
+    <!-- Javascript -->          
+    <script src="assets/plugins/jquery-3.4.1.min.js"></script>
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+    
+    
+    <!-- Page Specific JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="assets/js/highlight-custom.js"></script> 
+    <script src="assets/plugins/jquery.scrollTo.min.js"></script>
+    <script src="assets/plugins/lightbox/dist/ekko-lightbox.min.js"></script> 
+    <script src="assets/js/docs.js"></script> 
+
+</body>
+</html> 
+
