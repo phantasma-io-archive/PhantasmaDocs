@@ -1,0 +1,16 @@
+						<h2 class="section-heading">Address</h2>
+						<p>A <a href="chain"></a> address in Phantasma represents a destination for assets.<br>Each address holds a specific balance of <a href="#chain-tokens">tokens</a>, along with several custom data on <a href="#chain-dapps">dapps</a> and builtin <a href="#chain-contracts">contracts</a>.</p>
+						<p>Internally an address is a 34 byte array, where the first byte represents address type and the rest of the bytes store a <a href="#chain-keys">public key</a>.</p>
+						<p>In order to display it on a human-readable format, those bytes are then encoded using <a href="https://en.bitcoinwiki.org/wiki/Base58">base58</a> format. The byte representing the address type is manipulated in order to specify the first letter of the human-readable address. This makes it possible to identify the type of address with a quick glance.</p>
+						
+						<p>Address types:
+						<ul>
+							<li>Normal addresses start with 'P' and represent a user <a href="#chain-accounts">account</a>.<br>Eg: P2KACviijLauSeNPYDyov9g9Tsqn45eHGw6jCg4D3YzcNsh</li>
+							<li>System addresses start with 'S' and can represent <a href="#chain-contracts">contracts</a>, <a href="#chain-tokens">tokens</a>, <a href="#chain-chains">chains</a> or <a href="#chain-organizations">organizations</a>.<br>Eg: S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4</li>
+							<li>Interop addresses start with 'X' and represent an external address that belongs to other chain (eg: Ethereum or NEO) and are used for <a href="#chain-chainswaps">chain swaps</a>.<br>Eg: X2KK7BD2keGusLwMwuGpd33r1s6Yo3JxYtCbogwDveq2wpZ</li>
+						</ul>
+						</p>
+						
+						<p>The Address is one of the few non-primitive types that have native support in <a href="#vm-types">Phantasma Virtual Machine</a>.</p>
+						
+						<p>For deeper diving, the code implementation of a Phantasma address is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Cryptography/Address.cs">Github</a>.</p>

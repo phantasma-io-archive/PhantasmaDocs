@@ -1,0 +1,6 @@
+						<h2 class="section-heading">Accounts</h2>
+						<p>Each user in Phantasma can own one or more accounts, which can hold different types of <a href="#economy-dual">assets</a> and are used to interact with <a href="#chain-dapps">dapps</a>.</p>
+						<p>Each account is identified by it's own <a href="#chain-address">address</a> and optionally can also have a name associated with it.<br>The name is a lower-case string without spaces, which can contain letters, numbers and underscore. The length must be between 3 and 15 characters in total.<br>The account names are integrated deeply into Phantasma inner core, so any place that requires an address can also accept a name instead, which will be automatically resolved into the equivalent address.</p>
+						<p>An account can also optionally have a contract attached to it, which allows to customize the behaviour of the account, which includes for example support multi-signature wallets.<br>Also note that all operations done on accounts are done via the builtin account contract</p>
+						
+						<p>For deeper diving, the code implementation of the acount native contract is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Blockchain/Contracts/AccountContract.cs">Github</a>.</p>

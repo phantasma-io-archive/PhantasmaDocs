@@ -1,0 +1,17 @@
+						<h2 class="section-heading">Transactions</h2>
+						<p>A <a href="chain"></a> transaction in Phantasma represents a unit of interaction with the ecosystem.<br>Resumed in a simple way, a transaction is a set of actions that change something in Phantasma chains.</p>
+						<p>Some examples:
+						<ul>
+							<li>An user sending assets from one <a href="#chain-address">address</a> to another.</li>
+							<li>An user interacting with a <a href="#chain-dapps">dapp</a>.</li>
+							<li>An user buying a <a href="#chain-nft">NFT</a> from a <a href="#chain-market">market</a>.</li>
+							<li>An user transfering an asset from Ethereum into Phantasma via <a href="#chain-chainswaps">chain swaps</a>.</li>
+						</ul>
+						</p>
+						
+						<p>Each Phantasma transaction will contain inside a small script, that when executed in a <a href="#chain-vm">virtual machine</a> will tell the nodes what operations the user wanted to do. The user account pays a <a href="#economy-fees">fee</a> which depends on the transaction complexity, more specifically, the amount and type of operations done within, and results of those operations are then commited, making them permanent.</p>
+						
+						<p>A developer wishing can easily query a <a href="#spook">Phantasma node</a> to obtain information about a specific transaction, using the available endpoint <a href="#api-GetTransaction">GetTransaction</a>.</p>
+						<p>Transactions are also one of Phantasma objects that can be manipulated in raw format via the <a href="#api-GetRawTransaction">GetRawTransaction</a> endpoint in the REST API.<br>Read more about raw data in the section about <a href="#chain-serialization">serialization</a>.</p>
+						
+						<p>For deeper diving, the code implementation of a Phantasma transaction is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Blockchain/Transaction.cs">Github</a>.</p>

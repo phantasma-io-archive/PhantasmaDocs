@@ -1,0 +1,9 @@
+						<h2 class="section-heading">Events</h2>
+						<p>When a Phantasma <a href="#chain-transaction">transaction</a> is executed, whoever executed it will want to know whatever really happened, because while with simple transactions the fact that they were accepted is enough to know the result, with more complex transactions different outcomes can happen.<br>A transaction or contract can then trigger events, which are readable via the <a href="#api">API</a>.</p>
+						<p>A Phantasma event is composed of:</p>
+						<ul>
+						<li>Kind - This is kind of event, which can be one of the <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Domain/Event.cs">builtin events</a> or a custom event</li>
+						<li>Address - The <a href="#chain-address">address</a> associated with the event.</li>
+						<li>Data - Binary data that depends on the event kind. Can be numbers, strings, structs or any other <a href="#vm-types">type</a>.</li>
+						</ul>
+						<p>For custom events used by contracts, the <a href="#chain-contracts">contract</a> interface will define the actual content of the event, to make it easier for third-parties to read and use it.</p>

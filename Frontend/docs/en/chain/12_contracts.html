@@ -1,0 +1,11 @@
+						<h2 class="section-heading">Smart Contracts</h2>
+						<p>Phantasma has builtin support for smart contracts. Smart contracts are a set of pre-defined operations and rules that once deployed in a blockchain, are imutable.</p>
+						<p>Smart contracts in Phantasma are defined by a set of components:</p>
+						<ul>
+						<li>Name - This is an identifier in same format as <a href="#chain-accounts">account</a> names. Each contract name also has an equivalent system <a href="#chain-address">address</a> </li>
+						<li>Script - This a binary data blob of compiled code for the Phantasma <a href="#chain-vm">Virtual Machine</a>.</li>
+						<li>Interface - This a list of public methods and <a href="#chain-event">events</a> supported by the contract.</li>
+						</ul>
+						<p>Deploying a contract is normally done via a <a href="#chain-transaction">transaction</a> altough can be done in other ways, for example a contract can deploy other contract. Deployment requires an extra cost, besides the normal <a href="#economy-fees">fees</a>.</p>
+						
+						<p>For deeper diving, the code implementation of the contracts is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Blockchain/Contracts">Github</a>.</p>

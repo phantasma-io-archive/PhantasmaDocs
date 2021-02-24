@@ -1,21 +1,53 @@
 ﻿using System;
-using System.Linq;
-using System.IO;
 using System.Threading;
 
 using LunarLabs.WebServer.Core;
 using LunarLabs.WebServer.HTTP;
 using System.Collections.Generic;
 using LunarLabs.WebServer.Templates;
-using Phantasma.Core.Types;
-using Phantasma.Numerics;
-using Phantasma.VM.Utils;
-using Phantasma.VM;
-using Phantasma.Storage;
-using Phantasma.Domain;
+using System.IO;
+using System.Globalization;
 
 namespace Phantasma.Docs
 {
+    public class Entry
+    {
+        public int order;
+        public string link;
+        public string content;
+        public string title;
+    }
+
+    public class Section
+    {
+        public string link;
+        public string icon;
+        public string title;
+        public string intro;
+        public List<Entry> entries;
+    }
+
+    public class Docs
+    {
+        public string language;
+        public string code;
+        public List<Section> sections;
+    }
+
+    public struct Topic
+    {
+        public string title;
+        public string icon;
+        public string ID;
+
+        public Topic(string title, string icon)
+        {
+            this.title = title;
+            this.icon = icon;
+            this.ID = title.ToLower().Replace(" ", "_");
+        }
+    }
+
     class Program
     {
         const string LanguageHeader = "Accept-Language";
@@ -47,6 +79,57 @@ namespace Phantasma.Docs
             return "en";
         }
 
+        static Dictionary<string, Docs> _docs = new Dictionary<string, Docs>();
+
+
+        private static Docs LoadDocs(string path, string code, string name, List<Topic> topics)
+        {
+            var docs = new Docs();
+            docs.code = code;
+            docs.language = name;
+            docs.sections = new List<Section>();
+
+            var docFolder = path + code + Path.DirectorySeparatorChar;
+
+            foreach (var topic in topics)
+            {
+                var section = new Section();
+                section.icon = topic.icon;
+                section.title = topic.title;
+                section.link = topic.ID;
+                section.entries = new List<Entry>();
+
+                var introPath = docFolder + topic.ID + ".html";
+                if (File.Exists(introPath))
+                {
+                    section.intro = File.ReadAllText(introPath);
+                }
+
+                var topicPath = docFolder + topic.ID + Path.DirectorySeparatorChar;
+
+                var files = Directory.GetFiles(topicPath, "*.html");
+
+                foreach (var file in files)
+                {
+                    var entry = new Entry();
+
+                    var temp = Path.GetFileNameWithoutExtension(file).Split('_', 2);
+
+                    entry.order = int.Parse(temp[0]);
+                    entry.title = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(temp[1].Replace("_", " "));
+                    entry.link = section.link + "-" + temp[1];
+
+                    entry.content = File.ReadAllText(file);
+
+                    section.entries.Add(entry);
+                }
+
+                docs.sections.Add(section);
+            }
+
+            return docs;
+        }
+
         static void Main(string[] args)
         {
             Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
@@ -64,8 +147,50 @@ namespace Phantasma.Docs
                 LocalizationManager.LoadLocalization(language, fileName);
             }*/
 
+            var docPath = settings.Path + "docs" + Path.DirectorySeparatorChar;
 
-            int refreshRate = 5;
+            var topicFile = docPath + "topics.txt";
+            if (!File.Exists(topicFile))
+            {
+                throw new Exception("Could not find file: " + topicFile);
+            }
+
+            var topicEntries = File.ReadAllLines(topicFile);
+            var topics = new List<Topic>();
+            foreach (var line in topicEntries)
+            {
+                var temp = line.Split(',');
+                if (temp.Length != 2)
+                {
+                    continue;
+                }
+
+                var name = temp[0];
+                var icon = temp[1];
+
+                topics.Add(new Topic(name, icon));
+            }
+
+            var langFile = docPath + "languages.txt";
+            if (!File.Exists(langFile))
+            {
+                throw new Exception("Could not find file: " + langFile);
+            }
+
+            var languageEntries = File.ReadAllLines(langFile);
+            foreach (var line in languageEntries)
+            {
+                var temp = line.Split(',');
+                if (temp.Length != 2)
+                {
+                    continue;
+                }
+
+                var code = temp[0];
+                var name = temp[1];
+
+                _docs[code] = LoadDocs(docPath, code, name, topics);
+            }
 
             Func<HTTPRequest, Dictionary<string, object>> GetContext = (request) =>
             {
@@ -83,6 +208,10 @@ namespace Phantasma.Docs
                 }
 
                 context["current_language"] = LocalizationManager.GetLanguage(langCode);
+
+                var docs = _docs["en"];
+
+                context["sections"] = docs.sections;
 
                 return context;
             };

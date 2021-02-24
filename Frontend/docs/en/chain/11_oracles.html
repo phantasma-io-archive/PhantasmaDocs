@@ -1,0 +1,10 @@
+						<h2 class="section-heading">Oracles</h2>
+						<p>Phantasma has builtin support for oracles. In a blockchain that supports contracts, the contracts have their own defined rules, however they can only work with data that is readily available to them, and usually this means the data stored in the chain, like account balances. An oracle is then a data source that allows contracts to obtain data from real world in a secure way.</p>
+						<p>There are two types of oracles available in Phantasma:</p>
+						<ul>
+						<li>Native feeds - Those are the oracle data sources that come builtin with Phantasma. It includes supports for fetching prices of different assets, and also transaction fees costs for different platforms. The data itself is gathered by <a href="#economy-bps">block producers</a>.</li>
+						<li>Custom feeds - Those are the oracle data sources that are created for custom data feeds. It allows to connect Phantasma to third-party oracle providers like Chainlink.</li>
+						</ul>
+						<p>Once a contract or transaction does an oracle read request, the data read from an oracle is appended to the current block. This ensures that the chain contents can be reproduced and verified later, using exactly the same data as the first time the block was generated.</p>
+						
+						<p>For deeper diving, the code implementation of the oracles is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Blockchain/Oracle.cs">Github</a>.</p>
