@@ -82,7 +82,7 @@
 				{{#each sections}}
 			    <article class="docs-article" id="section-chain">
 				    <header class="docs-header">
-					    <h1 class="docs-heading">Introduction <span class="docs-time">Last updated: 2020-10-01</span></h1>
+					    <h1 class="docs-heading">{{#if @first}}Introduction{{#else}}{{title}}{{/if}}<span class="docs-time">Last updated: 2020-10-01</span></h1>
 					    <section class="docs-intro">
 						{{{intro}}}
 						</section>																				
@@ -90,7 +90,7 @@
 					
 					{{#each entries}}
 				    <section class="docs-section" id="{{link}}">
-						{{{content}}}
+						{{#if content}}{{{content}}}{{#else}}<div class="alert alert-warning" role="alert">Missing content for section: {{title}}</div>{{/if}}
 					</section>
 					{{/each}}
 									
