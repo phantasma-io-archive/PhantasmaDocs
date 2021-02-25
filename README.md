@@ -3,10 +3,11 @@ Documentation for Phantasma development
 
 ## How to run the documentation site locally
 
-1. Download the latest binaries from the [releases](https://github.com/phantasma-io/PhantasmaDocs/releases)
-2. Or optionally, compile from the source
-3. Run the supplied .bat file if using Windows (otherwise use 'dotnet run Docs.dll' in the terminal)
-4. Open your browser and open the [localhost](http://localhost) URL
+1. Clone or download this [reposity](https://github.com/phantasma-io/PhantasmaDocs/archive/master.zip) into your machine
+2. Download the latest binaries from the [releases](https://github.com/phantasma-io/PhantasmaDocs/releases)
+3. Create a "bin" folder inside the reposity folder, then unzip the binaries there
+4. Run Docs.exe if using Windows (otherwise use 'dotnet run Docs.dll' in the terminal)
+5. Open your browser and open the [localhost](http://localhost) URL
 
 ## How to edit an existing section topic
 

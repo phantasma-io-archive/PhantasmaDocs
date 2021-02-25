@@ -181,11 +181,18 @@ namespace Phantasma.Docs
         {
             Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
 
+            if (args.Length == 0)
+            {
+                args = new string[] { "--path=" + Path.GetFullPath("../Frontend")};
+            }
+
             var settings = ServerSettings.Parse(args);
 
             var server = new HTTPServer(settings, ConsoleLogger.Write);
 
             var templateEngine = new TemplateEngine(server, "views");
+
+            Console.WriteLine("Frontend path: " + settings.Path);
 
             /*var locFiles = Directory.GetFiles("Localization", "*.csv");
             foreach (var fileName in locFiles)
