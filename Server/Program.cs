@@ -15,7 +15,7 @@ namespace Phantasma.Docs
         public int order;
         public string link;
         public string content;
-        public string title;
+        public string name;
     }
 
     public class Section
@@ -116,7 +116,7 @@ namespace Phantasma.Docs
                     var temp = Path.GetFileNameWithoutExtension(file).Split('_', 2);
 
                     entry.order = int.Parse(temp[0]);
-                    entry.title = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(temp[1].Replace("_", " "));
+                    entry.name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(temp[1].Replace("_", " "));
                     entry.link = section.link + "-" + temp[1];
 
                     entry.content = File.ReadAllText(file);
@@ -130,32 +130,15 @@ namespace Phantasma.Docs
             return docs;
         }
 
-        static void Main(string[] args)
+        static void LoadAllDocs(string docPath)
         {
-            Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
-
-            var settings = ServerSettings.Parse(args);
-
-            var server = new HTTPServer(settings, ConsoleLogger.Write);
-
-            var templateEngine = new TemplateEngine(server, "views");
-
-            /*var locFiles = Directory.GetFiles("Localization", "*.csv");
-            foreach (var fileName in locFiles)
+            var sectionsFile = docPath + "sections.txt";
+            if (!File.Exists(sectionsFile))
             {
-                var language = Path.GetFileNameWithoutExtension(fileName).Split("_")[1];
-                LocalizationManager.LoadLocalization(language, fileName);
-            }*/
-
-            var docPath = settings.Path + "docs" + Path.DirectorySeparatorChar;
-
-            var topicFile = docPath + "topics.txt";
-            if (!File.Exists(topicFile))
-            {
-                throw new Exception("Could not find file: " + topicFile);
+                throw new Exception("Could not find file: " + sectionsFile);
             }
 
-            var topicEntries = File.ReadAllLines(topicFile);
+            var topicEntries = File.ReadAllLines(sectionsFile);
             var topics = new List<Topic>();
             foreach (var line in topicEntries)
             {
@@ -178,6 +161,7 @@ namespace Phantasma.Docs
             }
 
             var languageEntries = File.ReadAllLines(langFile);
+            _docs.Clear();
             foreach (var line in languageEntries)
             {
                 var temp = line.Split(',');
@@ -191,6 +175,28 @@ namespace Phantasma.Docs
 
                 _docs[code] = LoadDocs(docPath, code, name, topics);
             }
+        }
+
+        static void Main(string[] args)
+        {
+            Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
+
+            var settings = ServerSettings.Parse(args);
+
+            var server = new HTTPServer(settings, ConsoleLogger.Write);
+
+            var templateEngine = new TemplateEngine(server, "views");
+
+            /*var locFiles = Directory.GetFiles("Localization", "*.csv");
+            foreach (var fileName in locFiles)
+            {
+                var language = Path.GetFileNameWithoutExtension(fileName).Split("_")[1];
+                LocalizationManager.LoadLocalization(language, fileName);
+            }*/
+
+            var docPath = settings.Path + "docs" + Path.DirectorySeparatorChar;
+
+            LoadAllDocs(docPath);
 
             Func<HTTPRequest, Dictionary<string, object>> GetContext = (request) =>
             {
@@ -232,6 +238,12 @@ namespace Phantasma.Docs
             {
                 var context = GetContext(request);
                 return templateEngine.Render(context, "main");
+            });
+
+            server.Get("/reload", (request) =>
+            {
+                LoadAllDocs(docPath);
+                return HTTPResponse.Redirect("/");
             });
 
             server.Run();
