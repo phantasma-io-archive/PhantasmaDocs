@@ -107,21 +107,24 @@ namespace Phantasma.Docs
 
                 var topicPath = docFolder + topic.ID + Path.DirectorySeparatorChar;
 
-                var files = Directory.GetFiles(topicPath, "*.html");
-
-                foreach (var file in files)
+                if (Directory.Exists(topicPath))
                 {
-                    var entry = new Entry();
+                    var files = Directory.GetFiles(topicPath, "*.html");
 
-                    var temp = Path.GetFileNameWithoutExtension(file).Split('_', 2);
+                    foreach (var file in files)
+                    {
+                        var entry = new Entry();
 
-                    entry.order = int.Parse(temp[0]);
-                    entry.name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(temp[1].Replace("_", " "));
-                    entry.link = section.link + "-" + temp[1];
+                        var temp = Path.GetFileNameWithoutExtension(file).Split('_', 2);
 
-                    entry.content = File.ReadAllText(file);
+                        entry.order = int.Parse(temp[0]);
+                        entry.name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(temp[1].Replace("_", " "));
+                        entry.link = section.link + "-" + temp[1];
 
-                    section.entries.Add(entry);
+                        entry.content = File.ReadAllText(file);
+
+                        section.entries.Add(entry);
+                    }
                 }
 
                 docs.sections.Add(section);
