@@ -1,0 +1,58 @@
+<h2 class="section-heading">Smart contract development</h2>
+<h4>Spook setup (test enviroment)</h4>
+<ol>
+  <li>Get latest Spook <a href="http://github.com/phantasma-io/Spook">code</a></li>
+  <li>Build it using Visual Studio</li>
+  <li>Copy <a href="https://github.com/phantasma-io/Spook/blob/master/Spook/config_testnet.json">config_testnet.json</a> to the build folder and rename it config.json</li>
+  <li>Make sure that "shell.enabled" is set to true in config.json</li>
+</ol>
+
+<h4>Getting test assets (SOUL and KCAL)</h4>
+<ol>
+  <li>Download <a href="https://github.com/phantasma-io/Poltergeist/releases">Poltergeist</a></li>
+  <li>Open the Poltergeist wallet, go to settings and change network to "localnet"</li>
+  <li>Grab the testnet private key (WIF) from the Spook config.json file (“node.wif”, eg: L2LGgkZAdupN2ee8Rs6hpkc65zaGcLbxhbSDGq8oh6umUxxzeW25)</li>
+  <li>Import a new account in Poltergeist using that WIF. This account will contain SOUL and KCAL.</li>
+  <li>Create other accounts as you need for testing, and send funds from the first account to the new ones.</li>
+</ol>
+
+
+<h4>Deploying a smart contract</h4>
+<ol>
+  <li>Download <a href="https://github.com/phantasma-io/TOMB">TOMB compiler</a></li>
+  <li>Build it using Visual Studio</li>
+  <li>Create a new file called hello.tomb with the following sample code as the content<br>
+<pre id="sample-contract-spook"><code class="html">
+contract hello
+{
+	import Token;
+	import Runtime;
+
+	global admin: address;
+
+	constructor(owner:address)
+	{
+		admin := owner;
+	}
+	
+	trigger onUpgrade(from:address) {
+		Runtime.expect(Runtime.isWitness(admin), "witness failed");
+		return;
+	}
+	
+	public callMe(from:address):number
+	{
+		Runtime.expect(Runtime.isWitness(from), "witness failed");
+		local thisAddr:address := $THIS_ADDRESS;
+		Token.transfer(from, thisAddr, "KCAL", Decimal.convert(10, 5));
+	}
+}
+</code></pre>  
+  </li>
+  <li>Compile it using TOMB from the terminal<br><pre><code class="html">TOMB.exe <path></code></pre>Where path is the file to the .tomb file.</li>
+  <li>If the compilation was successful you now will also have a .pvm and an .abi file near your .tomb file (and optionally an .asm and and .debug file)</li>
+  <li>Run Spook (make sure that you enabled the shell)</li>
+  <li>Use the command:<br><pre><code class="html">wallet open <WIF></code></pre>Where WIF is the private key from a wallet that has at least 50000 SOUL staked</li>
+  <li>Use the command:<br><pre><code class="html">wallet deploy <path></code></pre>Where path is the full path to hello.pvm (or any other contract you want to deploy)</li>
+  <li>Later if you need to upgrade a contract, use the command:<br><pre><code class="html">wallet upgrade <path></code></pre>Where path is the full path to the .pvm contract you want to upgrade.</li>  
+</ol>
