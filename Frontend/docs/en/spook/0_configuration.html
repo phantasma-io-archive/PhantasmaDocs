@@ -1,0 +1,158 @@
+<h2 id="node">Node</h2>
+<p>For development of Phantasma applications it is recommended you run a Phantasma node locally. It acts as your own personal blockchain network. 
+The following instructions explain how to do this on Windows. Other operating systems are also supported and instructions can be found in the following section of this document. You can later move to the official test network where multiple nodes are running, in order to test your dapp under a more realistic enviroment.</p>
+<p>To get started download a pre-compiled build which comes bundled in the official SDK release: <a href="https://github.com/phantasma-io/PhantasmaSDK/releases/latest">https://github.com/phantasma-io/PhantasmaSDK/releases/latest</a> - the files you need reside under Tools\Spook in the .zip file</p>
+<p>Note - you will need .NET runtime 3.1 installed on your desktop <a href="https://dotnet.microsoft.com/download">https://dotnet.microsoft.com/download</a></p>
+<p>To bootstrap your own test net just run a single instance of Phantasma node using the following arguments:</p>
+<pre>
+<code>spook-cli -<span class="hljs-keyword">node</span>.<span class="hljs-title">wif</span>=L2LGgkZAdupN2ee8Rs6hpkc65zaGcLbxhbSDGq8oh6umUxxzeW25 -nexus.<span class="hljs-attr">name=</span>simnet
+<span class="hljs-comment">#To enable the RPC server add this argument to the line above</span>
+-rpc.<span class="hljs-attr">enabled=</span><span class="hljs-literal">true</span>
+</code>
+</pre>
+
+<p>Otherwise you can compile the latest yourself from the source available in this repository.</p>
+<p>To compile and publish the source code for you will need the following:</p>
+<ul>
+    <li>A Windows PC that suports Visual Studio Community
+        <ul>
+            <li>Can be obtained here: <a href="https://visualstudio.microsoft.com/downloads/">https://visualstudio.microsoft.com/downloads/</a></li>
+        </ul>
+    </li>
+    <li>An installation of Visual Studio Community with the following extension
+        <ul>
+            <li>.NET Desktop Development</li>
+        </ul>
+    </li>
+</ul>
+
+<p>Pull or download the following GitHub Repositories</p>
+<ul>
+    <li>PhantasmaChain <a href="https://github.com/phantasma-io/PhantasmaChain">repository</a> </li>
+    <li>PhantasmaSpook <a href="https://github.com/phantasma-io/PhantasmaSpook">repository</a></li>
+</ul>
+
+<p>Ensure both of these sit in the same root directory on your PC and are in folders that match the above. For example:</p>
+<ul>
+    <li>C:\PATH\Phantasma\PhantasmaChain</li>
+    <li>C:\PATH\Phantasma\PhantasmaSpook</li>
+</ul>
+
+<p>Build and publish the code</p>
+<ul>
+    <li>Open Visual Studio</li>
+    <li>Open the PhantasmaSpook\Spook.sln solution</li>
+    <li>Build the solution</li>
+    <li>Publish the Spook.CLI Project</li>
+</ul>
+
+<p>The files needed to run a node will now be in PhantasmaSpook\Phantasma.CLI\Publish</p>
+<p>As per above you can run it with the following command:</p>
+<pre>
+<code>dotnet Spook.dll -<span class="hljs-keyword">node</span>.<span class="hljs-title">wif</span>=L2LGgkZAdupN2ee8Rs6hpkc65zaGcLbxhbSDGq8oh6umUxxzeW25 -nexus.<span class="hljs-attr">name=</span>simnet
+<span class="hljs-comment">#To enable the RPC server add this argument to the line above</span>
+-rpc.<span class="hljs-attr">enabled=</span><span class="hljs-literal">true</span>
+</code>
+</pre>
+
+<h2 id="configuration-and-startup">Configuration and startup</h2>
+<p>There are two different possibilities to configure Spook:</p>
+<p>Every config paramater is usable in the configuration file and as a cli argument.</p>
+<ul>
+    <li>Config file <code>config.json</code>.</li>
+    <li>CLI arguments -&gt; overwrite config file values.</li>
+</ul>
+
+<p>Spook can be run in three different modes:</p>
+<ul>
+    <li>no interface (default)</li>
+    <li>shell (&quot;shell.enabled&quot;: true)</li>
+    <li>tui (&quot;gui.enabled&quot;: true)</li>
+</ul>
+
+<p>Note, you cannot have shell and tui enabled at the same time.</p>
+<p>This is what the default configuration looks like:</p>
+<pre>
+<code>{
+    <span class="hljs-attr">"ApplicationConfiguration"</span>: {
+        <span class="hljs-attr">"Node"</span>: {
+            <span class="hljs-attr">"web.logs"</span>: <span class="hljs-literal">false</span>,
+            <span class="hljs-attr">"block.time"</span>: <span class="hljs-number">2</span>,
+            <span class="hljs-attr">"minimum.fee"</span>: <span class="hljs-number">100000</span>,
+            <span class="hljs-attr">"minimum.pow"</span>: <span class="hljs-number">0</span>,
+            <span class="hljs-attr">"api.proxy.url"</span>: <span class="hljs-string">""</span>,
+            <span class="hljs-attr">"nexus.name"</span>: <span class="hljs-string">"simnet"</span>,
+            <span class="hljs-attr">"node.mode"</span>: <span class="hljs-string">"validator"</span>,
+            <span class="hljs-attr">"node.wif"</span>: <span class="hljs-string">"L2LGgkZAdupN2ee8Rs6hpkc65zaGcLbxhbSDGq8oh6umUxxzeW25"</span>,
+            <span class="hljs-attr">"api.log"</span>: <span class="hljs-literal">false</span>,
+            <span class="hljs-attr">"node.port"</span>: <span class="hljs-number">7777</span>,
+            <span class="hljs-attr">"profiler.path"</span>: <span class="hljs-string">""</span>,
+            <span class="hljs-attr">"has.sync"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">"has.mempool"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">"mempool.log"</span>: <span class="hljs-literal">false</span>,
+            <span class="hljs-attr">"has.events"</span>: <span class="hljs-literal">false</span>,
+            <span class="hljs-attr">"has.relay"</span>: <span class="hljs-literal">false</span>,
+            <span class="hljs-attr">"has.archive"</span>: <span class="hljs-literal">false</span>,
+            <span class="hljs-attr">"has.rpc"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">"has.rest"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">"rpc.port"</span>: <span class="hljs-number">7081</span>,
+            <span class="hljs-attr">"rest.port"</span>: <span class="hljs-number">7078</span>,
+            <span class="hljs-attr">"nexus.bootstrap"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">"genesis.timestamp"</span>: <span class="hljs-number">0</span>,
+            <span class="hljs-attr">"api.cache"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">"readonly"</span>: <span class="hljs-literal">false</span>,
+            <span class="hljs-attr">"sender.host"</span>: <span class="hljs-string">""</span>,
+            <span class="hljs-attr">"sender.threads"</span>: <span class="hljs-number">8</span>,
+            <span class="hljs-attr">"sender.address.count"</span>: <span class="hljs-number">100</span>,
+            <span class="hljs-attr">"storage.path"</span>: <span class="hljs-string">""</span>,
+            <span class="hljs-attr">"verify.storage.path"</span>: <span class="hljs-string">""</span>,
+            <span class="hljs-attr">"db.storage.path"</span>: <span class="hljs-string">""</span>,
+            <span class="hljs-attr">"oracle.path"</span>: <span class="hljs-string">""</span>,
+            <span class="hljs-attr">"storage.backend"</span>: <span class="hljs-string">"db"</span>,
+            <span class="hljs-attr">"convert.storage"</span>: <span class="hljs-literal">false</span>,
+            <span class="hljs-attr">"random.swap.data"</span>: <span class="hljs-literal">false</span>
+        },
+
+        <span class="hljs-attr">"Oracle"</span>: {
+            <span class="hljs-attr">"neoscan.api"</span>: <span class="hljs-string">"mankinighost.phantasma.io:4000"</span>,
+            <span class="hljs-attr">"neo.rpc.nodes"</span>: [<span class="hljs-string">"http://mankinighost.phantasma.io:30333"</span>],
+            <span class="hljs-attr">"crypto.compare.key"</span>: <span class="hljs-string">"4e6ffe0dedfd49d2e182b706b72e736fa027844181d179dc5310f115deeb29be"</span>,
+            <span class="hljs-attr">"swaps.enabled"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">"phantasma.interop.height"</span>: <span class="hljs-string">"0"</span>,
+            <span class="hljs-attr">"neo.interop.height"</span>: <span class="hljs-string">"4261049"</span>,
+            <span class="hljs-attr">"eth.interop.height"</span>: <span class="hljs-string">"0"</span>,
+            <span class="hljs-attr">"neo.wif"</span>: <span class="hljs-string">""</span>
+        },
+
+        <span class="hljs-attr">"Plugins"</span>: {
+            <span class="hljs-attr">"plugin.refresh.interval"</span>: <span class="hljs-number">1</span>,
+            <span class="hljs-attr">"tps.plugin"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">"ram.plugin"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">"mempool.plugin"</span>: <span class="hljs-literal">true</span>
+        },
+
+        <span class="hljs-attr">"Simulator"</span>: {
+            <span class="hljs-attr">"simulator.enabled"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">"simulator.dapps"</span>: [<span class="hljs-string">""</span>],
+            <span class="hljs-attr">"simulator.generate.blocks"</span>: <span class="hljs-literal">false</span>
+        },
+
+        <span class="hljs-attr">"App"</span>: {
+            <span class="hljs-attr">"gui.enabled"</span>: <span class="hljs-literal">false</span>,
+            <span class="hljs-attr">"shell.enabled"</span>: <span class="hljs-literal">false</span>,
+            <span class="hljs-attr">"node.start"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">"app.name"</span>: <span class="hljs-string">"SPK"</span>,
+            <span class="hljs-attr">"config"</span>: <span class="hljs-string">""</span>,
+            <span class="hljs-attr">"prompt"</span>: <span class="hljs-string">"[{0}] spook&gt; "</span>,
+            <span class="hljs-attr">"history"</span>: <span class="hljs-string">".history"</span>,
+            <span class="hljs-attr">"log.file"</span>: <span class="hljs-string">"spook.log"</span>
+        },
+
+        <span class="hljs-attr">"RPC"</span>: {
+            <span class="hljs-attr">"rpc.address"</span>: <span class="hljs-string">"localhost"</span>,
+            <span class="hljs-attr">"rpc.port"</span>: <span class="hljs-number">7654</span>
+        }
+    }
+}
+</code>
+</pre>
