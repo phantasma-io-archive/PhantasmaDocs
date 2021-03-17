@@ -1,0 +1,25 @@
+<!-- Wallet Link -->
+<!-- invokeScript -->
+<h4 id="invokeScript">invokeScript</h4>
+<p>Returns the account name and balance of given address.</p>
+
+<h5 id="getAccountMethod">Method definition</h5>
+<pre>
+<code>protected abstract void InvokeScript(string chain, byte[] script, int id, Action&ltbyte[], string> callback);
+</code>
+</pre>
+
+<h5 id="getAccountParameters">Parameters</h5>
+<ol>
+    <li><code>string</code> Address of account.</li>
+    <li><code>Action</code> Call back that returns an Account object and a string.</li>
+</ol>
+
+<h5 id="returns">Returns</h5>
+<p><code>Account</code> - A Account object, or <code>error</code> if address is invalid.</p>
+<ul>
+    <li><code>address</code>: <code>string</code> - Given address.</li>
+    <li><code>name</code>: <code>string</code> - Name of given address.</li>
+    <li><code>stakes</code>: <code>Array</code> - Array of stake objects.</li>
+</ul>
+<hr>
