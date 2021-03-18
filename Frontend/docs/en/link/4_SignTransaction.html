@@ -12,14 +12,14 @@
 <h5 id="SignTxParameters">Parameters</h5>
 <ol>
     <li><code>string</code> Address of account.</li>
+    <li><code>string</code> Signature Kind.</li>
+    <li><code>string</code> Chain.</li>
     <li><code>Action</code> Call back that returns an Account object and a string.</li>
 </ol>
 
-<h5 id="SignTxReturns">Returns</h5>
-<p><code>Account</code> - A Account object, or <code>error</code> if address is invalid.</p>
+<h5 id="SignTxReturns">Returns</h5> <!-- TODO: CHANGE RETURN -->
+<p><code>Hash</code> - A transaction hash, or <code>error</code> if transaction went wrong.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>stakes</code>: <code>Array</code> - Array of stake objects.</li>
+    <li><code>result</code>: <code>string</code> - Hash address.</li>
 </ul>
 <hr>
