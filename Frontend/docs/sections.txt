@@ -1,7 +1,7 @@
 Chain,microchip
 Ecosystem,coins
 Spook,laptop-code
-API,box
+APIs,box
 Serialization,cog
 Link,link
 Virtual Machine,stream
