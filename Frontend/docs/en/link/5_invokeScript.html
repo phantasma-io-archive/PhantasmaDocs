@@ -1,0 +1,25 @@
+<!-- Wallet Link -->
+<!-- invokeScript -->
+<h4 id="invokeScript">invokeScript</h4>
+<p>Invokes a script on the VM</p>
+
+<h5 id="invokeScriptMethod">Method definition</h5>
+<pre>
+<code>protected abstract void InvokeScript(string chain, byte[] script, int id, Action&ltbyte[], string> callback);
+</code>
+</pre>
+
+<h5 id="invokeScriptParameters">Parameters</h5>
+<ol>
+    <li><code>string</code> Chain that the script needs to run</li>
+    <li><code>byte[]</code> The script call in bytes.</li>
+    <li><code>int</code> The id.</li>
+    <li><code>Action</code> Call back that returns a result byte[] that contains all the information returned script, and a string.</li>
+</ol>
+
+<h5 id="invokeScriptReturns">Returns</h5> <!-- TODO: CHANGE RETURN -->
+<p><code>Byte[]</code> - A Byte array object with the return from the script, or <code>error</code> if something wents wrong.</p>
+<ul>
+    <li><code>result</code>: <code>string</code> - Return of the method.</li>
+</ul>
+<hr>

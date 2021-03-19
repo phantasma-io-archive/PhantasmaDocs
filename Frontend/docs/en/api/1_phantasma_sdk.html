@@ -1,0 +1,104 @@
+<h2 id="phantasmaSDKMethods">Phantasma SDK for Unity</h2>
+<p>This SDK is devided in 4 Major Scripts</p> <!-- TODO: Change description -->
+
+<ul>
+    <li><a href="#PhantasmaLinkClientPhantasmaSDKUnity">PhantasmaLinkClient</a></li>
+    <li><a href="#PhantasmaAPI.UnityPhantasmaSDKUnity">PhantasmaAPI.Unity</a></li>
+    <li><a href="#WebClientPhantasmaSDKUnity">WebClient</a></li>
+    <li><a href="#LogPhantasmaSDKUnity">Log</a></li>
+</ul>
+<hr>
+
+<h4 id="PhantasmaLinkClientPhantasmaSDKUnity">PhantasmaLinkClient</h4>
+<p>Small description of the script</p> <!-- TODO: Change description -->
+
+<h5 id="PhantasmaLinkClientPhantasmaSDKUnityMethods">Public methods</h5> <!-- TODO: Change and add exemples and better explanation  -->
+<pre>
+<code>public decimal GetBalance(string symbol);
+public void Login(Action&ltbool> callback);
+public void SendTransaction(string chain, byte[] script, byte[] payload, Action&ltHash, string> callback);
+</code>
+</pre>
+<hr>
+
+<h4 id="PhantasmaAPI.UnityPhantasmaSDKUnity">PhantasmaAPI.Unity</h4>
+<p>Small description of the script</p> <!-- TODO: Change description -->
+
+<h5 id="PhantasmaAPI.UnityPhantasmaSDKUnityMethods">Public methods</h5> <!-- TODO: Change and add exemples and better explanation  -->
+<p>Inside the PhantasmaAPI</p>
+<pre>
+<code>public IEnumerator GetAccount(string addressText, Action&ltAccount> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetContract(string contractName, Action&ltContract> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator LookUpName(string name, Action&ltstring> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetBlockHeight(string chainInput, Action&ltint> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetBlockTransactionCountByHash(string blockHash, Action&ltint> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetBlockByHash(string blockHash, Action&ltBlock> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetRawBlockByHash(string blockHash, Action&ltstring> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetBlockByHeight(string chainInput, uint height, Action&ltBlock> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetRawBlockByHeight(string chainInput, uint height, Action&ltstring> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetTransactionByBlockHashAndIndex(string blockHash, int index, Action&ltTransaction> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetAddressTransactions(string addressText, uint page, uint pageSize, Action&ltAccountTransactions, int, int> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetAddressTransactionCount(string addressText, string chainInput, Action&ltint> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null); 
+public IEnumerator SendRawTransaction(string txData, Action&ltstring> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator InvokeRawScript(string chainInput, string scriptData, Action&ltScript> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null); 
+public IEnumerator GetTransaction(string hashText, Action&ltTransaction> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator CancelTransaction(string hashText, Action&ltstring> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetChains(Action&ltChain[]> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetTokens(Action&ltToken[]> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetToken(string symbol, Action&ltToken> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetTokenData(string symbol, string IDtext, Action&ltTokenData> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetTokenTransfers(string tokenSymbol, uint page, uint pageSize, Action&ltTransaction[], int, int> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null); 
+public IEnumerator GetTokenTransferCount(string tokenSymbol, Action&ltint> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetTokenBalance(string addressText, string tokenSymbol, string chainInput, Action&ltBalance> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetAuctionsCount(string chainAddressOrName, string symbol, Action&ltint> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null); 
+public IEnumerator GetAuctions(string chainAddressOrName, string symbol, uint page, uint pageSize, Action&ltAuction[], int, int> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetAuction(string chainAddressOrName, string symbol, string IDtext, Action&ltAuction> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetArchive(string hashText, Action&ltArchive> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator WriteArchive(string hashText, int blockIndex, string blockContent, Action&ltBoolean> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null); 
+public IEnumerator GetABI(string chainAddressOrName, string contractName, Action&ltABIContract> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetPeers(Action&ltPeer[]> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator RelaySend(string receiptHex, Action&ltBoolean> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator RelayReceive(string accountInput, Action&ltReceipt[]> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);  
+public IEnumerator GetEvents(string accountInput, Action&ltEvent[]> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator SettleSwap(string sourcePlatform, string destPlatform, string hashText, Action&ltstring> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetSwapsForAddress(string accountInput, Action&ltSwap[]> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetPlatforms(Action&ltPlatform[]> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator GetValidators(Action&ltValidator[]> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator SignAndSendTransaction(PhantasmaKeys keys, string nexus, byte[] script, string chain, Action&ltstring> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator SignAndSendTransactionWithPayload(PhantasmaKeys keys, string nexus, byte[] script, string chain, string payload, Action&ltstring> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null);
+public IEnumerator SignAndSendTransactionWithPayload(IKeyPair keys, string nexus, byte[] script, string chain, byte[] payload, Action&ltstring> callback, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback = null, Func<byte[], byte[], byte[], byte[]> customSignFunction = null);
+public static bool IsValidPrivateKey(string address)
+public static bool IsValidAddress(string address);
+</code>
+</pre>
+<hr>
+
+<h4 id="WebClientPhantasmaSDKUnity">WebClient</h4>
+<p>Small description of the script</p> <!-- TODO: Change description -->
+
+<h5 id="WebClientPhantasmaSDKUnityMethods">Public methods</h5> <!-- TODO: Change and add exemples and better explanation  -->
+<pre>
+<code>public static IEnumerator RPCRequest(string url, string method, int timeout, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback,Action&ltDataNode> callback, params object[] parameters);
+public static IEnumerator RPCRequestEx(string url, string method, int timeout, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback,Action&ltDataNode> callback, DataNode parametersNode);
+public static IEnumerator RESTRequest(string url, int timeout, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback, Action&ltDataNode> callback);
+public static IEnumerator RESTRequest(string url, string serializedJson, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback, Action&ltDataNode> callback);
+public static IEnumerator Ping(string url, Action&ltEPHANTASMA_SDK_ERROR_TYPE, string> errorHandlingCallback, Action&ltTimeSpan> callback);
+</code>
+</pre>
+<hr>
+
+<h4 id="LogPhantasmaSDKUnity">Log</h4>
+<p>Small description of the script</p> <!-- TODO: Change description -->
+
+<h5 id="LogPhantasmaSDKUnityMethods">Public methods</h5> <!-- TODO: Change and add exemples and better explanation  -->
+<pre>
+<code>public static void SwitchUtcTimestamp(bool utcTimestamp);
+public static void DisableMultilinePadding(bool disableMultilinePadding);
+public static void WriteWarning(string message, Level level = Level.Logic);
+public static void WriteError(string message, Level level = Level.Logic);
+public static void Write(string message, Level level = Level.Logic, UnityDebugLogMode unityDebugLogMode = UnityDebugLogMode.Normal);
+public static void WriteJson(DataNode node, string message = "", Level level = Level.Logic, UnityDebugLogMode unityDebugLogMode = UnityDebugLogMode.Normal);
+public static void WriteXML(DataNode node, string message = "", Level level = Level.Logic, UnityDebugLogMode unityDebugLogMode = UnityDebugLogMode.Normal);
+</code>
+</pre>
+<hr>

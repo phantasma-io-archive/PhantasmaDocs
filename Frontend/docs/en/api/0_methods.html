@@ -46,7 +46,7 @@
 <hr>
 
 <!-- GetAccount -->
-<h4 id="getaccount">getAccount</h4>
+<h4 id="getAccount">getAccount</h4>
 <p>Returns the account name and balance of given address.</p>
 
 <h5 id="parameters">Parameters</h5>
@@ -54,8 +54,8 @@
     <li><code>string</code> Address of account.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: {
-    <span class="hljs-keyword">"account"</span>:<span class="hljs-string">"P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34"</span>
+<code class="lang-json">params: {
+    "account":"P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34"
 }
 </code>
 </pre>
@@ -65,105 +65,101 @@
 <ul>
     <li><code>address</code>: <code>string</code> - Given address.</li>
     <li><code>name</code>: <code>string</code> - Name of given address.</li>
+    <li><code>stakes</code>: <code>Array</code> - Array of stake objects.</li>
+    <li><code>stakes - amount</code>: <code>string</code> - Amount of tokens staked.</li>
+    <li><code>stakes - time</code>: <code>timestamp</code> - Time.</li>
+    <li><code>stakes - unclaimed</code>: <code>string</code> - Amount of unclaimed tokens.</li>
+    <li><code>storage</code>: <code>Array</code> - Array of storage objects.</li>
+    <li><code>storage - available</code>: <code>number</code> - Number if decimals.</li>
+    <li><code>storage - used</code>: <code>number</code> - Storage used.</li>
+    <li><code>storage - avatar</code>: <code>blob</code> - Blob of the image.</li>
     <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
     <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
     <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
     <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>balance - decimals</code>: <code>number</code> - Number if decimals.</li>
+    <li><code>txs</code>: <code>Array</code> - Array of strings.</li> <!-- TODO: Change to a specific -->
+</ul>
+<p><code>Error</code> return.</p>
+<ul>
+   <li><code>jsonrpc</code>: <code>string</code> -String with the jsonrpc version.</li>
+   <li><code>error</code>: <code>Object</code> - Error object.</li>
+   <li><code>error - code</code>: <code>number</code> - Name of the chain.</li>
+   <li><code>error - message</code>: <code>string</code> - Error message.</li>
+   <li><code>id</code>: <code>number</code> - ID of will return 0.</li> <!-- TODO: Change to a specific -->
+
 </ul>
 
-<!-- 
-    {
-    "jsonrpc": "2.0",
-    "result": {
-        "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
-        "name": "genesis",
-        "stakes": {
-            "amount": "5000000000000",
-            "time": 1615546566,
-            "unclaimed": "3000000000000"
-        },
-        "stake": "5000000000000",
-        "unclaimed": "3000000000000",
-        "relay": "0",
-        "validator": "Primary",
-        "storage": {
-            "available": 2048000000,
-            "used": 0,
-            "avatar": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAAJFBMVEWcnJz////39/etra3e3t6lpaW1tbXn5+fW1tbv7+/Ozs69vb2ss4cPAAAAk0lEQVQoz2OgJWA2QOWnKAqVIfM5BIGgAUlgIUhAAsFnEwSDBLgAC0SgAC7ABBEQhQsYQgSEMQRwa2GHGopu7QaEQxpBfBF0pzsg+3WioKAkkn9ZHcFaAuACRhBDleEaFCECQjBNQYJQoAoVcIQJiCA5Cx4iCIcjHB+IEBCFBigcSMHMRDV1IkJAEiygiBAQYmAAABD5F4JgcTScAAAAAElFTkSuQmCC"
-        },
-        "balances": [
-            {
-                "chain": "main",
-                "amount": "94899900000000",
-                "symbol": "SOUL",
-                "decimals": 8
-            },
-            {
-                "chain": "main",
-                "amount": "9887099232828419",
-                "symbol": "KCAL",
-                "decimals": 10
-            },
-            {
-                "chain": "main",
-                "amount": "99000",
-                "symbol": "MKNI",
-                "decimals": 0
-            }
-        ],
-        "txs": [
-            "07A33AFF587DFF86DE2829D0FD2A8AA52FDF75A8580EF031A666537B60CE35ED",
-            "F8AC51DAFB2DA550516071F7A4AD2A9C116B87F3045E90A67CEAE268CBED9DA4",
-            "7DCD1157752296B514F925339AEA11CCD5F9D31ED259167BB8E8561A7ED8944B",
-            "3EA00C4699D3E18623A30A058B6373944540447BF87138FD47C729A0DCC7C57C",
-            "9F7559B2F0F66266F73E5D25BA2CDA46C90FADA70D850CC3995869A1AED3454D",
-            "04FF98C43E08019DDC4F1D2B152A452A3193E4EE32BA5B3ED183CA729672EF58",
-            "971424470FE7E0F9445A15D1378F8B0F114D9DC2C95491FEC42AF1D2655A0C4E",
-            "4CD1CBA53C0D62CF2DB13DB5F798E6BA17012B96E7FDF6D29E8E5E3D9768615B",
-            "01DEA7A6E4A47D0270399A918AF7FC1E13A24DD02A633099FFC19360766E8442",
-            "7316981546C0F87A3902447CB423AEAF11E60891B544B69E3E8BB1B2BDCFB1F2",
-            "01FC7AA79D5DE7F995A2BC42EF64809EBAA89822C4EEE779ADC2C820BA199384",
-            "0491253DF9424AEAF9D228C09D3390E69779D8D78C4C010EF735AF2C659FF113",
-            "07C9D24E2386B712A69410467C005408455D7940C6DA4799594C1E828675964D",
-            "07091A38DF59772C0533CD5F3AE83A3EE3D8E9074D9E212ADE335DDDEB86D941",
-            "F12F08527FFD81213811239BB2F236CD1E8ACDA3D268E951F06AA82950DDB0AE"
-        ]
-    },
-    "id": 1
-}
--->
 <h5 id="example">Example</h5>
-<pre>
-<code class="lang-js"><span class="hljs-comment">// Request</span>
-curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getAccount<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
+<pre><code>// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getAccount","params":{"account":"P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34"},"id":1}'
 
-<span class="hljs-comment">// Result</span>
+// Result
 {
-   <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-   <span class="hljs-string">"result"</span>:{
-      <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-      <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-      <span class="hljs-string">"balances"</span>:[
+   "jsonrpc": "2.0",
+   "result": {
+      "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+      "name": "genesis",
+      "stakes": {
+         "amount": "5000000000000",
+         "time": 1615546566,
+         "unclaimed": "3000000000000"
+      },
+      "stake": "5000000000000",
+      "unclaimed": "3000000000000",
+      "relay": "0",
+      "validator": "Primary",
+      "storage": {
+         "available": 2048000000,
+         "used": 0,
+         "avatar": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAAJFBMVEWcnJz////39/etra3e3t6lpaW1tbXn5+fW1tbv7+/Ozs69vb2ss4cPAAAAk0lEQVQoz2OgJWA2QOWnKAqVIfM5BIGgAUlgIUhAAsFnEwSDBLgAC0SgAC7ABBEQhQsYQgSEMQRwa2GHGopu7QaEQxpBfBF0pzsg+3WioKAkkn9ZHcFaAuACRhBDleEaFCECQjBNQYJQoAoVcIQJiCA5Cx4iCIcjHB+IEBCFBigcSMHMRDV1IkJAEiygiBAQYmAAABD5F4JgcTScAAAAAElFTkSuQmCC"
+      },
+      "balances": [
          {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
+               "chain": "main",
+               "amount": "94899900000000",
+               "symbol": "SOUL",
+               "decimals": 8
          },
          {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
+               "chain": "main",
+               "amount": "9887099232828419",
+               "symbol": "KCAL",
+               "decimals": 10
+         },
+         {
+               "chain": "main",
+               "amount": "99000",
+               "symbol": "MKNI",
+               "decimals": 0
          }
+      ],
+      "txs": [
+         "07A33AFF587DFF86DE2829D0FD2A8AA52FDF75A8580EF031A666537B60CE35ED",
+         "F8AC51DAFB2DA550516071F7A4AD2A9C116B87F3045E90A67CEAE268CBED9DA4",
+         "7DCD1157752296B514F925339AEA11CCD5F9D31ED259167BB8E8561A7ED8944B",
+         "3EA00C4699D3E18623A30A058B6373944540447BF87138FD47C729A0DCC7C57C",
+         "9F7559B2F0F66266F73E5D25BA2CDA46C90FADA70D850CC3995869A1AED3454D",
+         "04FF98C43E08019DDC4F1D2B152A452A3193E4EE32BA5B3ED183CA729672EF58",
+         "971424470FE7E0F9445A15D1378F8B0F114D9DC2C95491FEC42AF1D2655A0C4E",
+         "4CD1CBA53C0D62CF2DB13DB5F798E6BA17012B96E7FDF6D29E8E5E3D9768615B",
+         "01DEA7A6E4A47D0270399A918AF7FC1E13A24DD02A633099FFC19360766E8442",
+         "7316981546C0F87A3902447CB423AEAF11E60891B544B69E3E8BB1B2BDCFB1F2",
+         "01FC7AA79D5DE7F995A2BC42EF64809EBAA89822C4EEE779ADC2C820BA199384",
+         "0491253DF9424AEAF9D228C09D3390E69779D8D78C4C010EF735AF2C659FF113",
+         "07C9D24E2386B712A69410467C005408455D7940C6DA4799594C1E828675964D",
+         "07091A38DF59772C0533CD5F3AE83A3EE3D8E9074D9E212ADE335DDDEB86D941",
+         "F12F08527FFD81213811239BB2F236CD1E8ACDA3D268E951F06AA82950DDB0AE"
       ]
    },
-   <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
+   "id": 1
 }
 </code>
 </pre>
 <hr>
 
 <!-- LookUpName -->
-<h4 id="lookupname">lookUpName</h4>
+<h4 id="lookUpName">lookUpName</h4>
 <p>Returns the address that owns a given name.</p>
 
 <h5 id="parameters">Parameters</h5>
@@ -171,8 +167,8 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
     <li><code>string</code> Name of account.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: {
-    <span class="hljs-keyword">"name"</span>:<span class="hljs-string">"phantom_force"</span>
+<code class="lang-json">params: {
+   "name":"phantom_force"
 }
 </code>
 </pre>
@@ -180,51 +176,28 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
 <h5 id="returns">Returns</h5>
 <p><code>string</code> - A string object, or <code>error</code> if address is invalid.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>jsonrpc</code>: <code>string</code> - String with the jsonrpc version.</li>
+    <li><code>result</code>: <code>string</code> - Address of given name.</li>
+    <li><code>id</code>: <code>number</code> - ID of the user.</li> 
 </ul>
 
 <h5 id="example">Example</h5>
-<!-- {
-    "jsonrpc": "2.0",
-    "result": "S3dGUjVwYa31AxdthdpsuyBKgX1N65FnoQhUkSgYbUEdRp4",
-    "id": 1
-}-->
 <pre>
-<code class="lang-js"><span class="hljs-comment">// Request</span>
-curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>lookUpName<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"lookUpName","params":{"name":"phantom_force"},"id":1}'
 
-<span class="hljs-comment">// Result</span>
+// Result
 {
-   <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-   <span class="hljs-string">"result"</span>:{
-      <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-      <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-      <span class="hljs-string">"balances"</span>:[
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         },
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         }
-      ]
-   },
-   <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
+   "jsonrpc": "2.0",
+   "result": "S3dGUjVwYa31AxdthdpsuyBKgX1N65FnoQhUkSgYbUEdRp4",
+   "id": 1
 }
 </code>
 </pre>
 <hr>
 
 <!-- GetBlockHeight -->
-<h4 id="getblockheight">getBlockHeight</h4>
+<h4 id="getBlockHeight">getBlockHeight</h4>
 <p>Returns the height of a chain.</p>
 
 <h5 id="parameters">Parameters</h5>
@@ -232,8 +205,8 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
     <li><code>string</code> Address or name of chain.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: {
-    <span class="hljs-keyword">"chainInput"</span>:<span class="hljs-string">'main'</span>
+<code class="lang-json">params : {
+   "chainInput":"main"
 }
 </code>
 </pre>
@@ -241,51 +214,27 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
 <h5 id="returns">Returns</h5>
 <p><code>number</code> - A number, or <code>error</code> if chain is invalid.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+   <li><code>jsonrpc</code>: <code>string</code> - String with the jsonrpc version.</li>
+   <li><code>result</code>: <code>string</code> - Number of Block height.</li>
+   <li><code>id</code>: <code>number</code> - ID of the user.</li>
 </ul>
 
-<!-- {
-    "jsonrpc": "2.0",
-    "result": "77",
-    "id": 1
-}-->
 <h5 id="example">Example</h5>
-<pre>
-<code class="lang-js"><span class="hljs-comment">// Request</span>
-curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
+<pre><code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getBlockHeight","params":{"chainAddressOrName":"main","blockHash":"8FBCC7B1869EE44FF37022310A38841523B4AEDE0AB414AADB2A019D27EA17C9"},"id":1}'
 
-<span class="hljs-comment">// Result</span>
+// Result
 {
-   <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-   <span class="hljs-string">"result"</span>:{
-      <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-      <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-      <span class="hljs-string">"balances"</span>:[
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         },
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         }
-      ]
-   },
-   <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
+   "jsonrpc": "2.0",
+   "result": "77",
+   "id": 1
 }
 </code>
 </pre>
 <hr>
 
 <!-- GetBlockTransactionCountByHash -->
-<h4 id="getblocktransactioncountbyhash">getBlockTransactionCountByHash</h4>
+<h4 id="getBlockTransactionCountByHash">getBlockTransactionCountByHash</h4>
 <p>Returns the number of transactions of given block hash or error if given hash is invalid or is not found.</p>
 
 <h5 id="parameters">Parameters</h5>
@@ -294,9 +243,9 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
     <li><code>string</code> Hash of block.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: {
-    <span class="hljs-keyword">"chainAddressOrName"</span>:<span class="hljs-string">'main'</span>,
-    <span class="hljs-keyword">"blockHash"</span>:<span class="hljs-string">'8FBCC7B1869EE44FF37022310A38841523B4AEDE0AB414AADB2A019D27EA17C9'</span>
+<code class="lang-json">params: {
+   "chainAddressOrName":"main",
+   "blockHash":"8FBCC7B1869EE44FF37022310A38841523B4AEDE0AB414AADB2A019D27EA17C9"
 }
 </code>
 </pre>
@@ -304,47 +253,28 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
 <h5 id="returns">Returns</h5>
 <p><code>number</code> - A number, or <code>error</code> if block hash is invalid.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+   <li><code>jsonrpc</code>: <code>string</code> - String with the jsonrpc version.</li>
+   <li><code>result</code>: <code>number</code> - Number of Transactions from a specific hash.</li>
+   <li><code>id</code>: <code>number</code> - ID of the user.</li>
 </ul>
 
-<!-- 1 -->
 <h5 id="example">Example</h5>
 <pre>
-<code class="lang-js"><span class="hljs-comment">// Request</span>
-curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockTransactionCountByHash<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getBlockTransactionCountByHash","params":{"chainAddressOrName":"main","blockHash":"8FBCC7B1869EE44FF37022310A38841523B4AEDE0AB414AADB2A019D27EA17C9"},"id":1}'
 
-<span class="hljs-comment">// Result</span>
+// Result
 {
-   <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-   <span class="hljs-string">"result"</span>:{
-      <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-      <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-      <span class="hljs-string">"balances"</span>:[
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         },
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         }
-      ]
-   },
-   <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
+   "jsonrpc": "2.0",
+   "result": 1,
+   "id": 1
 }
 </code>
 </pre>
 <hr>
 
 <!-- GetBlockByHash -->
-<h4 id="getblockbyhash">getBlockByHash</h4>
+<h4 id="getBlockByHash">getBlockByHash</h4>
 <p>Returns information about a block by hash.</p>
 
 <h5 id="parameters">Parameters</h5>
@@ -352,111 +282,192 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
     <li><code>string</code> Hash of block.</li>
 </ol>
 <pre>
-    <code class="lang-js"><span class="hljs-keyword">params</span>: {
-        <span class="hljs-keyword">"chainAddressOrName"</span>:<span class="hljs-string">'main'</span>,
-        <span class="hljs-keyword">"blockHash"</span>:<span class="hljs-string">'8FBCC7B1869EE44FF37022310A38841523B4AEDE0AB414AADB2A019D27EA17C9'</span>
-    }
-    </code>
+<code class="lang-json">params: {
+   "chainAddressOrName":"main",
+   "blockHash":"D717455B81E9A0EE90D6D4B7CC7C476AF4D039AFBEE0505DF1EBFC7B1E395E55"
+}
+</code>
 </pre>
 
 <h5 id="returns">Returns</h5>
 <p><code>Block</code> - A Block object, or <code>error</code> if block hash is invalid.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>hash</code>: <code>string</code> - Hash of the object.</li>
+    <li><code>previousHash</code>: <code>string</code> - Previous hash of the object.</li>
+    <li><code>timestamp</code>: <code>timestamp</code> - Time when the hash was produced.</li>
+    <li><code>height</code>: <code>number</code> - Height of the hash.</li>
+    <li><code>chainAddress</code>: <code>number</code> - Address of the chain that the address is in.</li>
+    <li><code>protocol</code>: <code>number</code> - Name of given address.</li>
+    <li><code>txs</code>: <code>Array</code> - Array of txs objects.</li>
+    <li><code>txs - hash</code>: <code>string</code> - Hash of the object.</li>
+    <li><code>txs - chainAddress</code>: <code>string</code> - Address of the chain that the address is in.</li>
+    <li><code>txs - timestamp</code>: <code>string</code> - Time when the hash was produced.</li>
+    <li><code>txs - blockHeight</code>: <code>string</code> - Height of the hash block.</li>
+    <li><code>txs - blockHash</code>: <code>string</code> - Hash of the block</li>
+    <li><code>txs - script</code>: <code>string</code> - Script encoded.</li>
+    <li><code>txs - payload</code>: <code>string</code> - Payload encoded.</li>
+    <li><code>txs - events</code>: <code>Array</code> - Array of events objects.</li>
+    <li><code>txs - events - address</code>: <code>string</code> - Address of event.</li>
+    <li><code>txs - events - contract</code>: <code>string</code> - Type of contract.</li>
+    <li><code>txs - events - kind</code>: <code>string</code> - Type of token.</li>
+    <li><code>txs - events - data</code>: <code>string</code> - Data of the event.</li>
+    <li><code>txs - result</code>: <code>string</code> - Result of the transaction.</li>
+    <li><code>txs - fee</code>: <code>string</code> - Fee of transaction.</li>
+    <li><code>txs - signatures</code>: <code>string</code> - Array of signatures.</li>
+    <li><code>txs - signatures - Kind</code>: <code>string</code> - Type of signature.</li>
+    <li><code>txs - signatures - Data</code>: <code>string</code> - Data of signature.</li>
+    <li><code>txs - expiration</code>: <code>timestamp</code> - Experiation of the contract.</li>
+    <li><code>validatorAddress</code>: <code>number</code> - Address that validates the hash.</li>
+    <li><code>reward</code>: <code>number</code> - Reward of the hash.</li>
+    <li><code>events</code>: <code>Array</code> - Array of events objects.</li>
+    <li><code>events - address</code>: <code>string</code> - Address of event.</li>
+    <li><code>events - contract</code>: <code>string</code> - Type of contract.</li>
+    <li><code>events - kind</code>: <code>string</code> - Type of token.</li>
+    <li><code>events - data</code>: <code>string</code> - Data of the event.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-<code class="lang-js"><span class="hljs-comment">// Request</span>
-curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHash<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getBlockByHash","params":{"blockHash":"D717455B81E9A0EE90D6D4B7CC7C476AF4D039AFBEE0505DF1EBFC7B1E395E55"},"id":1}'
 
-<span class="hljs-comment">// Result</span>
+// Result
 {
-   <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-   <span class="hljs-string">"result"</span>:{
-      <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-      <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-      <span class="hljs-string">"balances"</span>:[
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         },
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         }
-      ]
+   "jsonrpc": "2.0",
+   "result": {
+       "hash": "D717455B81E9A0EE90D6D4B7CC7C476AF4D039AFBEE0505DF1EBFC7B1E395E55",
+       "previousHash": "F6520F325E5E0A41B9E675914DCFCBF24F2B06EDFBF623A4E10F4E54EAA921D5",
+       "timestamp": 1615560444,
+       "height": 29,
+       "chainAddress": "S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4",
+       "protocol": 5,
+       "txs": [
+           {
+               "hash": "986A082C008D5215480D038BAC401F3F16E3C54386695A39C82C0FBD1098AFE4",
+               "chainAddress": "S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4",
+               "timestamp": 1615560444,
+               "blockHeight": 29,
+               "blockHash": "D717455B81E9A0EE90D6D4B7CC7C476AF4D039AFBEE0505DF1EBFC7B1E395E55",
+               "script": "0D00030328230003000D000304A086010003000D000223220000000000000000000000000000000000000000000000000000000000000000000003000D000223220100F0635964DBF97E043EA0FB5DD67CE69369F5AE19E4B4B67121ABB6C14A558A8403000D000408416C6C6F7747617303000D0004036761732D00012E010D000223220100F0635964DBF97E043EA0FB5DD67CE69369F5AE19E4B4B67121ABB6C14A558A8403000D000404706C617903000D000405736C6F74732D00012E010D000223220100F0635964DBF97E043EA0FB5DD67CE69369F5AE19E4B4B67121ABB6C14A558A8403000D0004085370656E6447617303000D0004036761732D00012E010B",
+               "payload": "534C4F545376312E30",
+               "events": [
+                   {
+                       "address": "P2KKxTbPSBKMRRL9vw6NYXsNCKTX1ZfoE2bvAuq6VwZSYuy",
+                       "contract": "gas",
+                       "kind": "TokenStake",
+                       "data": "044B43414C0500E9A43500046D61696E"
+                   },
+                   {
+                       "address": "P2KKxTbPSBKMRRL9vw6NYXsNCKTX1ZfoE2bvAuq6VwZSYuy",
+                       "contract": "gas",
+                       "kind": "GasEscrow",
+                       "data": "2202000D6E4079E36703EBD37C00722F5891D28B0E2811DC114B129215123ADCCE360504A086010003282300"
+                   },
+                   {
+                       "address": "P2KKxTbPSBKMRRL9vw6NYXsNCKTX1ZfoE2bvAuq6VwZSYuy",
+                       "contract": "slots",
+                       "kind": "TokenStake",
+                       "data": "044B43414C0600E40B540200046D61696E"
+                   },
+                   {
+                       "address": "P2KKxTbPSBKMRRL9vw6NYXsNCKTX1ZfoE2bvAuq6VwZSYuy",
+                       "contract": "gas",
+                       "kind": "GasPayment",
+                       "data": "2202000D6E4079E36703EBD37C00722F5891D28B0E2811DC114B129215123ADCCE360504A0860100036F0500"
+                   },
+                   {
+                       "address": "P2KKxTbPSBKMRRL9vw6NYXsNCKTX1ZfoE2bvAuq6VwZSYuy",
+                       "contract": "gas",
+                       "kind": "TokenClaim",
+                       "data": "044B43414C05A0695A2D00046D61696E"
+                   },
+                   {
+                       "address": "S3d9nBL5LAUFhQ14Wzyb3JJRrXXB6atUuoL1uibkT3bttjw",
+                       "contract": "gas",
+                       "kind": "TokenBurn",
+                       "data": "044B43414C05607C240400046D61696E"
+                   },
+                   {
+                       "address": "P2KKxTbPSBKMRRL9vw6NYXsNCKTX1ZfoE2bvAuq6VwZSYuy",
+                       "contract": "gas",
+                       "kind": "CrownRewards",
+                       "data": "044B43414C058001130200046D61696E"
+                   },
+                   {
+                       "address": "S3dBVkyE9kdfbBjh7HMEr1BfPTg53CeSWaj3srYzBTZ4vyK",
+                       "contract": "gas",
+                       "kind": "TokenClaim",
+                       "data": "044B43414C058001130200046D61696E"
+                   }
+               ],
+               "result": "0600",
+               "fee": "139100000",
+               "signatures": [
+                   {
+                       "Kind": "Ed25519",
+                       "Data": "4022E040CAB589838E2644EF94265608893615E3135272D7BE0A9CBF931077D738F6301416494C151DD7A119C03FE805C8807F957972B428413A24C41A5E54F702"
+                   }
+               ],
+               "expiration": 1615561644
+           }
+       ],
+       "validatorAddress": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+       "reward": "0",
+       "events": [
+           {
+               "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+               "contract": "block",
+               "kind": "TokenClaim",
+               "data": "044B43414C058001130200046D61696E"
+           }
+       ]
    },
-   <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-}
+   "id": 1
+} 
 </code>
 </pre>
 <hr>
 
 <!-- GetRawBlockByHash -->
-<h4 id="getrawblockbyhash">getRawBlockByHash</h4>
+<h4 id="getRawBlockByHash">getRawBlockByHash</h4>
 <p>Returns a serialized string, containing information about a block by hash.</p>
+
 <h5 id="parameters">Parameters</h5>
 <ol>
     <li><code>string</code> Hash of block.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params: {
+   "blockHash" : "D717455B81E9A0EE90D6D4B7CC7C476AF4D039AFBEE0505DF1EBFC7B1E395E55"
+}
 </code>
 </pre>
 
 <h5 id="returns">Returns</h5>
 <p><code>string</code> - A string object, or <code>error</code> if block hash is invalid.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+   <li><code>jsonrpc</code>: <code>string</code> - String with the jsonrpc version.</li>
+   <li><code>result</code>: <code>string</code> - Raw block.</li>
+   <li><code>id</code>: <code>number</code> - ID of the user.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-<code class="lang-js"><span class="hljs-comment">// Request</span>
-curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getRawBlockByHash<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getRawBlockByHash","params":{"blockHash" : "D717455B81E9A0EE90D6D4B7CC7C476AF4D039AFBEE0505DF1EBFC7B1E395E55"},"id":1}'
 
-<span class="hljs-comment">// Result</span>
+// Result
 {
-   <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-   <span class="hljs-string">"result"</span>:{
-      <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-      <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-      <span class="hljs-string">"balances"</span>:[
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         },
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         }
-      ]
-   },
-   <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
+   "jsonrpc": "2.0",
+   "result": "021D00FC7E4B6020D521A9EA544E0FE1A423F6FBED062B4FF2CBCF4D9175E6B9410A5E5E320F52F62202000D6E4079E36703EBD37C00722F5891D28B0E2811DC114B129215123ADCCE3605050120E4AF9810BD0F2CC8395A698643C5E3163F1F40AC8B030D4815528D002C086A980807220100F0635964DBF97E043EA0FB5DD67CE69369F5AE19E4B4B67121ABB6C14A558A840367617310044B43414C0500E9A43500046D61696E0F220100F0635964DBF97E043EA0FB5DD67CE69369F5AE19E4B4B67121ABB6C14A558A84036761732C2202000D6E4079E36703EBD37C00722F5891D28B0E2811DC114B129215123ADCCE360504A08601000328230007220100F0635964DBF97E043EA0FB5DD67CE69369F5AE19E4B4B67121ABB6C14A558A8405736C6F747311044B43414C0600E40B540200046D61696E10220100F0635964DBF97E043EA0FB5DD67CE69369F5AE19E4B4B67121ABB6C14A558A84036761732C2202000D6E4079E36703EBD37C00722F5891D28B0E2811DC114B129215123ADCCE360504A0860100036F050008220100F0635964DBF97E043EA0FB5DD67CE69369F5AE19E4B4B67121ABB6C14A558A840367617310044B43414C05A0695A2D00046D61696E062202002FE840E13244A9D748883574C1F1B7B1D7020EB39D0735B8F91EF5CF6F35173E0367617310044B43414C05607C240400046D61696E38220100F0635964DBF97E043EA0FB5DD67CE69369F5AE19E4B4B67121ABB6C14A558A840367617310044B43414C058001130200046D61696E08220200496ACA80E4D8F29FB8E8CD816C3AFB48D3F103970B3A2EE1600C08CA67326DEE0367617310044B43414C058001130200046D61696E0200020600000108220100279FB052FA82D619FB33581321E3A5F592507EAC995907B504876ABF6F62421F05626C6F636B10044B43414C058001130200046D61696E220100279FB052FA82D619FB33581321E3A5F592507EAC995907B504876ABF6F62421F0C53504B312E332D62657461310140B40C2F0239689C990B8C7B3B2321E9819B55505D3CD552738CFB82B60576F21C0777FFE0FC6392C7FC9F931E8123D622FFA242043CF0A9B308BF6780203EE90500",
+   "id": 1
 }
 </code>
 </pre>
 <hr>
 
 <!-- GetBlockByHeight -->
-<h4 id="getblockbyheight">getBlockByHeight</h4>
+<h4 id="getBlockByHeight">getBlockByHeight</h4>
 <p>Returns information about a block by height and chain.</p>
 <h5 id="parameters">Parameters</h5>
 <ol>
@@ -464,55 +475,31 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
     <li><code>number</code> Height of block.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "blockHash" : "D717455B81E9A0EE90D6D4B7CC7C476AF4D039AFBEE0505DF1EBFC7B1E395E55",
+   "height":29
+}
 </code>
 </pre>
 
-<h5 id="returns">Returns</h5>
+<h5 id="returns">Returns</h5><!-- TODO:CHANGE RETURN -->
 <p><code>Block</code> - A Block object, or <code>error</code> if block hash is invalidor chain is invalid.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>result</code>: <code>object</code> - Given address.</li>
 </ul>
 
-<h5 id="example">Example</h5>
+<h5 id="example">Example</h5> <!-- TODO:CAN'T TEST -->
 <pre>
-<code class="lang-js"><span class="hljs-comment">// Request</span>
-curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getBlockByHeight","params":{"blockHash" : "D717455B81E9A0EE90D6D4B7CC7C476AF4D039AFBEE0505DF1EBFC7B1E395E55","height":"29"},"id":1}'
 
-<span class="hljs-comment">// Result</span>
-{
-   <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-   <span class="hljs-string">"result"</span>:{
-      <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-      <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-      <span class="hljs-string">"balances"</span>:[
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         },
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         }
-      ]
-   },
-   <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-}
+// Result
 </code>
 </pre>
 <hr>
 
 <!-- GetRawBlockByHeight -->
-<h4 id="getrawblockbyheight">getRawBlockByHeight</h4>
+<h4 id="getRawBlockByHeight">getRawBlockByHeight</h4>
 <p>Returns a serialized string, in hex format, containing information about a block by height and chain.</p>
 <h5 id="parameters">Parameters</h5>
 <ol>
@@ -520,112 +507,155 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
     <li><code>number</code> Height of block.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "height":"29"
+}
 </code>
 </pre>
 
-<h5 id="returns">Returns</h5>
+<h5 id="returns">Returns</h5> <!-- TODO:CHANGE RETURN -->
 <p><code>string</code> - A string object, or <code>error</code> if block hash is invalidor chain is invalid.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>result</code>: <code>string</code> - hash block.</li>
 </ul>
 
-<h5 id="example">Example</h5>
+<h5 id="example">Example</h5> <!-- TODO:CAN'T TEST -->
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getRawBlockByHeight","params":{"height":"29"},"id":1}'
+
+// Result
+</code>
 </pre>
 <hr>
 
 <!-- GetTransactionByBlockHashAndIndex -->
-<h4 id="gettransactionbyblockhashandindex">getTransactionByBlockHashAndIndex</h4>
+<h4 id="getTransactionByBlockHashAndIndex">getTransactionByBlockHashAndIndex</h4>
 <p>Returns the information about a transaction requested by a block hash and transaction index.</p>
 <h5 id="parameters">Parameters</h5>
 <ol>
+    <li><code>string</code> Chain or Address name.</li> 
     <li><code>string</code> Hash of block.</li> 
     <li><code>number</code> Index of transaction.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "chainAddressOrName" : "main",
+   "blockHash":"D717455B81E9A0EE90D6D4B7CC7C476AF4D039AFBEE0505DF1EBFC7B1E395E55",
+   "index":"0"
+}
 </code>
 </pre>
 
 <h5 id="returns">Returns</h5>
 <p><code>Transaction</code> - A Transaction object, or <code>error</code> if block hash is invalidor index transaction is invalid.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+   <li><code>hash</code>: <code>string</code> - Hash of the object.</li>
+   <li><code>chainAddress</code>: <code>string</code> - Address of the chain that the address is in.</li>
+   <li><code>timestamp</code>: <code>string</code> - Time when the hash was produced.</li>
+   <li><code>blockHeight</code>: <code>string</code> - Height of the hash block.</li>
+   <li><code>blockHash</code>: <code>string</code> - Hash of the block</li>
+   <li><code>script</code>: <code>string</code> - Script encoded.</li>
+   <li><code>payload</code>: <code>string</code> - Payload encoded.</li>
+   <li><code>events</code>: <code>Array</code> - Array of events objects.</li>
+   <li><code>events - address</code>: <code>string</code> - Address of event.</li>
+   <li><code>events - contract</code>: <code>string</code> - Type of contract.</li>
+   <li><code>events - kind</code>: <code>string</code> - Type of token.</li>
+   <li><code>events - data</code>: <code>string</code> - Data of the event.</li>
+   <li><code>result</code>: <code>string</code> - Result of the transaction.</li>
+   <li><code>fee</code>: <code>string</code> - Fee of transaction.</li>
+   <li><code>signatures</code>: <code>string</code> - Array of signatures.</li>
+   <li><code>signatures - Kind</code>: <code>string</code> - Type of signature.</li>
+   <li><code>signatures - Data</code>: <code>string</code> - Data of signature.</li>
+   <li><code>expiration</code>: <code>timestamp</code> - Experiation of the contract.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getTransactionByBlockHashAndIndex","params":{"chainAddressOrName":"main","blockHash":"D717455B81E9A0EE90D6D4B7CC7C476AF4D039AFBEE0505DF1EBFC7B1E395E55", "index":"0"},"id":1}'
+
+// Result
+{
+   "jsonrpc": "2.0",
+   "result": {
+         "hash": "986A082C008D5215480D038BAC401F3F16E3C54386695A39C82C0FBD1098AFE4",
+         "chainAddress": "S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4",
+         "timestamp": 1615560444,
+         "blockHeight": 29,
+         "blockHash": "D717455B81E9A0EE90D6D4B7CC7C476AF4D039AFBEE0505DF1EBFC7B1E395E55",
+         "script": "0D00030328230003000D000304A086010003000D000223220000000000000000000000000000000000000000000000000000000000000000000003000D000223220100F0635964DBF97E043EA0FB5DD67CE69369F5AE19E4B4B67121ABB6C14A558A8403000D000408416C6C6F7747617303000D0004036761732D00012E010D000223220100F0635964DBF97E043EA0FB5DD67CE69369F5AE19E4B4B67121ABB6C14A558A8403000D000404706C617903000D000405736C6F74732D00012E010D000223220100F0635964DBF97E043EA0FB5DD67CE69369F5AE19E4B4B67121ABB6C14A558A8403000D0004085370656E6447617303000D0004036761732D00012E010B",
+         "payload": "534C4F545376312E30",
+         "events": [
+            {
+               "address": "P2KKxTbPSBKMRRL9vw6NYXsNCKTX1ZfoE2bvAuq6VwZSYuy",
+               "contract": "gas",
+               "kind": "TokenStake",
+               "data": "044B43414C0500E9A43500046D61696E"
+            },
+            {
+               "address": "P2KKxTbPSBKMRRL9vw6NYXsNCKTX1ZfoE2bvAuq6VwZSYuy",
+               "contract": "gas",
+               "kind": "GasEscrow",
+               "data": "2202000D6E4079E36703EBD37C00722F5891D28B0E2811DC114B129215123ADCCE360504A086010003282300"
+            },
+            {
+               "address": "P2KKxTbPSBKMRRL9vw6NYXsNCKTX1ZfoE2bvAuq6VwZSYuy",
+               "contract": "slots",
+               "kind": "TokenStake",
+               "data": "044B43414C0600E40B540200046D61696E"
+            },
+            {
+               "address": "P2KKxTbPSBKMRRL9vw6NYXsNCKTX1ZfoE2bvAuq6VwZSYuy",
+               "contract": "gas",
+               "kind": "GasPayment",
+               "data": "2202000D6E4079E36703EBD37C00722F5891D28B0E2811DC114B129215123ADCCE360504A0860100036F0500"
+            },
+            {
+               "address": "P2KKxTbPSBKMRRL9vw6NYXsNCKTX1ZfoE2bvAuq6VwZSYuy",
+               "contract": "gas",
+               "kind": "TokenClaim",
+               "data": "044B43414C05A0695A2D00046D61696E"
+            },
+            {
+               "address": "S3d9nBL5LAUFhQ14Wzyb3JJRrXXB6atUuoL1uibkT3bttjw",
+               "contract": "gas",
+               "kind": "TokenBurn",
+               "data": "044B43414C05607C240400046D61696E"
+            },
+            {
+               "address": "P2KKxTbPSBKMRRL9vw6NYXsNCKTX1ZfoE2bvAuq6VwZSYuy",
+               "contract": "gas",
+               "kind": "CrownRewards",
+               "data": "044B43414C058001130200046D61696E"
+            },
+            {
+               "address": "S3dBVkyE9kdfbBjh7HMEr1BfPTg53CeSWaj3srYzBTZ4vyK",
+               "contract": "gas",
+               "kind": "TokenClaim",
+               "data": "044B43414C058001130200046D61696E"
+            }
+         ],
+         "result": "0600",
+         "fee": "139100000",
+         "signatures": [
+            {
+               "Kind": "Ed25519",
+               "Data": "4022E040CAB589838E2644EF94265608893615E3135272D7BE0A9CBF931077D738F6301416494C151DD7A119C03FE805C8807F957972B428413A24C41A5E54F702"
+            }
+         ],
+         "expiration": 1615561644
+   },
+   "id": 1
+}
+</code>
 </pre>
 <hr>
 
 <!-- GetAddressTransactions -->
-<h4 id="getaddresstransactions">getAddressTransactions</h4>
+<h4 id="getAddressTransactions">getAddressTransactions</h4>
 <p>Returns last X transactions of given address.</p>
+
 <h5 id="parameters">Parameters</h5>
 <ol>
     <li><code>string</code> Address of account.</li> 
@@ -633,449 +663,793 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
     <li><code>number</code> Number of items to return per page.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "account":"P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34", 
+   "page":"1", 
+   "pageSize":"2"
+}
 </code>
 </pre>
 
 <h5 id="returns">Returns</h5>
 <p><code>AccountTransactions</code> - A AccountTransactions object, or <code>error</code> if address is invalidor page is invalidor pageSize is invalid.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>page</code>: <code>number</code> - Page requested.</li>
+    <li><code>pageSize</code>: <code>number</code> - Size of each page.</li>
+    <li><code>total</code>: <code>number</code> - Total number of records.</li>
+    <li><code>totalPages</code>: <code>number</code> - Total number of pages.</li>
+    <li><code>result</code>: <code>string</code> - Name of given address.</li>
+    <li><code>result - address</code>: <code>string</code> - Given address.</li>
+    <li><code>result - txs</code>: <code>array</code> - Array of transactions.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getAddressTransactions","params":{"account":"P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34", "page":"1", "pageSize":"2"},"id":1}'
+
+// Result
+{
+   "jsonrpc": "2.0",
+   "result": {
+       "page": 1,
+       "pageSize": 2,
+       "total": 15,
+       "totalPages": 8,
+       "result": {
+           "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+           "txs": [
+               {
+                   "hash": "F12F08527FFD81213811239BB2F236CD1E8ACDA3D268E951F06AA82950DDB0AE",
+                   "chainAddress": "S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4",
+                   "timestamp": 1615832880,
+                   "blockHeight": 77,
+                   "blockHash": "677B3D695E5CE1902480AECF714354D2AEF2C60E684791E30FF83091ABC19FD8",
+                   "script": "0D00030340060003000D000304A086010003000D000223220000000000000000000000000000000000000000000000000000000000000000000003000D000223220100279FB052FA82D619FB33581321E3A5F592507EAC995907B504876ABF6F62421F03000D000408416C6C6F7747617303000D0004036761732D00012E010D00030600E87648170003000D000404534F554C03000D000223220100F0635964DBF97E043EA0FB5DD67CE69369F5AE19E4B4B67121ABB6C14A558A8403000D000223220100279FB052FA82D619FB33581321E3A5F592507EAC995907B504876ABF6F62421F03000D00041652756E74696D652E5472616E73666572546F6B656E7307000D000223220100279FB052FA82D619FB33581321E3A5F592507EAC995907B504876ABF6F62421F03000D0004085370656E6447617303000D0004036761732D00012E010B",
+                   "payload": "504754322E322E31",
+                   "events": [
+                       {
+                           "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+                           "contract": "gas",
+                           "kind": "TokenStake",
+                           "data": "044B43414C050068890900046D61696E"
+                       },
+                       {
+                           "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+                           "contract": "gas",
+                           "kind": "GasEscrow",
+                           "data": "2202000D6E4079E36703EBD37C00722F5891D28B0E2811DC114B129215123ADCCE360504A086010003400600"
+                       },
+                       {
+                           "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+                           "contract": "entry",
+                           "kind": "TokenSend",
+                           "data": "04534F554C0600E876481700046D61696E"
+                       },
+                       {
+                           "address": "P2KKxTbPSBKMRRL9vw6NYXsNCKTX1ZfoE2bvAuq6VwZSYuy",
+                           "contract": "entry",
+                           "kind": "TokenReceive",
+                           "data": "04534F554C0600E876481700046D61696E"
+                       },
+                       {
+                           "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+                           "contract": "gas",
+                           "kind": "GasPayment",
+                           "data": "2202000D6E4079E36703EBD37C00722F5891D28B0E2811DC114B129215123ADCCE360504A0860100037D0100"
+                       },
+                       {
+                           "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+                           "contract": "gas",
+                           "kind": "TokenClaim",
+                           "data": "044B43414C05E00B440700046D61696E"
+                       },
+                       {
+                           "address": "S3d9nBL5LAUFhQ14Wzyb3JJRrXXB6atUuoL1uibkT3bttjw",
+                           "contract": "gas",
+                           "kind": "TokenBurn",
+                           "data": "044B43414C05C0EA210100046D61696E"
+                       },
+                       {
+                           "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+                           "contract": "gas",
+                           "kind": "CrownRewards",
+                           "data": "044B43414C0460F59000046D61696E"
+                       },
+                       {
+                           "address": "S3dBVkyE9kdfbBjh7HMEr1BfPTg53CeSWaj3srYzBTZ4vyK",
+                           "contract": "gas",
+                           "kind": "TokenClaim",
+                           "data": "044B43414C04007C9200046D61696E"
+                       }
+                   ],
+                   "result": "",
+                   "fee": "38100000",
+                   "signatures": [
+                       {
+                           "Kind": "Ed25519",
+                           "Data": "403C428DB33DB902AEB209B252AC6530A32A310FCC300B5AEE3CB99B6E571158D05927B8AFBF026A98CCBEE259CF4423F039841FE1F6D5EC40145E7CCC0B03BC00"
+                       }
+                   ],
+                   "expiration": 1615834080
+               },
+               {
+                   "hash": "07091A38DF59772C0533CD5F3AE83A3EE3D8E9074D9E212ADE335DDDEB86D941",
+                   "chainAddress": "S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4",
+                   "timestamp": 1615562324,
+                   "blockHeight": 32,
+                   "blockHash": "1017CBB0CDB1F0EB06EEE312F79E012246F04D91D42D1A59F57DF95205847BDD",
+                   "script": "0D0003030F270003000D000304A086010003000D000223220000000000000000000000000000000000000000000000000000000000000000000003000D000223220100279FB052FA82D619FB33581321E3A5F592507EAC995907B504876ABF6F62421F03000D000408416C6C6F7747617303000D0004036761732D00012E010D00027E060D676574536C6F744E756D6265720300000000000A6765744A61636B706F740393000000000B636865636B57696E6E657206F7000000010466726F6D0804706C617900BD020000010466726F6D080A496E697469616C697A65003C04000001056F776E657208096F6E557067726164650095040000010466726F6D080003000D0002FD2505000D02040E52756E74696D652E52616E646F6D070204020D0303020900270203040D0203026400250402030203010D03040E52756E74696D652E52616E646F6D070304030D0403020900270304050D0303020A00250503040204020D04040E52756E74696D652E52616E646F6D070404040D050302090027040506020603020104020205230405060203042306040503050B0B000D0204044B43414C03020D02022202003B478A0A3FC655DF9DF052728812851B6B22DDF49DAA1130FF37EAFED057414F03020D0004094164647265737328290700040203020D01041252756E74696D652E47657442616C616E63650701040103010B0B00040103010D000409416464726573732829070004010D0203020600030202010303030D03040E736C6F744D616368696E6554727903030D030405736C6F747303030D0204074D61702E486173070204020A02B4020D0403020300030402010503050D05040E736C6F744D616368696E6554727903050D050405736C6F747303050D0404074D61702E476574070404040204030203050D0603026400260506070207040203060D0703020A00260607080D0603020A00270806070207050203070D080302640027070809020906020407020508190708090205070206081907080A16090A070A0789020D09022202003B478A0A3FC655DF9DF052728812851B6B22DDF49DAA1130FF37EAFED057414F03090D0004094164647265737328290700040902090806209400040A030A0D0A04044B43414C030A02010A030A02080A030A0D09041652756E74696D652E5472616E73666572546F6B656E73070902010A030A0D0A040E736C6F744D616368696E65547279030A0D09040A4D61702E52656D6F766507090D0906010103090B08B3020002010A030A0D0A040E736C6F744D616368696E65547279030A0D09040A4D61702E52656D6F7665070900000D0206010003020B0B00040103010D0004094164647265737328290700040102010303030D02041152756E74696D652E49735769746E6573730702040209020A030D03040E7769746E657373206661696C65640C03000D0203020600030202010303030D03040E736C6F744D616368696E6554727903030D030405736C6F747303030D0204074D61702E48617307020402150202090269030D03041663616C6C20636865636B57696E6E65722066697273740C03000D03022202003B478A0A3FC655DF9DF052728812851B6B22DDF49DAA1130FF37EAFED057414F03030D000409416464726573732829070004030203020D0403020A000D0503020A002C0504040D05030201002505040402040302030503050D0504044B43414C0305020205030502010503050D04041652756E74696D652E5472616E73666572546F6B656E730704062001000405020504020406030602010603060D06040E736C6F744D616368696E6554727903060D0504074D61702E5365740705030402010703070620F80004060206050B00040203020D000409416464726573732829070004020202030203010D04030622A5B98B830003040D03040F52756E74696D652E5365745365656407030D020408446174612E53657403010D00040561646D696E030007020B000D010408446174612E4765740D020405736C6F74730D000302080003000D00040561646D696E030003020701040303030D00040941646472657373282907000403040103010D0004094164647265737328290700040102030403040D02041152756E74696D652E49735769746E65737307020402090223050D04040E7769746E657373206661696C65640C04000B0B03000D000405736C6F747303000D000223220100279FB052FA82D619FB33581321E3A5F592507EAC995907B504876ABF6F62421F03000D00041752756E74696D652E55706772616465436F6E747261637407000D000223220100279FB052FA82D619FB33581321E3A5F592507EAC995907B504876ABF6F62421F03000D0004085370656E6447617303000D0004036761732D00012E010B",
+                   "payload": "A7000000",
+                   "events": [
+                       {
+                           "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+                           "contract": "gas",
+                           "kind": "TokenStake",
+                           "data": "044B43414C056043993B00046D61696E"
+                       },
+                       {
+                           "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+                           "contract": "gas",
+                           "kind": "GasEscrow",
+                           "data": "2202000D6E4079E36703EBD37C00722F5891D28B0E2811DC114B129215123ADCCE360504A0860100030F2700"
+                       },
+                       {
+                           "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+                           "contract": "entry",
+                           "kind": "TokenBurn",
+                           "data": "044B43414C0687C51C34CB00046D61696E"
+                       },
+                       {
+                           "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+                           "contract": "entry",
+                           "kind": "ContractUpgrade",
+                           "data": "05736C6F7473"
+                       },
+                       {
+                           "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+                           "contract": "gas",
+                           "kind": "GasPayment",
+                           "data": "2202000D6E4079E36703EBD37C00722F5891D28B0E2811DC114B129215123ADCCE360504A0860100034D0200"
+                       },
+                       {
+                           "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+                           "contract": "gas",
+                           "kind": "TokenClaim",
+                           "data": "044B43414C054085163800046D61696E"
+                       },
+                       {
+                           "address": "S3d9nBL5LAUFhQ14Wzyb3JJRrXXB6atUuoL1uibkT3bttjw",
+                           "contract": "gas",
+                           "kind": "TokenBurn",
+                           "data": "044B43414C05C09BC00100046D61696E"
+                       },
+                       {
+                           "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+                           "contract": "gas",
+                           "kind": "CrownRewards",
+                           "data": "044B43414C04E04DE000046D61696E"
+                       },
+                       {
+                           "address": "S3dBVkyE9kdfbBjh7HMEr1BfPTg53CeSWaj3srYzBTZ4vyK",
+                           "contract": "gas",
+                           "kind": "TokenClaim",
+                           "data": "044B43414C0480D4E100046D61696E"
+                       }
+                   ],
+                   "result": "",
+                   "fee": "58900000",
+                   "signatures": [
+                       {
+                           "Kind": "Ed25519",
+                           "Data": "4072936F5CDAEFD790A9C32218D5584788447E0705FAC9A8EDD1E51581E2CD1E27C0526E7FBEC64A9608CE78BBCDF65443725AFF3AF8311F2C5F7380210044A40E"
+                       }
+                   ],
+                   "expiration": 1615562624
+               }
+           ]
+       }
+   },
+   "id": 1
+}
+</code>
 </pre>
 <hr>
 
 <!-- GetAddressTransactionCount -->
-<h4 id="getaddresstransactioncount">getAddressTransactionCount</h4>
+<h4 id="getAddressTransactionCount">getAddressTransactionCount</h4>
 <p>Get number of transactions in a specific address and chain</p>
+
 <h5 id="parameters">Parameters</h5>
 <ol>
     <li><code>string</code> Address of account.</li> 
     <li><code>string</code> Name or address of chain, optional.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params:{
+   "account":"P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34"
+}
 </code>
 </pre>
 
 <h5 id="returns">Returns</h5>
 <p><code>number</code> - A number, or <code>error</code> if address is invalidor chain is invalid.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+   <li><code>jsonrpc</code>: <code>string</code> - String with the jsonrpc version.</li>
+   <li><code>result</code>: <code>number</code> - Number of transactions.</li>
+   <li><code>id</code>: <code>number</code> - ID of the user.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getAddressTransactionCount","params":{"account":"P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34", "page":"1", "pageSize":"2"},"id":1}'
+
+// Result
+{
+   "jsonrpc": "2.0",
+   "result": 15,
+   "id": 1
+}
+</code>
 </pre>
 <hr>
 
 <!-- SendRawTransaction -->
-<h4 id="sendrawtransaction">sendRawTransaction</h4>
+<h4 id="sendRawTransaction">sendRawTransaction</h4>
 <p>Allows to broadcast a signed operation on the network, but it&apos;s required to build it manually.</p>
+
 <h5 id="parameters">Parameters</h5>
 <ol>
     <li><code>string</code> Serialized transaction bytes, in hexadecimal format.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params:{
+   "txData" : ""
+}
 </code>
 </pre>
 
-<h5 id="returns">Returns</h5>
+<h5 id="returns">Returns</h5><!-- TODO: CHANGE RETURN -->
 <p><code>string</code> - A string object, or <code>error</code> if rejected by mempoolor script is invalidor failed to decoded transaction.</p>
 <ul>
     <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
 </ul>
 
-<h5 id="example">Example</h5>
+<h5 id="example">Example</h5><!-- TODO: CAN'T TEST -->
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"sendRawTransaction","params":{"txData":""},"id":1}'
+
+// Result
+</code>
 </pre>
 <hr>
 
 <!-- InvokeRawScript -->
-<h4 id="invokerawscript">invokeRawScript</h4>
+<h4 id="invokeRawScript">invokeRawScript</h4>
 <p>Allows to invoke script based on network state, without state changes.</p>
+
 <h5 id="parameters">Parameters</h5>
 <ol>
     <li><code>string</code> Address or name of chain.</li> 
     <li><code>string</code> Serialized script bytes, in hexadecimal format.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params:{
+   "chainInput":"main", 
+   "scriptData":""
+}
 </code>
 </pre>
 
-<h5 id="returns">Returns</h5>
+<h5 id="returns">Returns</h5><!-- TODO: CHANGE RETURN -->
 <p><code>Script</code> - A Script object, or <code>error</code> if script is invalidor failed to decoded script.</p>
 <ul>
     <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
 </ul>
 
-<h5 id="example">Example</h5>
+<h5 id="example">Example</h5><!-- TODO: CAN'T TEST -->
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"invokeRawScript","params":{"chainInput":"main", "scriptData":""},"id":1}'
+   
+// Result
+</code>
 </pre>
 <hr>
 
 <!-- GetTransaction -->
-<h4 id="gettransaction">getTransaction</h4>
+<h4 id="getTransaction">getTransaction</h4>
 <p>Returns information about a transaction by hash.</p>
+
 <h5 id="parameters">Parameters</h5>
 <ol>
     <li><code>string</code> Hash of transaction.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params:{
+   "hashText":"F12F08527FFD81213811239BB2F236CD1E8ACDA3D268E951F06AA82950DDB0AE"
+}
 </code>
 </pre>
 
 <h5 id="returns">Returns</h5>
 <p><code>Transaction</code> - A Transaction object, or <code>error</code> if hash is invalid.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+   <li><code>result</code>: <code>object</code> - Transactions object.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code>// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getTransaction","params":{"hashText":"F12F08527FFD81213811239BB2F236CD1E8ACDA3D268E951F06AA82950DDB0AE"},"id":1}'
+   
+// Result
+{
+   "jsonrpc": "2.0",
+   "result": {
+       "hash": "F12F08527FFD81213811239BB2F236CD1E8ACDA3D268E951F06AA82950DDB0AE",
+       "chainAddress": "S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4",
+       "timestamp": 1615832880,
+       "blockHeight": 77,
+       "blockHash": "677B3D695E5CE1902480AECF714354D2AEF2C60E684791E30FF83091ABC19FD8",
+       "script": "0D00030340060003000D000304A086010003000D000223220000000000000000000000000000000000000000000000000000000000000000000003000D000223220100279FB052FA82D619FB33581321E3A5F592507EAC995907B504876ABF6F62421F03000D000408416C6C6F7747617303000D0004036761732D00012E010D00030600E87648170003000D000404534F554C03000D000223220100F0635964DBF97E043EA0FB5DD67CE69369F5AE19E4B4B67121ABB6C14A558A8403000D000223220100279FB052FA82D619FB33581321E3A5F592507EAC995907B504876ABF6F62421F03000D00041652756E74696D652E5472616E73666572546F6B656E7307000D000223220100279FB052FA82D619FB33581321E3A5F592507EAC995907B504876ABF6F62421F03000D0004085370656E6447617303000D0004036761732D00012E010B",
+       "payload": "504754322E322E31",
+       "events": [
+           {
+               "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+               "contract": "gas",
+               "kind": "TokenStake",
+               "data": "044B43414C050068890900046D61696E"
+           },
+           {
+               "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+               "contract": "gas",
+               "kind": "GasEscrow",
+               "data": "2202000D6E4079E36703EBD37C00722F5891D28B0E2811DC114B129215123ADCCE360504A086010003400600"
+           },
+           {
+               "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+               "contract": "entry",
+               "kind": "TokenSend",
+               "data": "04534F554C0600E876481700046D61696E"
+           },
+           {
+               "address": "P2KKxTbPSBKMRRL9vw6NYXsNCKTX1ZfoE2bvAuq6VwZSYuy",
+               "contract": "entry",
+               "kind": "TokenReceive",
+               "data": "04534F554C0600E876481700046D61696E"
+           },
+           {
+               "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+               "contract": "gas",
+               "kind": "GasPayment",
+               "data": "2202000D6E4079E36703EBD37C00722F5891D28B0E2811DC114B129215123ADCCE360504A0860100037D0100"
+           },
+           {
+               "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+               "contract": "gas",
+               "kind": "TokenClaim",
+               "data": "044B43414C05E00B440700046D61696E"
+           },
+           {
+               "address": "S3d9nBL5LAUFhQ14Wzyb3JJRrXXB6atUuoL1uibkT3bttjw",
+               "contract": "gas",
+               "kind": "TokenBurn",
+               "data": "044B43414C05C0EA210100046D61696E"
+           },
+           {
+               "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+               "contract": "gas",
+               "kind": "CrownRewards",
+               "data": "044B43414C0460F59000046D61696E"
+           },
+           {
+               "address": "S3dBVkyE9kdfbBjh7HMEr1BfPTg53CeSWaj3srYzBTZ4vyK",
+               "contract": "gas",
+               "kind": "TokenClaim",
+               "data": "044B43414C04007C9200046D61696E"
+           }
+       ],
+       "result": "",
+       "fee": "38100000",
+       "signatures": [
+           {
+               "Kind": "Ed25519",
+               "Data": "403C428DB33DB902AEB209B252AC6530A32A310FCC300B5AEE3CB99B6E571158D05927B8AFBF026A98CCBEE259CF4423F039841FE1F6D5EC40145E7CCC0B03BC00"
+           }
+       ],
+       "expiration": 1615834080
+   },
+   "id": 1
+}
+</code>
 </pre>
 <hr>
 
 <!-- CancelTransaction -->
-<h4 id="canceltransaction">cancelTransaction</h4>
+<h4 id="cancelTransaction">cancelTransaction</h4>
 <p>Removes a pending transaction from the mempool.</p>
 <h5 id="parameters">Parameters</h5>
 <ol>
     <li><code>string</code> Hash of transaction.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params:{
+   "hashText":"F12F08527FFD81213811239BB2F236CD1E8ACDA3D268E951F06AA82950DDB0AE"
+}
 </code>
 </pre>
 
 <h5 id="returns">Returns</h5>
 <p><code>string</code> - A string object, or <code>error</code> if hash is invalid.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>result</code>: <code>string</code> - Result.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"cancelTransaction","params":{"hashText":"F12F08527FFD81213811239BB2F236CD1E8ACDA3D268E951F06AA82950DDB0AE"},"id":1}'
+  
+// Result
+{
+   "jsonrpc": "2.0",
+   "error": {
+       "code": -32603,
+       "message": "already in chain"
+   },
+   "id": 0
+}
+</code>
 </pre>
 <hr>
 
 <!-- GetChains -->
-<h4 id="getchains">getChains</h4>
+<h4 id="getChains">getChains</h4>
 <p>Returns an array of all chains deployed in Phantasma.</p>
+
 <h5 id="parameters">Parameters</h5>
 <p>none</p>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params: {}
 </code>
 </pre>
 
 <h5 id="returns">Returns</h5>
 <p><code>Chain</code> - A Chain object.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>name</code>: <code>string</code> - Name of the chain.</li>
+    <li><code>address</code>: <code>string</code> - Address of the Chain.</li>
+    <li><code>height</code>: <code>string</code> - Height of the Chain.</li>
+    <li><code>organization</code>: <code>string</code> - Given Organization.</li>
+    <li><code>contracts</code>: <code>array</code> - Array of contracts in the Chain.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getChains","params":{},"id":1}'
+   
+// Result
+{
+   "jsonrpc": "2.0",
+   "result": [
+       {
+           "name": "main",
+           "address": "S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4",
+           "height": 77,
+           "organization": "validators",
+           "contracts": [
+               "validator",
+               "governance",
+               "consensus",
+               "account",
+               "exchange",
+               "swap",
+               "interop",
+               "stake",
+               "storage",
+               "relay",
+               "ranking",
+               "privacy",
+               "mail",
+               "friends",
+               "market",
+               "sale",
+               "slots"
+           ]
+       }
+   ],
+   "id": 1
+}
+</code>
 </pre>
 <hr>
 
 <!-- GetNexus -->
-<h4 id="getnexus">getNexus</h4>
+<h4 id="getNexus">getNexus</h4>
 <p>Returns info about the nexus.</p>
+
 <h5 id="parameters">Parameters</h5>
 <ol>
     <li><code>boolean</code> Extended search, Optional (default: false)</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-    <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {}
 </code>
 </pre>
 
 <h5 id="returns">Returns</h5>
 <p><code>Nexus</code> - A Nexus object.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>name</code>: <code>string</code> - Name of the nexus.</li>
+    <li><code>platforms</code>: <code>array</code> - Array of platform object on the chain.</li>
+    <li><code>token</code>: <code>array</code> - Array of token object on the chain.</li>
+    <li><code>chains</code>: <code>array</code> - Array of chain object.</li>
+    <li><code>governance</code>: <code>array</code> - Array of governance.</li>
+    <li><code>organizations</code>: <code>array</code> - Array of organizations.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getNexus","params":{},"id":1}'
+   
+// Result
+{
+   "jsonrpc": "2.0",
+   "result": {
+       "name": "simnet",
+       "platforms": [
+           {
+               "platform": "neo",
+               "chain": "S3dEMj6oFEgfcwSpriewXBR5xcnwu4MJa9KmHgyaKqEhoM6",
+               "fuel": "GAS",
+               "tokens": [
+                   "SOUL",
+                   "NEO",
+                   "GAS"
+               ],
+               "interop": [
+                   {
+                       "local": "X54DbFHTbzhEFHFHmm3fDVjeTpDmXsAeVEz4U4GK6ZQYe6b",
+                       "external": "Aai16mqdg9b453ZggXn3SmJH45na3oCEoU"
+                   }
+               ]
+           },
+           {
+               "platform": "ethereum",
+               "chain": "S3dJoptTKf9ASn2tWxHh9fkGH8xjHbhYutNNHkzR1WSmpK6",
+               "fuel": "ETH",
+               "tokens": [
+                   "ETH"
+               ],
+               "interop": [
+                   {
+                       "local": "X7DzbZPdeGpqeRdxHkusj6zUH8nzQjTPsrbRdFWQ5gEsmi7",
+                       "external": "0xBF35FB8C5B4171496E052EEBFB5BEA29A932171C"
+                   }
+               ]
+           }
+       ],
+       "tokens": [
+           {
+               "symbol": "SOUL",
+               "name": "Phantasma Stake",
+               "decimals": 8,
+               "currentSupply": "286362600000000",
+               "maxSupply": "0",
+               "burnedSupply": "0",
+               "address": "S3dJWaLDKYhhTHf28EfsP6ateZ5w5TeZUSV8wM9JNfaD79E",
+               "owner": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+               "flags": "Transferable, Fungible, Divisible, Stakable, Swappable",
+               "script": "0B"
+           },
+           {
+               "symbol": "KCAL",
+               "name": "Phantasma Energy",
+               "decimals": 10,
+               "currentSupply": "9988092095432583",
+               "maxSupply": "0",
+               "burnedSupply": "12907904567417",
+               "address": "S3dP6LRC3f3xw4ZZ2HH9BQHzYNHuHS8vetbCQpkMFvRmVEF",
+               "owner": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+               "flags": "Transferable, Fungible, Divisible, Fuel, Burnable",
+               "script": "0B"
+           },
+           {
+               "symbol": "USD",
+               "name": "Dollars",
+               "decimals": 8,
+               "currentSupply": "0",
+               "maxSupply": "0",
+               "burnedSupply": "0",
+               "address": "S3dHVD6WN35zQvVLEGrdZuBm3gK1YSJLhQwRNe448v9W5hS",
+               "owner": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+               "flags": "Transferable, Fungible, Divisible, Fiat",
+               "script": "0B"
+           },
+           {
+               "symbol": "CROWN",
+               "name": "Phantasma Crown",
+               "decimals": 0,
+               "currentSupply": "0",
+               "maxSupply": "0",
+               "burnedSupply": "0",
+               "address": "S3d79FvexQeerRioAY3pGYpNPFx7oJkMV4KazdTHdGDA5iy",
+               "owner": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+               "flags": "Transferable, Burnable",
+               "script": "0B"
+           },
+           {
+               "symbol": "NEO",
+               "name": "NEO",
+               "decimals": 0,
+               "currentSupply": "0",
+               "maxSupply": "100000000",
+               "burnedSupply": "0",
+               "address": "S3d8KEdUw38RGpvidVzWibp52V3MxDKboLk98s9FvWyYkEa",
+               "owner": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+               "flags": "Transferable, Fungible, Finite, Swappable",
+               "script": "0B"
+           },
+           {
+               "symbol": "GAS",
+               "name": "GAS",
+               "decimals": 8,
+               "currentSupply": "0",
+               "maxSupply": "10000000000000000",
+               "burnedSupply": "0",
+               "address": "S3d9YMoxd3najgNa4J5H1P7LXz9DA1jMRV7n4PiQtVV2A7b",
+               "owner": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+               "flags": "Transferable, Fungible, Finite, Divisible, Swappable",
+               "script": "0B"
+           },
+           {
+               "symbol": "ETH",
+               "name": "Ethereum",
+               "decimals": 18,
+               "currentSupply": "0",
+               "maxSupply": "0",
+               "burnedSupply": "0",
+               "address": "S3dP28ogxjaAbCt1bnujJCGawcsz66fEgkL9mwHvnAJUUrT",
+               "owner": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+               "flags": "Transferable, Fungible, Divisible, Swappable",
+               "script": "0B"
+           },
+           {
+               "symbol": "MKNI",
+               "name": "Mankini Token",
+               "decimals": 0,
+               "currentSupply": "100000",
+               "maxSupply": "100000",
+               "burnedSupply": "0",
+               "address": "S3dJhVLEaQ5H1633puCNDXfnUDthbuRaBPtUg6vnjk2aqq6",
+               "owner": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+               "flags": "Transferable, Fungible, Finite",
+               "script": "000D0402220100279FB052FA82D619FB33581321E3A5F592507EAC995907B504876ABF6F62421F03040D00040941646472657373282907000D00041152756E74696D652E49735769746E6573730700040309036B000D00040F696E76616C6964207769746E6573730C00000B"
+           }
+       ],
+       "chains": [
+           {
+               "name": "main",
+               "address": "S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4",
+               "height": 77,
+               "organization": "validators",
+               "contracts": [
+                   "validator",
+                   "governance",
+                   "consensus",
+                   "account",
+                   "exchange",
+                   "swap",
+                   "interop",
+                   "stake",
+                   "storage",
+                   "relay",
+                   "ranking",
+                   "privacy",
+                   "mail",
+                   "friends",
+                   "market",
+                   "sale",
+                   "slots"
+               ]
+           }
+       ],
+       "governance": [
+           {
+               "name": "nexus.protocol.version",
+               "value": "5"
+           },
+           {
+               "name": "validator.count",
+               "value": "1"
+           },
+           {
+               "name": "validator.rotation.time",
+               "value": "120"
+           },
+           {
+               "name": "poll.vote.limit",
+               "value": "50000"
+           },
+           {
+               "name": "poll.max.entries",
+               "value": "10"
+           },
+           {
+               "name": "poll.max.length",
+               "value": "7776000"
+           },
+           {
+               "name": "stake.master.threshold",
+               "value": "5000000000000"
+           },
+           {
+               "name": "stake.bonus.percent",
+               "value": "5"
+           },
+           {
+               "name": "stake.bonus.max",
+               "value": "100"
+           },
+           {
+               "name": "stake.vote.threshold",
+               "value": "100000000000"
+           },
+           {
+               "name": "swap.fee.maker",
+               "value": "2"
+           },
+           {
+               "name": "swap.fee.taker",
+               "value": "5"
+           },
+           {
+               "name": "storage.stake.kb",
+               "value": "40"
+           },
+           {
+               "name": "storage.contract.kb",
+               "value": "1024"
+           },
+           {
+               "name": "nexus.contract.cost",
+               "value": "1000000000"
+           },
+           {
+               "name": "nexus.token.cost",
+               "value": "10000000000"
+           }
+       ],
+       "organizations": [
+           "validators",
+           "masters",
+           "stakers",
+           "phantom_force"
+       ]
+   },
+   "id": 1
+}
+</code>
 </pre>
 <hr>
 
 <!-- GetOrganization -->
-<h4 id="getorganization">getOrganization</h4>
+<h4 id="getOrganization">getOrganization</h4>
 <p>Returns info about an organization.</p>
+
 <h5 id="parameters">Parameters</h5>
 <ol>
     <li><code>string</code> ID of the organization</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-    <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "ID":"validators"
+}
 </code>
 </pre>
         
@@ -1083,155 +1457,193 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
 <p><code>Organization</code> - A Organization object.</p>
 <ul>
     <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getOrganization","params":{"ID":"validators"},"id":1}'
+   
+// Result
+{
+   "jsonrpc": "2.0",
+   "result": {
+       "id": "validators",
+       "name": "Block Producers",
+       "members": [
+           "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34"
+       ]
+   },
+   "id": 1
+}
+</code>
 </pre>
 <hr>
 
 <!-- GetLeaderboard -->
 <h4 id="getleaderboard">getLeaderboard</h4>
 <p>Returns content of a Phantasma leaderboard.</p>
+
 <h5 id="parameters">Parameters</h5>
 <ol>
     <li><code>string</code> Name of the leaderboard</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-    <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "name":""
+}
 </code>
 </pre>
     
-<h5 id="returns">Returns</h5>
+<h5 id="returns">Returns</h5> <!-- TODO: CHANGE RETURN -->
 <p><code>Leaderboard</code> - A Leaderboard object.</p>
 <ul>
     <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
 </ul>
 
-<h5 id="example">Example</h5>
+<h5 id="example">Example</h5> <!-- TODO: CAN'T TEST -->
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getLeaderboard","params":{},"id":1}'
+   
+// Result
+</code>
 </pre>
 <hr>
 
 <!-- GetTokens -->
-<h4 id="gettokens">getTokens</h4>
+<h4 id="getTokens">getTokens</h4>
 <p>Returns an array of tokens deployed in Phantasma.</p>
+
 <h5 id="parameters">Parameters</h5>
 <ol>
     <li><code>boolean</code> Extended search, Optional (default: false)</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {}
 </code>
 </pre>
 
 <h5 id="returns">Returns</h5>
 <p><code>Token</code> - A Token object.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>result</code>: <code>array</code> - Array of token objects.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getTokens","params":{},"id":1}'
+   
+// Result
+{
+   "jsonrpc": "2.0",
+   "result": [
+       {
+           "symbol": "SOUL",
+           "name": "Phantasma Stake",
+           "decimals": 8,
+           "currentSupply": "286362600000000",
+           "maxSupply": "0",
+           "burnedSupply": "0",
+           "address": "S3dJWaLDKYhhTHf28EfsP6ateZ5w5TeZUSV8wM9JNfaD79E",
+           "owner": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+           "flags": "Transferable, Fungible, Divisible, Stakable, Swappable",
+           "script": "0B"
        },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+       {
+           "symbol": "KCAL",
+           "name": "Phantasma Energy",
+           "decimals": 10,
+           "currentSupply": "9988092095432583",
+           "maxSupply": "0",
+           "burnedSupply": "12907904567417",
+           "address": "S3dP6LRC3f3xw4ZZ2HH9BQHzYNHuHS8vetbCQpkMFvRmVEF",
+           "owner": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+           "flags": "Transferable, Fungible, Divisible, Fuel, Burnable",
+           "script": "0B"
+       },
+       {
+           "symbol": "USD",
+           "name": "Dollars",
+           "decimals": 8,
+           "currentSupply": "0",
+           "maxSupply": "0",
+           "burnedSupply": "0",
+           "address": "S3dHVD6WN35zQvVLEGrdZuBm3gK1YSJLhQwRNe448v9W5hS",
+           "owner": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+           "flags": "Transferable, Fungible, Divisible, Fiat",
+           "script": "0B"
+       },
+       {
+           "symbol": "CROWN",
+           "name": "Phantasma Crown",
+           "decimals": 0,
+           "currentSupply": "0",
+           "maxSupply": "0",
+           "burnedSupply": "0",
+           "address": "S3d79FvexQeerRioAY3pGYpNPFx7oJkMV4KazdTHdGDA5iy",
+           "owner": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+           "flags": "Transferable, Burnable",
+           "script": "0B"
+       },
+       {
+           "symbol": "NEO",
+           "name": "NEO",
+           "decimals": 0,
+           "currentSupply": "0",
+           "maxSupply": "100000000",
+           "burnedSupply": "0",
+           "address": "S3d8KEdUw38RGpvidVzWibp52V3MxDKboLk98s9FvWyYkEa",
+           "owner": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+           "flags": "Transferable, Fungible, Finite, Swappable",
+           "script": "0B"
+       },
+       {
+           "symbol": "GAS",
+           "name": "GAS",
+           "decimals": 8,
+           "currentSupply": "0",
+           "maxSupply": "10000000000000000",
+           "burnedSupply": "0",
+           "address": "S3d9YMoxd3najgNa4J5H1P7LXz9DA1jMRV7n4PiQtVV2A7b",
+           "owner": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+           "flags": "Transferable, Fungible, Finite, Divisible, Swappable",
+           "script": "0B"
+       },
+       {
+           "symbol": "ETH",
+           "name": "Ethereum",
+           "decimals": 18,
+           "currentSupply": "0",
+           "maxSupply": "0",
+           "burnedSupply": "0",
+           "address": "S3dP28ogxjaAbCt1bnujJCGawcsz66fEgkL9mwHvnAJUUrT",
+           "owner": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+           "flags": "Transferable, Fungible, Divisible, Swappable",
+           "script": "0B"
+       },
+       {
+           "symbol": "MKNI",
+           "name": "Mankini Token",
+           "decimals": 0,
+           "currentSupply": "100000",
+           "maxSupply": "100000",
+           "burnedSupply": "0",
+           "address": "S3dJhVLEaQ5H1633puCNDXfnUDthbuRaBPtUg6vnjk2aqq6",
+           "owner": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+           "flags": "Transferable, Fungible, Finite",
+           "script": "000D0402220100279FB052FA82D619FB33581321E3A5F592507EAC995907B504876ABF6F62421F03040D00040941646472657373282907000D00041152756E74696D652E49735769746E6573730700040309036B000D00040F696E76616C6964207769746E6573730C00000B"
+       }
+   ],
+   "id": 1
+}
+</code>
 </pre>
 <hr>
 
 <!-- getToken -->
-<h4 id="gettoken">getToken</h4>
+<h4 id="getToken">getToken</h4>
 <p>Returns info about a specific token deployed in Phantasma.</p>
 <h5 id="parameters">Parameters</h5>
 <ol>
@@ -1239,55 +1651,57 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
     <li><code>boolean</code> Extended search, Optional (default: false)</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "symbol":"SOUL"
+}
 </code>
 </pre>
 
 <h5 id="returns">Returns</h5>
 <p><code>Token</code> - A Token object.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+   <li><code>result</code>: <code>object</code> - Token object.</li>
+   <li><code>result - symbol</code>: <code>string</code> - Symbol name.</li>
+   <li><code>result - name</code>: <code>string</code> - Full name of the symbol.</li>
+   <li><code>result - decimals</code>: <code>number</code> - Decimals of the token.</li>
+   <li><code>result - currentSupply</code>: <code>string</code> - Current supply of the token.</li>
+   <li><code>result - maxSupply</code>: <code>string</code> - Max supply of the token.</li>
+   <li><code>result - burnedSupply</code>: <code>string</code> - Burned supply of the token.</li>
+   <li><code>result - address</code>: <code>string</code> - Addres of the token.</li>
+   <li><code>result - owner</code>: <code>string</code> - Owner of the token.</li>
+   <li><code>result - flags</code>: <code>string</code> - Flags of the token.</li>
+   <li><code>result - script</code>: <code>string</code> - script of the token.</li>
+
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getToken","params":{"symbol":"SOUL"},"id":1}'
+   
+// Result
+{
+   "jsonrpc": "2.0",
+   "result": {
+       "symbol": "SOUL",
+       "name": "Phantasma Stake",
+       "decimals": 8,
+       "currentSupply": "286362600000000",
+       "maxSupply": "0",
+       "burnedSupply": "0",
+       "address": "S3dJWaLDKYhhTHf28EfsP6ateZ5w5TeZUSV8wM9JNfaD79E",
+       "owner": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+       "flags": "Transferable, Fungible, Divisible, Stakable, Swappable",
+       "script": "0B"
+   },
+   "id": 1
+}
+</code>
 </pre>
 <hr>
 
 <!-- GetTokenData -->
-<h4 id="gettokendata">getTokenData</h4>
+<h4 id="getTokenData">getTokenData</h4>
 <p>Returns data of a non-fungible token, in hexadecimal format.</p>
 <h5 id="parameters">Parameters</h5>
 <ol>
@@ -1295,55 +1709,31 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
     <li><code>string</code> ID of token.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "symbol":"SOUL",
+   "IDtext":"5" 
+}
 </code>
 </pre>
 
-<h5 id="returns">Returns</h5>
+<h5 id="returns">Returns</h5> <!-- TODO: CHANGE RETURN -->
 <p><code>TokenData</code> - A TokenData object.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>result</code>: <code>string</code> - Given address.</li>
 </ul>
 
-<h5 id="example">Example</h5>
+<h5 id="example">Example</h5> <!-- TODO: CAN'T TEST -->
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getTokenData","params":{"symbol":"SOUL","IDtext":"5"},"id":1}'
+   
+// Result
+</code>
 </pre>
 <hr>
 
 <!-- GetNFT -->
-<h4 id="getnft">getNFT</h4>
+<h4 id="getNFT">getNFT</h4>
 <p>Returns data of a non-fungible token, in hexadecimal format.</p>
 <h5 id="parameters">Parameters</h5>
 <ol>
@@ -1352,55 +1742,31 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
     <li><code>boolean</code> Extended search, Optional (default: false)</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-    <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "symbol":"SOUL",
+   "IDtext":"5" 
+}
 </code>
 </pre>
 
-<h5 id="returns">Returns</h5>
+<h5 id="returns">Returns</h5> <!-- TODO: CHANGE RETURN -->
 <p><code>NFT</code> - A NFT object.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>result</code>: <code>object</code> - NFT object.</li>
 </ul>
 
-<h5 id="example">Example</h5>
+<h5 id="example">Example</h5> <!-- TODO: CAN'T TEST -->
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getNFT","params":{"symbol":"SOUL","IDtext":"5"},"id":1}'
+   
+// Result
+</code>
 </pre>
 <hr>
 
 <!-- GetTokenBalance -->
-<h4 id="gettokenbalance">getTokenBalance</h4>
+<h4 id="getTokenBalance">getTokenBalance</h4>
 <p>Returns the balance for a specific token and chain, given an address.</p>
 <h5 id="parameters">Parameters</h5>
 <ol>
@@ -1409,112 +1775,85 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
     <li><code>string</code> Address or name of chain.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "account":"P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+   "tokenSymbol":"SOUL",
+   "chainInput":"main"
+}
 </code>
 </pre>
 
 <h5 id="returns">Returns</h5>
 <p><code>Balance</code> - A Balance object, or <code>error</code> if address is invalidor token is invalidor chain is invalid.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>chain</code>: <code>string</code> - Chain Address.</li>
+    <li><code>amount</code>: <code>string</code> - Amount of token.</li>
+    <li><code>symbol</code>: <code>string</code> - Symbol of token.</li>
+    <li><code>decimals</code>: <code>string</code> - Decimals of token.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getTokenBalance","params":{"account":"P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34","tokenSymbol":"SOUL","chainInput":"main"},"id":1}'
+   
+// Result
+{
+   "jsonrpc": "2.0",
+   "result": {
+       "chain": "S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4",
+       "amount": "94899900000000",
+       "symbol": "SOUL",
+       "decimals": 8
+   },
+   "id": 1
+}
+</code>
 </pre>
 <hr>
 
 <!-- GetAuctionsCount -->
-<h4 id="getauctionscount">getAuctionsCount</h4>
+<h4 id="getAuctionsCount">getAuctionsCount</h4>
 <p>Returns the number of active auctions.</p>
+
 <h5 id="parameters">Parameters</h5>
 <ol>
     <li><code>string</code> Chain address or name where the market is located.</li> 
     <li><code>string</code> Token symbol used as filter.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "chainInput":"S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4",
+   "tokenSymbol":"SOUL"
+}
 </code>
 </pre>
 
 <h5 id="returns">Returns</h5>
 <p><code>number</code> - A number.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>result</code>: <code>string</code> - Number of Auctions.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getAuctionsCount","params":{"chainInput":"S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4","tokenSymbol" : "SOUL"},"id":1}'
+   
+// Result
+{
+   "jsonrpc": "2.0",
+   "result": 0,
+   "id": 1
+}
+</code>
 </pre>
 <hr>
 
 <!-- GetAuctions -->
-<h4 id="getauctions">getAuctions</h4>
+<h4 id="getAuctions">getAuctions</h4>
 <p>Returns the auctions available in the market.</p>
+
 <h5 id="parameters">Parameters</h5>
 <ol>
     <li><code>string</code> Chain address or name where the market is located.</li>
@@ -1523,9 +1862,12 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
     <li><code>number</code> Number of items to return per page.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "chainInput":"S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4",
+   "tokenSymbol":"SOUL",
+   "page":"1",
+   "pageSize":"5"
+}
 </code>
 </pre>
 
@@ -1533,46 +1875,33 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
 <p><code>Auction</code> - A Auction object.</p>
 <ul>
     <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-<code class="lang-js"><span class="hljs-comment">// Request</span>
-curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getAuctions<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">", "</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-
-<span class="hljs-comment">// Result</span>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getAuctions","params":{"chainInput":"S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4","tokenSymbol" : "SOUL", "page" : "1", "pageSize" : "5"},"id":1}'
+   
+// Result
 {
-   <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-   <span class="hljs-string">"result"</span>:{
-      <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-      <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-      <span class="hljs-string">"balances"</span>:[
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         },
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         }
-      ]
+   "jsonrpc": "2.0",
+   "result": {
+       "page": 1,
+       "pageSize": 5,
+       "total": 0,
+       "totalPages": 0,
+       "result": []
    },
-   <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-}
+   "id": 1
+}  
 </code>
 </pre>
 <hr>
 
 <!-- GetAuction -->
-<h4 id="getauction">getAuction</h4>
+<h4 id="getAuction">getAuction</h4>
 <p>Returns the auction for a specific token.</p>
+
 <h5 id="parameters">Parameters</h5>
 <ol>
     <li><code>string</code> Chain address or name where the market is located.</li>
@@ -1580,110 +1909,63 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
     <li><code>string</code> Token ID.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "chainInput":"S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4",
+   "tokenSymbol":"SOUL",
+   "IDText":"test"
+}
 </code>
 </pre>
 
-<h5 id="returns">Returns</h5>
+<h5 id="returns">Returns</h5> <!-- TODO: CHANGE RETURN -->
 <p><code>Auction</code> - A Auction object.</p>
 <ul>
     <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
 </ul>
 
-<h5 id="example">Example</h5>
+<h5 id="example">Example</h5> <!-- TODO: CANT TEST -->
 <pre>
-<code class="lang-js"><span class="hljs-comment">// Request</span>
-curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getAuction<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-
-<span class="hljs-comment">// Result</span>
-{
-   <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-   <span class="hljs-string">"result"</span>:{
-      <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-      <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-      <span class="hljs-string">"balances"</span>:[
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         },
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         }
-      ]
-   },
-   <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-}
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getAuction","params":{"chainInput":"S3d7TbZxtNPdXy11hfmBLJLYn67gZTG2ibL7fJBcVdihWU4","tokenSymbol" : "SOUL","IDText":"0"},"id":1}'
+   
+// Result
 </code>
 </pre>
 <hr>
 
 <!-- GetArchive -->
-<h4 id="getarchive">getArchive</h4>
+<h4 id="getarchive">getArchive</h4> <!-- TODO: REWRITE -->
 <p>Returns info about a specific archive.</p>
+
 <h5 id="parameters">Parameters</h5>
 <ol>
     <li><code>string</code> Archive hash.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-   <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "hashText" : ""
+}
 </code>
 </pre>
 
-<h5 id="returns">Returns</h5>
+<h5 id="returns">Returns</h5> <!-- TODO: CHANGE RETURN -->
 <p><code>Archive</code> - A Archive object.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>result</code>: <code>string</code> - Archive object.</li>
 </ul>
 
-<h5 id="example">Example</h5>
+<h5 id="example">Example</h5> <!-- TODO: CANT TEST -->
 <pre>
-<code class="lang-js"><span class="hljs-comment">// Request</span>
-curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getArchive<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-
-<span class="hljs-comment">// Result</span>
-{
-   <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-   <span class="hljs-string">"result"</span>:{
-      <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-      <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-      <span class="hljs-string">"balances"</span>:[
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         },
-         {
-            <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-            <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-            <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-         }
-      ]
-   },
-   <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-}
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getArchive","params":{},"id":1}'
+   
+// Result
 </code>
 </pre>
 <hr>
 
 <!-- WriteArchive -->
-<h4 id="writeArchive">writeArchive</h4>
+<h4 id="writeArchive">writeArchive</h4>  <!-- TODO: REWRITE -->
 <p>Writes the contents of an incomplete archive.</p>
 
 <h5 id="parameters">Parameters</h5>
@@ -1693,55 +1975,30 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
     <li><code>string</code> Block content bytes, in Base64</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-    <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+
+}
 </code>
 </pre>
 
-<h5 id="returns">Returns</h5>
+<h5 id="returns">Returns</h5> <!-- TODO: CHANGE RETURN -->
 <p><code>Archive</code> - A Archive object.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>result</code>: <code>string</code> - Given address.</li>
 </ul>
 
-<h5 id="example">Example</h5>
+<h5 id="example">Example</h5> <!-- TODO: CANT TEST -->
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"writeArchive","params":{},"id":1}'
+   
+// Result
+</code>
 </pre>
 <hr>
 
 <!-- ReadArchive -->
-<h4 id="readArchive">readArchive</h4>
+<h4 id="readArchive">readArchive</h4> <!-- TODO: REWRITE -->
 <p>Reads given archive block.</p>
 
 <h5 id="parameters">Parameters</h5>
@@ -1750,50 +2007,26 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
     <li><code>int</code> Block index, starting from 0</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-    <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "hashText":"83E0B0D032022A9D839AA92C94C8F5C6A3E602629CBE0E786D9C65F8E6F0AE5A"
+   "blockIndex" : ""
+}
 </code>
 </pre>
 
-<h5 id="returns">Returns</h5>
+<h5 id="returns">Returns</h5> <!-- TODO: CHANGE RETURN -->
 <p><code>Archive</code> - A Archive object.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>result</code>: <code>object</code> - An Archive object.</li>
 </ul>
 
-<h5 id="example">Example</h5>
+<h5 id="example">Example</h5> <!-- TODO: CANT TEST -->
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"readArchive","params":{},"id":1}'
+   
+// Result
+</code>
 </pre>
 <hr>
 
@@ -1807,157 +2040,231 @@ curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs
     <li><code>string</code> Contract name</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-    <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "chainAddressOrName":"main",
+   "contractName":"account"
+}
 </code>
 </pre>
 
 <h5 id="returns">Returns</h5>
 <p><code>Contract</code> - A Contract object.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>name</code>: <code>string</code> - Name of the contract.</li>
+    <li><code>address</code>: <code>string</code> - Address of the contract.</li>
+    <li><code>script</code>: <code>string</code> - Script.</li>
+    <li><code>methods</code>: <code>array</code> - Array of methods.</li>
+    <li><code>methods - name</code>: <code>string</code> - Name of the method.</li>
+    <li><code>methods - returnType</code>: <code>string</code> - Return type of the method.</li>
+    <li><code>methods - parameters</code>: <code>string</code> - Parameters of the method.</li>
+    <li><code>methods - parameters - name</code>: <code>string</code> - Name of the parameter.</li>
+    <li><code>methods - parameters - type</code>: <code>string</code> - type of the parameter.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getContract","params":{"chainAddressOrName":"main","contractName":"account"},"id":1}'
+   
+// Result
+{
+   "jsonrpc": "2.0",
+   "result": {
+       "name": "account",
+       "address": "S3dGz1deZweAiMVPHL328X3pVNpANQVjgX4MoRGpbNNAfrB",
+       "script": "",
+       "methods": [
+           {
+               "name": "RegisterName",
+               "returnType": "None",
+               "parameters": [
+                   {
+                       "name": "target",
+                       "type": "Object"
+                   },
+                   {
+                       "name": "name",
+                       "type": "String"
+                   }
+               ]
+           },
+           {
+               "name": "UnregisterName",
+               "returnType": "None",
+               "parameters": [
+                   {
+                       "name": "target",
+                       "type": "Object"
+                   }
+               ]
+           },
+           {
+               "name": "RegisterScript",
+               "returnType": "None",
+               "parameters": [
+                   {
+                       "name": "target",
+                       "type": "Object"
+                   },
+                   {
+                       "name": "script",
+                       "type": "Bytes"
+                   },
+                   {
+                       "name": "abiBytes",
+                       "type": "Bytes"
+                   }
+               ]
+           },
+           {
+               "name": "HasScript",
+               "returnType": "Bool",
+               "parameters": [
+                   {
+                       "name": "address",
+                       "type": "Object"
+                   }
+               ]
+           },
+           {
+               "name": "LookUpAddress",
+               "returnType": "String",
+               "parameters": [
+                   {
+                       "name": "target",
+                       "type": "Object"
+                   }
+               ]
+           },
+           {
+               "name": "LookUpScript",
+               "returnType": "Bytes",
+               "parameters": [
+                   {
+                       "name": "target",
+                       "type": "Object"
+                   }
+               ]
+           },
+           {
+               "name": "LookUpABI",
+               "returnType": "Bytes",
+               "parameters": [
+                   {
+                       "name": "target",
+                       "type": "Object"
+                   }
+               ]
+           },
+           {
+               "name": "LookUpName",
+               "returnType": "Object",
+               "parameters": [
+                   {
+                       "name": "name",
+                       "type": "String"
+                   }
+               ]
+           },
+           {
+               "name": "Migrate",
+               "returnType": "None",
+               "parameters": [
+                   {
+                       "name": "from",
+                       "type": "Object"
+                   },
+                   {
+                       "name": "target",
+                       "type": "Object"
+                   }
+               ]
+           }
+       ]
+   },
+   "id": 1
+}
+</code>
 </pre>
 <hr>
 
 <!-- GetPeers -->
 <h4 id="getPeers">getPeers</h4>
 <p>Returns list of known peers.</p>
+
 <h5 id="parameters">Parameters</h5>
 none
-
+<pre>
+<code class="lang-json">params : {}
+</code>
+</pre>
+   
 <h5 id="returns">Returns</h5>
-<p><code>Peers</code> - A Peer object.</p>
+<p><code>Peers</code> - A Peer object.</p> <!-- TODO: CHANGE RETURN -->
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>url</code>: <code>string</code> - URL of the program.</li>
+    <li><code>version</code>: <code>string</code> - Version of the program.</li>
+    <li><code>flags</code>: <code>string</code> - Flags of Peer.</li>
+    <li><code>fee</code>: <code>string</code> - Fee.</li>
+    <li><code>pow</code>: <code>string</code> - POW.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getPeers","params":{},"id":1}'
+   
+// Result
+{
+   "jsonrpc": "2.0",
+   "result": [
+       {
+           "url": "tcp:localhost:7777",
+           "version": "Spook v1.3-beta1",
+           "flags": "Mempool, RPC, REST",
+           "fee": "100000",
+           "pow": 0
+       }
+   ],
+   "id": 1
+}
+</code>
 </pre>
 <hr>
 
 <!-- RelaySend -->
-<h4 id="relaySend">relaySend</h4>
+<h4 id="relaySend">relaySend</h4> <!-- TODO: REWRITE -->
 <p>Writes a message to the relay network.</p>
+
 <h5 id="parameters">Parameters</h5>
 <ol>
     <li><code>string</code> Serialized receipt, in hex.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-    <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "receiptHex":""
+}
 </code>
 </pre>
 
-<h5 id="returns">Returns</h5>
-<p><code>Contract</code> - A Contract object.</p>
+<h5 id="returns">Returns</h5> <!-- TODO: CHANGE RETURN -->
+<p><code>Relay</code> - A Relay object.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>resullt</code>: <code>string</code> - Given address.</li>
 </ul>
 
-<h5 id="example">Example</h5>
+<h5 id="example">Example</h5> <!-- TODO: CANT TEST -->
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"relaySend","params":{},"id":1}'
+   
+// Result
+</code>
 </pre>
 <hr>
 
 <!-- RelayReceive -->
-<h4 id="relayReceive">relayReceive</h4>
+<h4 id="relayReceive">relayReceive</h4> <!-- TODO: REWRITE -->
 <p>Receives messages from the relay network.</p>
 
 <h5 id="parameters">Parameters</h5>
@@ -1965,55 +2272,30 @@ none
     <li><code>string</code> Address or account name.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-    <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params:{
+   "account" : "genesis"
+}
 </code>
 </pre>
 
 <h5 id="returns">Returns</h5>
-<p><code>Contract</code> - A Contract object.</p>
+<p><code>Relay</code> - A Relay object.</p> <!-- TODO: CHANGE RETURN -->
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+    <li><code>result</code>: <code>string</code> - Given address.</li>
 </ul>
 
-<h5 id="example">Example</h5>
+<h5 id="example">Example</h5> <!-- TODO: CANT TEST -->
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"relayReceive","params":{},"id":1}'
+   
+// Result
+</code>
 </pre>
 <hr>
 
 <!-- GetEvents -->
-<h4 id="getEvents">getEvents</h4>
+<h4 id="getEvents">getEvents</h4> <!-- TODO: REWRITE -->
 <p>Reads pending messages from the relay network.</p>
 
 <h5 id="parameters">Parameters</h5>
@@ -2021,98 +2303,95 @@ none
     <li><code>string</code> Address or account name.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-    <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params:{
+   "account" : "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34"
+}
 </code>
 </pre>
 
-<h5 id="returns">Returns</h5>
-<p><code>Contract</code> - A Contract object.</p>
+<h5 id="returns">Returns</h5> <!-- TODO: CHANGE RETURN -->
+<p><code>Array</code> - Array of events object.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+      <li><code>result</code>: <code>array</code> - Array of event objects.</li>
 </ul>
 
-<h5 id="example">Example</h5>
+<h5 id="example">Example</h5> <!-- TODO: CANT TEST -->
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getEvents","params":{"account" : "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34"},"id":1}'
+   
+// Result
+</code>
 </pre>
 <hr>
-
+   
 <!-- GetPlatforms -->
 <h4 id="getPlatforms">getPlatforms</h4>
 <p>Returns an array of available interop platforms.</p>
 
 <h5 id="parameters">Parameters</h5>
 none
+<pre>
+<code class="lang-json">params:{}
+</code>
+</pre>
 
-<h5 id="returns">Returns</h5>
-<p><code>Contract</code> - A Contract object.</p>
+<h5 id="returns">Returns</h5> <!-- TODO: CHANGE RETURN -->
+<p><code>Platforms</code> - A array of Platforms.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+      <li><code>result</code>: <code>array</code> - Array of Platforms</li>
+      <li><code>platform</code>: <code>string</code> - Name of platform.</li>
+      <li><code>chain</code>: <code>string</code> - Chain address.</li>
+      <li><code>fuel</code>: <code>string</code> - Type of fuel.</li>
+      <li><code>tokens</code>: <code>array</code> - Array of tokens that the chain handle.</li>
+      <li><code>interop</code>: <code>array</code> - Interop.</li>
+      <li><code>interop - local</code>: <code>string</code> - Local Hash address.</li>
+      <li><code>interop - external</code>: <code>string</code> - External Hash address.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getPlatforms","params":{},"id":1}'
+   
+// Result
+{
+   "jsonrpc": "2.0",
+   "result": [
+       {
+           "platform": "neo",
+           "chain": "S3dEMj6oFEgfcwSpriewXBR5xcnwu4MJa9KmHgyaKqEhoM6",
+           "fuel": "GAS",
+           "tokens": [
+               "SOUL",
+               "NEO",
+               "GAS"
+           ],
+           "interop": [
+               {
+                   "local": "X54DbFHTbzhEFHFHmm3fDVjeTpDmXsAeVEz4U4GK6ZQYe6b",
+                   "external": "Aai16mqdg9b453ZggXn3SmJH45na3oCEoU"
+               }
+           ]
        },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+       {
+           "platform": "ethereum",
+           "chain": "S3dJoptTKf9ASn2tWxHh9fkGH8xjHbhYutNNHkzR1WSmpK6",
+           "fuel": "ETH",
+           "tokens": [
+               "ETH"
+           ],
+           "interop": [
+               {
+                   "local": "X7DzbZPdeGpqeRdxHkusj6zUH8nzQjTPsrbRdFWQ5gEsmi7",
+                   "external": "0xBF35FB8C5B4171496E052EEBFB5BEA29A932171C"
+               }
+           ]
+       }
+   ],
+   "id": 1
+}
+</code>
 </pre>
 <hr>
 
@@ -2122,50 +2401,41 @@ none
 
 <h5 id="parameters">Parameters</h5>
 none
+<pre>
+<code class="lang-json">params:{}
+</code>
+</pre>
 
 <h5 id="returns">Returns</h5>
-<p><code>Contract</code> - A Contract object.</p>
+<p><code>Validators</code> - A array of Validator objects.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+      <li><code>result</code>: <code>array</code> - Array of Validator objects.</li>
+      <li><code>address</code>: <code>string</code> - Address of the validator.</li>
+      <li><code>type</code>: <code>string</code> - Type of the validator.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getValidators","params":{},"id":1}'
+   
+// Result
+{
+   "jsonrpc": "2.0",
+   "result": [
+       {
+           "address": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+           "type": "Primary"
+       }
+   ],
+   "id": 1
+}
+</code>
 </pre>
 <hr>
 
 <!-- SettleSwap -->
-<h4 id="settleSwap">settleSwap</h4>
+<h4 id="settleSwap">settleSwap</h4> <!-- TODO: REWRITE -->
 <p>Tries to settle a pending swap for a specific hash.</p>
 
 <h5 id="parameters">Parameters</h5>
@@ -2175,55 +2445,32 @@ none
     <li><code>string</code> Hash of transaction to settle.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-    <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params : {
+   "sourcePlatform" : "", 
+   "destPlatform":"", 
+   "hashText":""
+}
 </code>
 </pre>
 
-<h5 id="returns">Returns</h5>
-<p><code>Contract</code> - A Contract object.</p>
+<h5 id="returns">Returns</h5> <!-- TODO: CHANGE RETURN -->
+<p><code>Swap</code> - A Swap object.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+      <li><code>result</code>: <code>object</code> - Swawp object.</li>
 </ul>
 
-<h5 id="example">Example</h5>
+<h5 id="example">Example</h5> <!-- TODO: CANT TEST -->
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"settleSwap","params":{"sourcePlatform" : "", "destPlatform":"", "hashText":""},"id":1}'
+   
+// Result
+</code>
 </pre>
 <hr>
 
 <!-- GetSwapsForAddress -->
-<h4 id="getSwapsForAddress">getSwapsForAddress</h4>
+<h4 id="getSwapsForAddress">getSwapsForAddress</h4> <!-- TODO: REWRITE -->
 <p>Returns platform swaps for a specific address.</p>
 
 <h5 id="parameters">Parameters</h5>
@@ -2232,50 +2479,25 @@ none
     <li><code>boolean</code> Extended search, Optional (default: false)</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-    <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params:{
+   "account" : "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34"
+}
 </code>
 </pre>
 
-<h5 id="returns">Returns</h5>
-<p><code>Contract</code> - A Contract object.</p>
+<h5 id="returns">Returns</h5> <!-- TODO: CHANGE RETURN -->
+<p><code>Swap</code> - A Swap object.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+      <li><code>result</code>: <code>object</code> - Swap object.</li>
 </ul>
 
-<h5 id="example">Example</h5>
+<h5 id="example">Example</h5> <!-- TODO: CANT TEST -->
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getSwapsForAddress","params":{"account":"P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34"},"id":1}'
+   
+// Result
+</code>
 </pre>
 <hr>
 
@@ -2284,45 +2506,29 @@ none
 <p>Returns latest sale hash.</p>
 <h5 id="parameters">Parameters</h5>
 none
+<pre>
+<code class="lang-json">params:{}
+</code>
+</pre>
 
 <h5 id="returns">Returns</h5>
-<p><code>Contract</code> - A Contract object.</p>
+<p><code>string</code> - A Hash of the sale.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+      <li><code>result</code>: <code>string</code> - Address of the Hash.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getLatestSaleHash","params":{},"id":1}'
+   
+// Result
+{
+   "jsonrpc": "2.0",
+   "result": "E056D02E57C7DBDC88E1C120D4BC827772BA7E56E3FDF496DF7D16938AB0A639",
+   "id": 1
+}
+</code>
 </pre>
 <hr>
 
@@ -2334,49 +2540,56 @@ none
     <li><code>string</code> Hash of sale.</li>
 </ol>
 <pre>
-<code class="lang-js"><span class="hljs-keyword">params</span>: [
-    <span class="hljs-string">'PDHcAHq1fZXuwDrtJGghjemFnj2ZaFc7iu3qD4XjZG9eV'</span>
-]
+<code class="lang-json">params:{
+   "hashText" : "E056D02E57C7DBDC88E1C120D4BC827772BA7E56E3FDF496DF7D16938AB0A639"
+}
 </code>
 </pre>
 
-<h5 id="returns">Returns</h5>
-<p><code>Contract</code> - A Contract object.</p>
+<h5 id="returns">Returns</h5> <!-- TODO: CHANGE RETURN -->
+<p><code>Sale</code> - A Sale object.</p>
 <ul>
-    <li><code>address</code>: <code>string</code> - Given address.</li>
-    <li><code>name</code>: <code>string</code> - Name of given address.</li>
-    <li><code>balances</code>: <code>Array</code> - Array of balance objects.</li>
-    <li><code>balance - chain</code>: <code>string</code> - Name of the chain.</li>
-    <li><code>balance - symbol</code>: <code>string</code> - Token symbol.</li>
-    <li><code>balance - amount</code>: <code>string</code> - Amount of tokens.</li>
+      <li><code>result</code>: <code>object</code> - A Sale object.</li>
+      <li><code>hash</code>: <code>string</code> - Hash of the sale.</li>
+      <li><code>name</code>: <code>string</code> - Name of the sale.</li>
+      <li><code>creator</code>: <code>string</code> - Address of the owner of the sale.</li>
+      <li><code>flags</code>: <code>string</code> - Flags of the sale.</li>
+      <li><code>startDate</code>: <code>timestamp</code> - Start date of the sale.</li>
+      <li><code>endDate</code>: <code>timestamp</code> - End date of the sale.</li>
+      <li><code>sellSymbol</code>: <code>string</code> - Symbol Selling.</li>
+      <li><code>receiveSymbol</code>: <code>string</code> - Symbol Receiving.</li>
+      <li><code>price</code>: <code>number</code> - Price of the sale.</li>
+      <li><code>globalSoftCap</code>: <code>string</code> - Global soft cap.</li>
+      <li><code>globalHardCap</code>: <code>string</code> - Global hard cap.</li>
+      <li><code>userSoftCap</code>: <code>string</code> - User soft cap.</li>
+      <li><code>userHardCap</code>: <code>string</code> - User hard cap.</li>
 </ul>
 
 <h5 id="example">Example</h5>
 <pre>
-    <code class="lang-js"><span class="hljs-comment">// Request</span>
-    curl -X POST --data <span class="hljs-string">'{"</span>jsonrpc<span class="hljs-string">":"</span><span class="hljs-number">2.0</span><span class="hljs-string">","</span>method<span class="hljs-string">":"</span>getBlockByHeight<span class="hljs-string">","</span>params<span class="hljs-string">":["</span><span class="hljs-string">", "</span><span class="hljs-string">"],"</span>id<span class="hljs-string">":1}'</span>
-    
-    <span class="hljs-comment">// Result</span>
-    {
-       <span class="hljs-string">"jsonrpc"</span>:<span class="hljs-string">"2.0"</span>,
-       <span class="hljs-string">"result"</span>:{
-          <span class="hljs-string">"address"</span>:<span class="hljs-string">"P16m9XNDHxUex9hsGRytzhSj58k6W7BT5Xsvs3tHjJUkX"</span>,
-          <span class="hljs-string">"name"</span>:<span class="hljs-string">"genesis"</span>,
-          <span class="hljs-string">"balances"</span>:[
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"main"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"511567851650398"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             },
-             {
-                <span class="hljs-string">"chain"</span>:<span class="hljs-string">"apps"</span>,
-                <span class="hljs-string">"amount"</span>:<span class="hljs-string">"891917855944784"</span>,
-                <span class="hljs-string">"symbol"</span>:<span class="hljs-string">"SOUL"</span>
-             }
-          ]
-       },
-       <span class="hljs-string">"id"</span>:<span class="hljs-string">"1"</span>
-    }
-    </code>
+<code class="lang-json">// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"getSale","params":{"hashText":"E056D02E57C7DBDC88E1C120D4BC827772BA7E56E3FDF496DF7D16938AB0A639"},"id":1}'
+   
+// Result
+{
+   "jsonrpc": "2.0",
+   "result": {
+         "hash": "E056D02E57C7DBDC88E1C120D4BC827772BA7E56E3FDF496DF7D16938AB0A639",
+         "name": "Mankini sale",
+         "creator": "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34",
+         "flags": "None",
+         "startDate": 1615564569,
+         "endDate": 1615978569,
+         "sellSymbol": "MKNI",
+         "receiveSymbol": "SOUL",
+         "price": 7,
+         "globalSoftCap": "0",
+         "globalHardCap": "1000",
+         "userSoftCap": "1",
+         "userHardCap": "100"
+   },
+   "id": 1
+}
+</code>
 </pre>
 <hr>

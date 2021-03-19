@@ -1,0 +1,25 @@
+<!-- Wallet Link -->
+<!-- WriteArchive -->
+<h4 id="WriteArchive">WriteArchive</h4>
+<p>Writes to an Archive.</p>
+
+<h5 id="WriteArchiveMethod">Method definition</h5>
+<pre>
+<code>protected abstract void WriteArchive(Hash hash, int blockIndex, byte[] data, Action&ltbool, string> callback);
+</code>
+</pre>
+
+<h5 id="WriteArchiveParameters">Parameters</h5>
+<ol>
+    <li><code>Hash</code> Hash of the block.</li>
+    <li><code>int</code> Block index .</li>
+    <li><code>byte[]</code> Data to write to archive</li>
+    <li><code>Action</code> Call back that returns a boolean (true if it was accepted) and a string.</li>
+</ol>
+
+<h5 id="WriteArchiveReturns">Returns</h5> <!-- TODO: CHANGE RETURN -->
+<p><code>Archive</code> - A Archive object, or <code>error</code> if address is invalid.</p>
+<ul>
+    <li><code>address</code>: <code>string</code> - Given address.</li>
+</ul>
+<hr>

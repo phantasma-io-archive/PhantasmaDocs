@@ -1,0 +1,24 @@
+<!-- Wallet Link -->
+<!-- SignData -->
+<h4 id="SignData">SignData</h4>
+<p>Returns the account name and balance of given address.</p>
+
+<h5 id="SignDataMethod">Method definition</h5>
+<pre>
+<code>// NOTE for security, signData should not be usable as a way of signing transaction. That way the wallet is responsible for appending random bytes to the message, and return those in callback
+protected abstract void SignData(string platform, SignatureKind kind, byte[] data, int id, Action&ltstring, string, string> callback);
+</code>
+</pre>
+
+<h5 id="SignDataParameters">Parameters</h5>
+<ol>
+    <li><code>string</code> Address of account.</li>
+    <li><code>Action</code> Call back that returns an Account object and a string.</li>
+</ol>
+
+<h5 id="SignDataReturns">Returns</h5> <!-- TODO: CHANGE RETURN -->
+<p><code>Account</code> - A Account object, or <code>error</code> if address is invalid.</p>
+<ul>
+    <li><code>address</code>: <code>string</code> - Given address.</li>
+</ul>
+<hr>
