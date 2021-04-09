@@ -1,0 +1,193 @@
+<h2 class="section-heading">Phantasma Link for Javascript</h2>
+<h4>Phantasam setup (test enviroment)</h4>
+<ol>
+  <li>Get latest Spook <a href="http://github.com/phantasma-io/Spook">code</a></li>
+  <li>Build it using Visual Studio</li>
+  <li>Copy <a href="https://github.com/phantasma-io/Spook/blob/master/Spook/config_testnet.json">config_testnet.json</a> to the build folder and rename it config.json</li>
+  <li>Make sure that "shell.enabled" is set to true in config.json</li>
+</ol>
+
+<h4>Getting test assets (SOUL and KCAL)</h4>
+<ol>
+  <li>Download <a href="https://github.com/phantasma-io/Poltergeist/releases">Poltergeist</a></li>
+  <li>Open the Poltergeist wallet, go to settings and change network to "localnet"</li>
+  <li>Grab the testnet private key (WIF) from the Spook config.json file (“node.wif”, eg: L2LGgkZAdupN2ee8Rs6hpkc65zaGcLbxhbSDGq8oh6umUxxzeW25)</li>
+  <li>Import a new account in Poltergeist using that WIF. This account will contain SOUL and KCAL.</li>
+  <li>Create other accounts as you need for testing, and send funds from the first account to the new ones.</li>
+</ol>
+
+<h4>Setup login to the wallet</h4>
+<ol>
+    <li>Import the phantasma.js to your folder structure</li>
+    <li>Add <code>&lt;script src="/pathTo/phantasma.js"&gt; &lt;/script&gt;</code></li>
+    <li>Create your own js script or use a <code>&lt;script&gt; &lt;/script&gt;</code> on you html file.</li>
+    <li> For example the code used on the OTC application. <br>
+<pre><code>let link = new PhantasmaLink("otc"); // The "otc" is the name of your dapp in this case is otc. 
+let linkVersion = 1;
+
+// This example uses a ajax call to the API.
+function loginToPhantasma(providerHint) {
+    $("#loginModal").modal("hide");
+    console.log("Trying to login to phantasma via " + providerHint);
+    link.login(
+        function (success) {
+            if (success) {
+                $.ajax({
+                    url: "login",
+                    type: "post",
+                    data: { token: link.token, name: link.account.name, connector: link.wallet, provider: providerHint, address: link.account.address },
+                    success: function (response) {
+                        // Handle correct version
+                        if (link.version > 1 && link.nexus != expectedNexus) {
+                            bootbox.alert("Invalid nexus, connected to " + link.nexus + " but expected " + expectedNexus);
+                            return;
+                        }
+                        
+                        // Handle login successful
+                        // Do something here.
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus, errorThrown);
+                    },
+                });
+            }
+        },
+        linkVersion,
+        "phantasma",
+        providerHint
+    );
+}
+
+// Simpler version
+function loginToPhantasma(providerHint) {
+  console.log("Trying to login to phantasma via " + providerHint);
+  link.login(
+      function (success) {
+          if (success) {
+            // Handle login successful
+            // Do something here.
+          }else {
+            // Error connecting to the wallet.
+          }
+      },
+      linkVersion,
+      "phantasma",
+      providerHint
+  );
+}
+</code>
+</pre>
+    </li>
+    <li>The <code>providerHint</code> should be <code>poltergeist</code> if you're using the poltergeist wallet or <code>ecto</code> if you're using the ecto wallet.</li>
+    <li>In your application you should give the user permission to choose which wallet they are using.</li>
+    <li>For example you can call this method. <br>
+<pre><code>loginToPhantasma("poltergeist");
+// or
+loginToPhantasma("ecto");
+</code>
+</pre>
+    </li>
+    <li>Now you have the connection stablished to the users wallet, and now what can you do?</li>
+</ol>
+
+
+<h4>What can we do with the connection to the wallet?</h4>
+<ol>
+  <li>When you login to the user successfully, your <code>PhantasmaLink</code> variable will receive the <code>.account</code></li>
+  <li>With that you can access to the users information</li>
+  <li>For example inside the <code>link.account</code> you can get this information<br>
+<pre><code>{
+  address: "P2K6Sm1bUYGsFkxuzHPhia1AbANZaHBJV54RgtQi5q8oK34", // User address
+  alias: "TestWallet", 
+  avatar: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAAJFBMVEWcnJz////39/etra3e3t6lpaW1tbXn5+fW1tbv7+/Ozs69vb2ss4cPAAAAk0lEQVQoz2OgJWA2QOWnKAqVIfM5BIGgAUlgIUhAAsFnEwSDBLgAC0SgAC7ABBEQhQsYQgSEMQRwa2GHGopu7QaEQxpBfBF0pzsg+3WioKAkkn9ZHcFaAuACRhBDleEaFCECQjBNQYJQoAoVcIQJiCA5Cx4iCIcjHB+IEBCFBigcSMHMRDV1IkJAEiygiBAQYmAAABD5F4JgcTScAAAAAElFTkSuQmCC",
+  balances: [ // This is an array of all the balances/coins the user has on their wallet.
+  {
+    decimals: 8
+    symbol: "SOUL"
+    value: "94000000000000"
+  },
+  {
+    symbol: "KCAL", 
+    value: "9992797430348403", 
+    decimals: 10
+  }
+  ],
+  external: "",
+  id: 2,
+  name: "TestWallet",
+  platform: "phantasma",
+  success: true,
+}
+</code>
+</pre>
+  </li>
+  <li>To send a transaction of <code>SOUL</code> or <code>KCAL</code> you can do something like this: <br> 
+<pre><code>let payload = "exchange";
+let address = String(link.account.address);
+
+// You need to create a ScriptBuilder so you can call use methods in the blockchain.
+var sb = new ScriptBuilder(); 
+var myScript = sb.
+    allowGas(address). // To ask permission to the wallet to use the user gas
+    callContract("exchange", "TakeOrder", [address, 
+    String(id)]). // Call contract 1st argument is the contractName | 2nd Name of the method you want to call | 3rd is an array of variables that the method receives.
+    spendGas(address). // To use the user gas
+    endScript();
+
+// Send transaction will 1st ask the wallet to validate the transaction, then will send it to the block chain.
+link.sendTransaction("main", myScript, payload, (script) => // 1st argument is the name of the chain | 2nd the script we created | 3rd the can be the name of the application
+{
+  // Do something here.
+});
+</code></pre>
+  </li>
+  <li>When you send a transaction or the user receives tokens you can use the <code>link.fetchAccountInfo(callback)</code>, for example:<br>
+<pre><code>link.fetchAccountInfo(function(){
+  // Handle the updated user info.
+});
+</code></pre>
+  </li>
+</ol>
+
+
+<h4>Usefull things you might need.</h4>
+<ol>
+  <li>One of the Usefull methods you might need and it's not implemented yet in the <code>Phantasma.js</code> is the <code>convertToBigInt</code><br>
+<pre><code>function convertToBigInt(symbol, amount) {
+  if (!link.account) {
+      return 0;
+  }
+  let balances = link.account.balances;
+  var i;
+  for (i = 0; i < balances.length; i++) {
+      var entry = balances[i];
+      if (entry.symbol == symbol) {
+          return Math.floor(amount * Math.pow(10, entry.decimals));
+      }
+  }
+  return 0;
+}
+</code>
+</pre>
+  </li>
+  <li> Other userfull method is <code>getBalance</code>, symbol is the name of the symbol you want, like <code>SOUL|KCAL</code><br>
+<pre><code>function getBalance(symbol) {
+  if (!link.account) {
+      return 0;
+  }
+
+  let balances = link.account.balances;
+  var i;
+  for (i = 0; i < balances.length; i++) {
+      var entry = balances[i];
+      if (entry.symbol == symbol) {
+          return entry.value / Math.pow(10, entry.decimals);
+      }
+  }
+
+  return 0;
+}
+</code></pre>
+  </li>
+  <li>If you're trying to send BigInts they should be converted to String first.</li>
+</ol>
