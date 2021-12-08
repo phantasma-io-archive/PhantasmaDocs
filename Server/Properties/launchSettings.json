@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "PharmingBackend": {
+    "Docs": {
       "commandName": "Project",
       "commandLineArgs": "--path=..\\..\\..\\..\\Frontend -nexus=testnet"
     }
