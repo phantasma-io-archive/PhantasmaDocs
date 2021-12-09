@@ -5,7 +5,7 @@
 						<li>TokenID - A unique 256-bit number used to identify a NFT instance.</li>
 						<li>SeriesID - A number that specifies which series a NFT instance belongs to.</li>
 						<li>MintID - A sequential number that indicates the order in which this instance was minted in it's series.</li>
-						<li>ROM - Each NFT instance contains it's own ROM area, where read-only data can reside. This data is saved during mint, and can't never be modified. The hash of this data is used to generate an unique ID for the NFT, meaning that each NFT instance must have unique ROM data. The ROM can be used to store what makes each instance unique, for example in a game that uses NFTs for characters, the ROM data could contain the character name and stats.</li>
+						<li>ROM - Each NFT instance contains it's own ROM area, where read-only data can reside. This data is saved during mint, and can never be modified. The hash of this data is used to generate an unique ID for the NFT, meaning that each NFT instance must have unique ROM data. The ROM can be used to store what makes each instance unique, for example in a game that uses NFTs for characters, the ROM data could contain the character name and stats.</li>
 						<li>RAM - The counterpart to the ROM, the RAM is the data in a NFT that can change over a NFT lifetime. </li>
 						</ul>
 						<p>Both ROM and ROM of a NFT just represent a variable size byte array, it's up for the dapps developers to chose the data structure of this blob. The <a href="#vm-tomb">TOMB compiler</a> abstracts both ROM and RAM into developer friendly custom structs, that make easy to read and write those fields.</p>

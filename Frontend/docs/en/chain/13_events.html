@@ -1,9 +1,77 @@
-						<h2 class="section-heading">Events</h2>
-						<p>When a Phantasma <a href="#chain-transaction">transaction</a> is executed, whoever executed it will want to know whatever really happened, because while with simple transactions the fact that they were accepted is enough to know the result, with more complex transactions different outcomes can happen.<br>A transaction or contract can then trigger events, which are readable via the <a href="#api">API</a>.</p>
-						<p>A Phantasma event is composed of:</p>
-						<ul>
-						<li>Kind - This is kind of event, which can be one of the <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Domain/Event.cs">builtin events</a> or a custom event</li>
-						<li>Address - The <a href="#chain-address">address</a> associated with the event.</li>
-						<li>Data - Binary data that depends on the event kind. Can be numbers, strings, structs or any other <a href="#vm-types">type</a>.</li>
-						</ul>
-						<p>For custom events used by contracts, the <a href="#chain-contracts">contract</a> interface will define the actual content of the event, to make it easier for third-parties to read and use it.</p>
+<h2 class="section-heading">Events</h2>
+<p>When a Phantasma <a href="#chain-transaction">transaction</a> is executed, whoever executed it will want to know whatever really happened, because while with simple transactions the fact that they were accepted is enough to know the result, with more complex transactions different outcomes can happen.<br>A transaction or contract can then trigger events, which are readable via the <a href="#api">API</a>.</p>
+<p>A Phantasma event is composed of:</p>
+<ul>
+<li>Kind - This is kind of event, which can be one of the <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Domain/Event.cs">builtin events</a> or a custom event</li>
+<li>Address - The <a href="#chain-address">address</a> associated with the event.</li>
+<li>Data - Binary data that depends on the event kind. Can be numbers, strings, structs or any other <a href="#vm-types">type</a>.</li>
+</ul>
+<p>For custom events used by contracts, the <a href="#chain-contracts">contract</a> interface will define the actual content of the event, to make it easier for third-parties to read and use it.</p>
+
+<br>
+
+<h4>EventKind List</h4>
+<p><code>EventKind</code> - Event names, value and description</p>
+<ul>
+	<li><code>Unknown</code> = <code>0</code> - TODO description</li>
+	<li><code>ChainCreate</code> = <code>1</code> - TODO description</li>
+	<li><code>TokenCreate</code> = <code>2</code> - TODO description</li>
+	<li><code>TokenSend</code> = <code>3</code> - TODO description</li>
+	<li><code>TokenReceive</code> = <code>4</code> - TODO description</li>
+	<li><code>TokenMint</code> = <code>5</code> - TODO description</li>
+	<li><code>TokenBurn</code> = <code>6</code> - TODO description</li>
+	<li><code>TokenStake</code> = <code>7</code> - TODO description</li>
+	<li><code>TokenClaim</code> = <code>8</code> - TODO description</li>
+	<li><code>AddressRegister</code> = <code>9</code> - TODO description</li>
+	<li><code>AddressLink</code> = <code>10</code> - TODO description</li>
+	<li><code>AddressUnlink</code> = <code>11</code> - TODO description</li>
+	<li><code>OrganizationCreate</code> = <code>12</code> - TODO description</li>
+	<li><code>OrganizationAdd</code> = <code>13</code> - TODO description</li>
+	<li><code>OrganizationRemove</code> = <code>14</code> - TODO description</li>
+	<li><code>GasEscrow</code> = <code>15</code> - TODO description</li>
+	<li><code>GasPayment</code> = <code>16</code> - TODO description</li>
+	<li><code>AddressUnregister</code> = <code>17</code> - TODO description</li>
+	<li><code>OrderCreated</code> = <code>18</code> - TODO description</li>
+	<li><code>OrderCancelled</code> = <code>19</code> - TODO description</li>
+	<li><code>OrderFilled</code> = <code>20</code> - TODO description</li>
+	<li><code>OrderClosed</code> = <code>21</code> - TODO description</li>
+	<li><code>FeedCreate</code> = <code>22</code> - TODO description</li>
+	<li><code>FeedUpdate</code> = <code>23</code> - TODO description</li>
+	<li><code>FileCreate</code> = <code>24</code> - TODO description</li>
+	<li><code>FileDelete</code> = <code>25</code> - TODO description</li>
+	<li><code>ValidatorPropose</code> = <code>26</code> - TODO description</li>
+	<li><code>ValidatorElect</code> = <code>27</code> - TODO description</li>
+	<li><code>ValidatorRemove</code> = <code>28</code> - TODO description</li>
+	<li><code>ValidatorSwitch</code> = <code>29</code> - TODO description</li>
+	<li><code>PackedNFT</code> = <code>30</code> - TODO description</li>
+	<li><code>ValueCreate</code> = <code>31</code> - TODO description</li>
+	<li><code>ValueUpdate</code> = <code>32</code> - TODO description</li>
+	<li><code>PollCreated</code> = <code>33</code> - TODO description</li>
+	<li><code>PollClosed</code> = <code>34</code> - TODO description</li>
+	<li><code>PollVote</code> = <code>35</code> - TODO description</li>
+	<li><code>ChannelCreate</code> = <code>36</code> - TODO description</li>
+	<li><code>ChannelRefill</code> = <code>37</code> - TODO description</li>
+	<li><code>ChannelSettle</code> = <code>38</code> - TODO description</li>
+	<li><code>LeaderboardCreate</code> = <code>39</code> - TODO description</li>
+	<li><code>LeaderboardInsert</code> = <code>40</code> - TODO description</li>
+	<li><code>LeaderboardReset</code> = <code>41</code> - TODO description</li>
+	<li><code>PlatformCreate</code> = <code>42</code> - TODO description</li>
+	<li><code>ChainSwap</code> = <code>43</code> - TODO description</li>
+	<li><code>ContractRegister</code> = <code>44</code> - TODO description</li>
+	<li><code>ContractDeploy</code> = <code>45</code> - TODO description</li>
+	<li><code>AddressMigration</code> = <code>46</code> - TODO description</li>
+	<li><code>ContractUpgrade</code> = <code>47</code> - TODO description</li>
+	<li><code>Log</code> = <code>48</code> - TODO description</li>
+	<li><code>Inflation</code> = <code>49</code> - TODO description</li>
+	<li><code>OwnerAdded</code> = <code>50</code> - TODO description</li>
+	<li><code>OwnerRemoved</code> = <code>51</code> - TODO description</li>
+	<li><code>DomainCreate</code> = <code>52</code> - TODO description</li>
+	<li><code>DomainDelete</code> = <code>53</code> - TODO description</li>
+	<li><code>TaskStart</code> = <code>54</code> - TODO description</li>
+	<li><code>TaskStop</code> = <code>55</code> - TODO description</li>
+	<li><code>CrownRewards</code> = <code>56</code> - TODO description</li>
+	<li><code>Infusion</code> = <code>57</code> - TODO description</li>
+	<li><code>SaleMilestone</code> = <code>58</code> - TODO description</li>
+	<li><code>OrderBid</code> = <code>59</code> - TODO description</li>
+	<li><code>Custom</code> = <code>64</code> - TODO description</li>
+</ul>

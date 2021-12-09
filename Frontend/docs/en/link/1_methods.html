@@ -1,0 +1,131 @@
+<!-- Wallet Link -->
+<!-- Authorize -->
+<h4 id="Authorize">Authorize</h4>
+<p>Connects a dapp to a <a href="#ecosystem-wallets">wallet</a>. The user must have a wallet installed and open, so that it displays an authorization prompt for the connection.</p>
+
+<h5 id="AuthorizeParameters">Parameters</h5>
+<ol>
+    <li><code>string</code>Dapp name / identifier</li>
+    <li><code>int</code> Phantasma Link Version requested (can be either 1 or 2).</li>
+</ol>
+
+<h5 id="AuthorizeReturns">Returns</h5>
+<p><code>Authoriziation</code> - A Authoriziation object, or <code>error</code> if the information is invalid.</p>
+<ul>
+    <li><code>wallet</code>: <code>string</code> - Wallet Address.</li>
+    <li><code>nexus</code>: <code>string</code> - Network name (nexus).</li>
+    <li><code>dapp</code>: <code>string</code> - Name of the dApp.</li>
+    <li><code>token</code>: <code>string</code> - Authorization token (can be saved for resuming the connection later</li>
+    <li><code>version</code>: <code>int</code> - Version of the Phantasma Link connected.</li>
+</ul>
+<hr>
+
+<!-- Wallet Link -->
+<!-- GetAccount -->
+<h4 id="getAccount">getAccount</h4>
+<p>Returns the account name and balance of given address.</p>
+
+<h5 id="getAccountParameters">Parameters</h5>
+<ol>
+    <li><code>string</code> Platform requested.</li>
+</ol>
+
+<h5 id="returns">Returns</h5>
+<p><code>Account</code> - A Account object, or <code>error</code> if address is invalid.</p>
+<ul>
+    <li><code>alias</code>: <code>string</code> - Wallet name.</li>
+    <li><code>address</code>: <code>string</code> - Account address.</li>
+    <li><code>name</code>: <code>string</code> - Account name.</li>
+    <li><code>avatar</code>: <code>string</code> - Account avatar.</li>
+    <li><code>platform</code>: <code>string</code> - Account <a href="#ecosystem-bridge">platform</a>.</li>
+    <li><code>external</code>: <code>string</code> - Platform external address (if available).</li>
+    <li><code>balances</code>: <code>array</code> - Array of Balance objects.</li>
+    <li><code>balances - symbol</code>: <code>string</code> - Symbol of the token.</li>
+    <li><code>balances - value</code>: <code>string</code> - Value of the token.</li>
+    <li><code>balances - decimals</code>: <code>int</code> - Number of decimals.</li>
+    <li><code>files</code>: <code>array</code> - Array of File objects.</li>
+    <li><code>files - name</code>: <code>string</code> - Name of the file.</li>
+    <li><code>files - size</code>: <code>int</code> - Size of the file.</li>
+    <li><code>files - date</code>: <code>uint</code> - Date of the file.</li>
+    <li><code>files - hash</code>: <code>string</code> - Hash of the file.</li>
+</ul>
+<hr>
+
+<!-- Wallet Link -->
+<!-- SignData -->
+<h4 id="SignData">signData</h4>
+<p>Signs an arbitrary chunk of data.</p>
+
+<h5 id="SignDataMethod">Method definition</h5>
+<pre>
+<code>For security, signData should not be usable as a way of signing transaction. That way the wallet is responsible for appending random bytes to the message, and return those back to the dapp.
+</code>
+</pre>
+
+<h5 id="SignDataParameters">Parameters</h5>
+<ol>
+    <li><code>string</code> Byte array containg data to be signed.</li>
+</ol>
+
+<h5 id="SignDataReturns">Returns</h5> <!-- TODO: CHANGE RETURN -->
+<ul>
+    <li><code>bytes</code>: <code>string</code> - Signed data.</li>
+    <li><code>bytes</code>: <code>string</code> - Pad bytes (random bytes prepended to the original bytes).</li>
+</ul>
+<hr>
+
+<!-- Wallet Link -->
+<!-- SignTx -->
+<h4 id="SignTx">signTx ( Signed Transaction )</h4>
+<p>Signs a transaction.</p>
+
+<h5 id="SignTxParameters">Parameters</h5>
+<ol>
+    <li><code>string</code> Script.</li>
+    <li><code>string</code> Signature Kind.</li>
+    <li><code>string</code> Chain.</li>
+</ol>
+
+<h5 id="SignTxReturns">Returns</h5> <!-- TODO: CHANGE RETURN -->
+<p><code>Hash</code> - A transaction hash, or <code>error</code> if transaction went wrong.</p>
+<ul>
+    <li><code>result</code>: <code>string</code> - Hash address to the transaction.</li>
+</ul>
+<hr>
+
+<!-- Wallet Link -->
+<!-- invokeScript -->
+<h4 id="invokeScript">invokeScript</h4>
+<p>Invokes a script on the VM</p>
+
+<h5 id="invokeScriptParameters">Parameters</h5>
+<ol>
+    <li><code>string</code> Chain that the script needs to run</li>
+    <li><code>byte[]</code> The script call in bytes.</li>
+</ol>
+
+<h5 id="invokeScriptReturns">Returns</h5> <!-- TODO: CHANGE RETURN -->
+<p><code>Byte[]</code> - A Byte array object with the return from the script, or <code>error</code> if something wents wrong.</p>
+<ul>
+    <li><code>result</code>: <code>string</code> - Return of the method.</li>
+</ul>
+<hr>
+
+<!-- Wallet Link -->
+<!-- WriteArchive -->
+<h4 id="WriteArchive">writeArchive</h4>
+<p>Writes an Archive chunk.</p>
+
+<h5 id="WriteArchiveParameters">Parameters</h5>
+<ol>
+    <li><code>Hash</code> Hash of the block.</li>
+    <li><code>int</code> Block index .</li>
+    <li><code>byte[]</code> Data to write to archive</li>
+</ol>
+
+<h5 id="WriteArchiveReturns">Returns</h5> <!-- TODO: CHANGE RETURN -->
+<p><code>Archive</code> - A Archive object, or <code>error</code> if address is invalid.</p>
+<ul>
+    <li><code>address</code>: <code>string</code> - Given address.</li>
+</ul>
+<hr>
