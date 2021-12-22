@@ -1,0 +1,21 @@
+<h4>Custom events 1</h4> 
+<p>
+	Showcases how a contract can declare and emit custom events.
+</p>	
+
+<pre><code>
+contract test {
+	event MyPayment:number = "{address} paid {data}"; // here we use a short-form description
+
+	public paySomething(from:address, x:number)
+	{		
+		Runtime.expect(Runtime.isWitness(from), "witness failed");
+
+		local price: number := 10;
+		local thisAddr:address := $THIS_ADDRESS;
+		Token.transfer(from, thisAddr, "SOUL", price);
+
+		emit MyPayment(from, price);
+	}
+}
+</code></pre>
