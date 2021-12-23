@@ -247,12 +247,77 @@ public void GenerateItem(ItemROM rom, ItemRAM ram)
 <!-- TODO: this Update NFT -->
 <h4 id="how-to-update-nft">How to Update an NFT</h4>
 <p>
-    There are 2 ways to mint an NFT.
+    There are 2 ways to update an NFT.
+    The only field that can be updated on an NFT is the <code>RAM</code>, the <code>ROM</code> can't be updated.
 </p>
 <ol>
     <li>1. Directly by executing Runtime Methods.</li>
     <li>2. Calling a method inside the contract</li>
 </ol>
+
+<h5>1. Update by directly by executing Runtime Methods example</h5>
+<p>This will call directly the chain and update the NFT, only works if there's no validation on the contract regarding the <code>trigger onWrite</code>.</p>
+<pre><code>
+public void UpdateItemRAM(Address from, string symbol, BigInteger nftID, ItemRAM nftRAM)
+{
+    var myScript = new ScriptBuilder().
+        AllowGas(from, Address.Null, PhantasmaLinkClient.Instance.GasPrice, 9000).
+        CallInterop("Runtime.WriteToken", from.Text, symbol, nftID, nftRAM).
+        SpendGas(from).
+        EndScript();
+    
+    var Payload = System.Text.Encoding.UTF8.GetBytes("EXP");
+    
+    PhantasmaLinkClient.Instance.SendTransaction(DomainSettings.RootChainName, myScript, Payload, (hash, msg) =>
+    {
+        if (hash != Hash.Null)
+        {
+            // It works
+        }
+        else
+        {
+            // Handle Error
+        }
+    });
+}
+</code></pre>
+
+<h5>2. Update by calling a method inside the contract example</h5>
+<p>Create a simple method inside the contract, for example:</p>
+<pre><code>
+public updateItem(from: address, nftID:number, nftRAM:ItemRAM)
+{
+    Runtime.expect(Runtime.isWitness(from), "witness failed");
+    NFT.write(from, $THIS_SYMBOL, nftID, nftRAM);
+}
+</code></pre>
+
+<br>
+
+<p>And then call it from the frontend, for example in C#:</p>
+<pre><code>
+public void UpdateItemROM(Address from, BigInteger nftID, ItemRAM nftRAM)
+{
+    var myScript = new ScriptBuilder().
+        AllowGas(from, Address.Null, PhantasmaLinkClient.Instance.GasPrice, 9000).
+        CallContract(“EXP”, "updateItem", from.text, nftID, nftRAM).
+        SpendGas(from).
+        EndScript();
+    
+    var Payload = System.Text.Encoding.UTF8.GetBytes("EXP");
+    PhantasmaLinkClient.Instance.SendTransaction(DomainSettings.RootChainName, myScript, Payload, (hash, msg) =>
+    {
+        if (hash != Hash.Null)
+        {
+            // It works
+        }
+        else
+        {
+            // Handle Error
+        }
+    });
+}
+</code></pre>
 
 <br>
 <hr>
