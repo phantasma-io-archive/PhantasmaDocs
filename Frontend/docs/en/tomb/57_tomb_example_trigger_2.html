@@ -1,0 +1,19 @@
+<h4>Triggers 2</h4> 
+<p>
+	Another contract example showcasing triggers.<br/>
+In this example, any asset sent to this account will be auto-converted into SOUL.
+</p>	
+
+<pre><code>
+contract test {
+
+	trigger onReceive(from:address, symbol:string, amount:number)
+	{
+		if (symbol != "SOUL") {
+			Call.contract("Swap", "SwapTokens", from, symbol, "SOUL", amount);
+		}
+
+		return;
+	}
+}
+</code></pre>

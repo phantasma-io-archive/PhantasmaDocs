@@ -1,0 +1,21 @@
+<h4>Counter per Address</h4> 
+<p>Another contract that implements a counter, this time unique per user address.<br/>
+	Showcases how to validate that a transaction was done by user possessing private keys to 'from' address</p>
+
+<pre><code>
+contract test {
+	import Runtime;
+	import Map;
+
+	global counters: storage_map<address, number>;
+
+	public increment(from:address)
+	{
+		Runtime.expect(Runtime.isWitness(from), "witness failed");
+		local temp: number;
+		temp := counters.get(from);
+		temp += 1;
+		counters.set(from, temp);
+	}
+}
+</code></pre>

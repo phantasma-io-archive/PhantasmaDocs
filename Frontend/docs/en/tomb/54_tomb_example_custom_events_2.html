@@ -1,0 +1,23 @@
+<h4>Custom events 2</h4> 
+<p>
+	A more complex version of the previous example, showcasing custom description scripts.
+</p>	
+
+<pre><code>
+description payment_event {
+
+	code(from:address, amount:number): string {
+		local result:string := "";
+		result += from;
+		result += " paid ";
+		result += amount;
+		return result;
+	}
+}
+
+contract test {
+	event MyPayment:number = payment_event; // here we use a short-form declaration
+
+	// everything else would be same as previous example
+}
+</code></pre>

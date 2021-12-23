@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using LunarLabs.WebServer.Templates;
 using System.IO;
 using System.Globalization;
+using System.Linq;
 
 namespace Phantasma.Docs
 {
@@ -98,6 +99,7 @@ namespace Phantasma.Docs
                 section.title = topic.title;
                 section.link = topic.ID;
                 section.entries = new List<Entry>();
+                Entry tempEntry;
 
                 var introPath = docFolder + topic.ID + ".html";
                 if (File.Exists(introPath))
@@ -118,12 +120,27 @@ namespace Phantasma.Docs
                         var temp = Path.GetFileNameWithoutExtension(file).Split('_', 2);
 
                         entry.order = int.Parse(temp[0]);
+                        
                         entry.name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(temp[1].Replace("_", " "));
                         entry.link = section.link + "-" + temp[1];
 
                         entry.content = File.ReadAllText(file);
 
                         section.entries.Add(entry);
+                    }
+
+                    for (int i = 0; i < section.entries.Count; i++)
+                    {
+
+                        for (int j = i+1; j < section.entries.Count; j++)
+                        {
+                            if (section.entries[i].order > section.entries[j].order)
+                            {
+                                tempEntry = section.entries[i];
+                                section.entries[i] = section.entries[j];
+                                section.entries[j] = tempEntry;
+                            }
+                        }
                     }
                 }
 
