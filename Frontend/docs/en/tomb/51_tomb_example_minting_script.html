@@ -1,0 +1,21 @@
+<h4>Minting Script</h4> 
+<p>
+	This example showcases a script that mints an custom NFT.<br/>
+</p>	
+
+<pre><code>
+struct my_rom_data {
+	name:string;
+	counter:number;
+}
+
+script token_minter {
+
+	import Token;
+
+	code(source:address, target:address) {
+		local rom_data:my_rom_data := Struct.my_rom_data("hello", 123);
+		NFT.mint(source, target, "LOL", rom_data, "ram_can_be_anything");
+	}
+}
+</code></pre>

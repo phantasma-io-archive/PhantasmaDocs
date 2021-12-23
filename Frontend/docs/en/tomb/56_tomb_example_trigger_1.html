@@ -1,0 +1,19 @@
+<h4>Trigger 1</h4> 
+<p>
+	A contract example showcasing triggers.<br/>
+In this example, this account will only accept transfers of KCAL and reject anything else.
+</p>
+
+<pre><code>
+contract test {
+
+	trigger onReceive(from:address, symbol:string, amount:number)
+	{
+		if (symbol != "KCAL") {
+			throw "can't receive asset: " + symbol;
+		}
+
+		return;
+	}
+}
+</code></pre>

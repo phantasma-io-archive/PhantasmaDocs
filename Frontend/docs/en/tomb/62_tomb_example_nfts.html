@@ -1,0 +1,107 @@
+<h4>NFTs</h4> 
+<p>
+	Showcases how to implement an NFT, showcasing all details including ROM, RAM and token series.
+</p>	
+
+<p>When creating an NFT, they must have 4 default properties implemented and they're:</p>
+
+<ol>
+	<li><code>name</code>, returns the name of the NFT</li>
+	<li><code>description</code>, returns the descriptions of the NFT</li>
+	<li><code>imageURL</code>, returns the image URL of the NFT</li>
+	<li><code>infoURL</code>, returns the info URL of the NFT</li>
+</ol>
+
+<pre><code>
+struct luchador_rom
+{
+	genes:bytes;
+	name:string;
+}
+
+struct luchador_ram
+{
+	experience:number;
+	level:number;
+}
+
+struct item_rom
+{
+	kind:number;
+	quality:number;
+}
+
+struct item_ram
+{
+	power:number;
+	level:number;
+}
+
+token NACHO {
+	global _owner: address;
+
+	const LUCHADOR_SERIES: number = 1;
+	const LUCHADOR_SUPPLY: number = 100000;
+
+	const ITEM_SERIES: number = 2;
+	const ITEM_SUPPLY: number = 500000;
+
+	property name: string = "Nachomen";
+
+	property isBurnable: bool = true;
+	property isFinite: bool = true;
+	property isFungible: bool = false;
+	property maxSupply: number = LUCHADOR_SUPPLY + ITEM_SUPPLY;
+
+	nft luchador<luchador_rom, luchador_ram> {
+
+		property name: string {
+			return _ROM.name;
+		}
+
+		property description: string {
+			return "Luchador with level " + _RAM.level;
+		}
+
+		property imageURL: string {
+			return "https://nacho.men/img/luchador/"+ _tokenID;
+		}
+
+		property infoURL: string {
+			return "https://nacho.men/api/luchador/"+ _tokenID;
+		}
+	}
+
+	nft item<item_rom, item_ram> {
+
+		property name: string {
+			switch (_ROM.kind)
+			{
+				case 1: return "Potion";
+				case 2: return "Gloves";
+				default: return "Item #" + _ROM.kind;
+			}
+		}
+
+		property description: string {
+			return "Item level " + _RAM.level;
+		}
+
+		property imageURL: string {
+			return "https://nacho.men/img/item/"+ _tokenID;
+		}
+
+		property infoURL: string {
+			return "https://nacho.men/api/item/"+ _tokenID;
+		}
+	}	
+
+	constructor (addr:address) {
+		_owner := addr;
+		// at least one token series must exist, here we create 2 series
+		// they don't have to be created in the constructor though, can be created later
+		NFT.createSeries(_owner, $THIS_SYMBOL, LUCHADOR_SERIES, LUCHADOR_SUPPLY, TokenSeries.Unique, luchador);
+		NFT.createSeries(_owner, $THIS_SYMBOL, ITEM_SERIES, ITEM_SUPPLY, TokenSeries.Unique, item);
+	}
+}
+</code></pre>
