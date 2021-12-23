@@ -244,7 +244,6 @@ public void GenerateItem(ItemROM rom, ItemRAM ram)
 
 <br>
 
-<!-- TODO: this Update NFT -->
 <h4 id="how-to-update-nft">How to Update an NFT</h4>
 <p>
     There are 2 ways to update an NFT.
@@ -560,38 +559,28 @@ public void GetAccount()
     StartCoroutine(PhantasmaAPI.GetAccount(_walletAddress.Text, (account) =>
     {
         var balances = account.balances;
-        foreach (var balance in account.balances)
+        PhantasmaAPI.GetNFTs(Program.ContractName, String.Join(",", balance.ids), false, (nftResult) =>
         {
-            foreach (var id in balance.ids)
+            foreach (var nft in nftResult)
             {
-                GetItem(id, (rom, ram) =>
+                if (nft.ownerAddress == SOULAddress)
                 {
-                    Item tempSetup = new Item(rom, ram, id);
-                    item.Add(tempSetup);
-                });
+                    try
+                    {
+                        var bytesROM = Base16.Decode(nft.rom);
+                        var bytesRaM = Base16.Decode(nft.ram);
+                        var rom = VMObject.FromBytes(bytesROM).AsStruct<ItemROM>();
+                        var ram = VMObject.FromBytes(bytesRAM).AsStruct<ItemRAM>();
+                        items.Add(new Item(rom, ram));
+                    }
+                    catch (Exception e)
+                    {
+                        //continue;
+                    }
+                }
             }
-        }
-    }));
-}
-     
-public void GetItem(string id, Action<ItemROM, ItemRAM> callback)
-{
-    StartCoroutine(PhantasmaAPI.GetTokenData("EXP", id, (result) =>
-    {
-        var bytesROM = Base16.Decode(result.rom);
-        var bytesRAM = Base16.Decode(result.ram);
-    
-        if (int.Parse(result.series) == 1)
-        {
-            var rom = Serialization.Unserialize<VMObject>(bytesROM).AsStruct<ItemROM>();
-            var ram = Serialization.Unserialize<VMObject>(bytesRAM).AsStruct<ItemRAM>();
-    
-            callback(rom, ram);
-        }
-    
-    }, (error, msg) =>
-    {
-        Debug.Log("error:" + msg);
+        });
+        
     }));
 }
 </code></pre>
