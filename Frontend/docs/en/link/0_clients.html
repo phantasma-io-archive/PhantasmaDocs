@@ -1,0 +1,52 @@
+<h4 id="link_js_client">Javascript Library</h4>
+<p>If you are a web dapp developer, you will be able to connect your dapp to Phantasma by downloading the <a href="downloads/phantasma.js">Javascript library</a> and integrating it with your code.
+If you are creating a Unity or .NET based dapp, you will find a Phantasma Link library client <a href="downloads/Phantasma_Unity_SDK.zip">here</a>.<br>
+In case you face issues using those libraries, please ask for support in the Phantasma <a href="https://discord.gg/sUjcHFk68t">Discord group</a>.</p>
+
+<h5 id="link_js_sample_code">Sample Code</h5>
+
+<p>Add links to both Phantasma.js and Phantasma.css files (the actual paths may differ, depending on where you install them).</p>
+<pre><code>
+  <link href="phantasma/phantasma.css" rel="stylesheet">
+  <script src="phantasma/phantasma.js"></script>
+</code></pre>
+
+<p>Add a login button HTML code somewhere in your web page.</p>
+<pre><code>
+	<div class="col-md-4 text-center">
+		<button type="button" class="btn btn-lg" onclick="loginToPhantasma()">Login</button>
+	</div>
+</code></pre>
+
+<p>Add a Javascript function called loginToPhantasma() somewhere in your web page.</p>
+<pre><code>
+let mydappName = 'mydapp';
+let requiredVersion = 2;
+let link = new PhantasmaLink(mydappName); // here we instantiate a Phantasma Link connection
+
+function loginToPhantasma() {
+	link.login( function(success) {
+		if (success) {
+			console.log('Connected to account ' + link.account.address + ' via ' + link.wallet);
+		}
+	}, requiredVersion);
+}
+</code></pre>
+
+
+<p>After login callback happens, if successful you will get back an account object with several fields.<br>
+<table class="table">
+<thead> 
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead> 
+<tr><td>link.account.name</td><td>Account name (or anonymous if no name registered)</td></tr>
+<tr><td>link.account.address</td><td>Phantasma address</td></tr>
+<tr><td>link.account.avatar</td><td>Image data (in base64 format, you can use this directly in a <img> element)</td></tr>
+<tr><td>link.account.external</td><td>External blockchain address if available (eg: Ethereum, BSC, NEO)</td></tr>
+<tr><td>link.token</td><td>Phantasma Link token, save this to persist connection over a session</td></tr>
+<tr><td>link.wallet</td><td>Name of the current wallet / connector (eg: Poltergeist, Ecto)</td></tr>
+</table>
+</p>
