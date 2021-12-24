@@ -71,7 +71,7 @@
 		    <nav id="docs-nav" class="docs-nav navbar">
 			    <ul class="section-items list-unstyled nav flex-column pb-3">
 					{{#each sections}}
-					<li class="nav-item section-title mt-3"><a class="nav-link scrollto{{#if @first}} active{{/if}}" href="#{{link}}"><span class="theme-icon-holder mr-2"><i class="fas fa-{{icon}}"></i></span>{{title}}</a></li>
+					<li class="nav-item section-title mt-3"><a class="nav-link scrollto{{#if @first}} active{{/if}}" href="#section-{{link}}"><span class="theme-icon-holder mr-2"><i class="fas fa-{{icon}}"></i></span>{{title}}</a></li>
 						{{#each entries}}
 						<li class="nav-item"><a class="nav-link scrollto" href="#{{link}}">{{name}}</a></li>
 						{{/each}}
@@ -83,7 +83,7 @@
 	    <div class="docs-content">
 		    <div class="container">
 				{{#each sections}}
-			    <article class="docs-article" id="section-chain">
+			    <article class="docs-article" id="section-{{link}}">
 				    <header class="docs-header">
 					    <h1 class="docs-heading">{{#if @first}}Introduction{{#else}}{{title}}{{/if}}<span class="docs-time">Last updated: 2020-10-01</span></h1>
 					    <section class="docs-intro">
