@@ -1,0 +1,140 @@
+<h2 class="section-heading">Simple Wallet tutorial (C#)</h2>
+<h4>Setup enviroment</h4>
+<ol>
+  <li>Get latest PhantasmaChain <a href="http://github.com/phantasma-io/PhantasmaChain">code</a></li>
+  <li>Create a folder called Phantasma and put the PhantasmaChain folder inside that.</li>
+  <li>Create a new Visual Studio solution inside the Phantasma folder (eg: name it MyWallet)</li>
+  <li>Right click in the solution explorer, select Add > Existing Project, then select Phantasma.Domain</li>
+  <li>Repeat the previous step for: Phantasma.Blockchain, Phantasma.Core, Phantasma.Cryptography, Phantasma.Numerics</li>
+</ol>
+
+<h4>Creating a C# program</h4>
+<p>Open your Program.cs file and edit the using clauses.</p>
+<pre><code>
+using System;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Threading;
+using System.Collections.Generic;
+using Phantasma.Cryptography;
+using Phantasma.Domain;
+using Phantasma.Numerics;
+using Phantasma.VM.Utils;
+using Phantasma.Blockchain.Contracts;
+using Phantasma.Blockchain;
+using Phantasma.Core.Types;
+using Phantasma.Storage;
+using Phantasma.CodeGen.Assembler;
+using Phantasma.VM;
+// NOTE: not all of those might be used in this tutorial...
+</code></pre>
+
+
+<h4>Generating private / public key pairs</h4>
+<p>The most basic feature every wallet needs is a way to generate new wallets (aka creating new private keys) and then from there display a public address to the user.</p>
+<pre><code>
+var myKeys = PhantasmaKeys.Generate(); // generates a 256-bit private/public keypair using C# security crypto functions
+Console.WriteLine(myKeys.ToWIF()); // this generates an human-readable private key in WIF format
+Console.WriteLine(myKeys.Address); // this prints the human-readable public address
+</code></pre>
+
+
+<h4>Importing private keys</h4>
+<p>After private keys are generated, it is also an requirement to be able to import them back at a later time.</p>
+<pre><code>
+var wif = Console.ReadLine();
+var myKeys = PhantasmaKeys.FromWIF(wif); // imports a 256-bit private key based on an user provided WIF
+</code></pre>
+
+<h4>Generating a transaction</h4>
+<p>In Phantasma, every transaction contains a mini-script that instructs the chain what the transaction wants to do.<br>This allows multiple actions to be done in a single transaction, with more expensive transactions costing more gas.<br>Besides that, most transactions in Phantasma begin with the AllowGas operation (that is used to specify a gas price and limit) and end with a SpendGas operation (which is used to pay KCAL for the actual transaction).</p>
+<pre><code>
+var nexusName = "mainnet";
+var expiration = new Timestamp(Timestamp.Now.Value + 1000);
+
+var script = new ScriptBuilder()
+	.AllowGas(myKeys.Address, Address.Null, 100000, 99999)
+	// add more operations here
+	.SpendGas(myKeys.Address)
+	.EndScript();
+	
+var comment = "MYDAPP1.0"; // comments are currently used as a form of identifiying the dapp sending the transaction, however can be used for other things
+
+var tx = new Transaction(nexusName, "main", script, expiration, comment);
+// tx.Mine(ProofOfWork.Minimal); // in some cases due to specific operations might be necessary to do Proof of Work
+tx.Sign(myKeys);
+
+// convert the transaction into text format
+var rawTx = tx.ToByteArray(true);
+var hexRawTx = Base16.Encode(rawTx);
+</code></pre>
+
+<h4>Send transaction to a node via API</h4>
+<p>Transactions that are serialized in hex format can be sent directly to nodes via the sendRawTransaction API call.</p>
+<pre><code>
+var nodeUrl = "127.0.0.1"; // insert a valid node IP here
+var url = nodeUrl + "/api/sendRawTransaction/" + hexRawTx;
+
+if (url.Length > 2040)
+{
+	throw new Exception("Script is too big");
+}
+
+Hash txHash;
+
+using (var wb = new WebClient())
+{
+	var response = wb.DownloadString(url);
+
+	Console.WriteLine(response);
+
+	if (response.StartsWith("\""))
+	{
+		response = response.Substring(1, response.Length - 2);
+	}
+
+	if (!Hash.TryParse(response, out txHash))
+	{
+		Console.WriteLine("Failed...");
+		return;
+	}
+}
+
+Console.WriteLine("Confirming...");
+Thread.Sleep(1000 * 20);
+
+url = baseUrl + "/api/getTransaction/" + txHash.ToString();
+using (var wb = new WebClient())
+{
+	var response = wb.DownloadString(url);
+
+	Console.WriteLine(response);
+}
+
+Console.WriteLine("Finished!");
+}
+</code></pre>
+
+<h4>Transfering assets</h4>
+<p>The simplest kind of Phantasma transaction script is transfering a token from one user to another.</p>
+<pre><code>
+var symbol = "SOUL";
+var amount = UnitConversion.ToBigInteger(20.5m); // input is C# decimal
+var target = "P2KLBD59YDb4nH3Kbg8mrQw9guWQUGwDkNUqhDH7cY2rtyx"; // could also be an existing named address or contract, eg: "hello_target"
+var script = new ScriptBuilder()
+	.AllowGas(myKeys.Address, Address.Null, 100000, 99999)
+	.TransferTokens(symbol, myKeys.address, target, amount);
+	.SpendGas(myKeys.Address)
+	.EndScript();
+</code></pre>
+
+<h4>Calling contract methods</h4>
+<p>Other useful type of Phantasma transaction script is calling a method from a smart contract.</p>
+<pre><code>
+var script = new ScriptBuilder()
+	.AllowGas(myKeys.Address, Address.Null, 100000, 99999)
+	.CallContract("GFNFT", "updateOwner", Address.FromText("P2KAEq94aWKSh5PERtMCqXn5o9XSZkc2Hk6cQi6ByNzBbYX"));
+	.SpendGas(myKeys.Address)
+	.EndScript();
+</code></pre>
