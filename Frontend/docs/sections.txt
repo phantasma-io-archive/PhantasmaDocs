@@ -1,7 +1,7 @@
 Chain,microchip
 Ecosystem,coins
 Spook,laptop-code
-Tomb,tomb
+Tomb,rocket
 APIs,box
 Serialization,cog
 Link,link
