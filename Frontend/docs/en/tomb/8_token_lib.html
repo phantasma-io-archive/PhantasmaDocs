@@ -1,0 +1,71 @@
+<h4 id="token-library">Library: Token</h4>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Return type</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>Token.create(from:Address, symbol:String, name:String, maxSupply:Number, decimals:Number, flags:Number, script:Bytes, abi:Bytes)</td>
+        <td>None</td>
+        <td>Method used to create a new token.</td>
+    </tr>
+    <tr>
+        <td>Token.exists(symbol:String)</td>
+        <td>Bool</td>
+        <td>Returns true if the token exists and false otherwise.</td>
+    </tr>
+    <tr>
+        <td>Token.getDecimals(symbol:String)</td>
+        <td>Number</td>
+        <td>Returns the number of decimals of the token.</td>
+    </tr>
+    <tr>
+        <td>Token.getFlags(symbol:String)</td>
+        <td>Enum<TokenFlag></td>
+        <td>Returns an Enum with the TokenFlag of the token.</td>
+    </tr>
+    <tr>
+        <td>Token.transfer(from:Address, to:Address, symbol:String, amount:Number)</td>
+        <td>None</td>
+        <td>Transfers tokens from one Address, to another address with a specific symbol and the desired amount.</td>
+    </tr>
+    <tr>
+        <td>Token.transferAll(from:Address, to:Address, symbol:String)</td>
+        <td>None</td>
+        <td>Transfer all tokens from one Address, to another address with a specific symbol.</td>
+    </tr>
+    <tr>
+        <td>Token.mint(from:Address, to:Address, symbol:String, amount:Number)</td>
+        <td>None</td>
+        <td>Mints tokens from one Address, to another address with a specific symbol and the desired amount.</td>
+    </tr>
+    <tr>
+        <td>Token.write(from:Address, symbol:String, tokenID:Number, ram:Any)</td>
+        <td>None</td>
+        <td>Updates the Token/NFT RAM with the given RAM.</td>
+    </tr>
+    <tr>
+        <td>Token.burn(from:Address, symbol:String, amount:Number)</td>
+        <td>None</td>
+        <td>Burn tokens from the given address, given symbol and the desired amount.</td>
+    </tr>
+    <tr>
+        <td>Token.swap(targetChain:String, source:Address, destination:Address, symbol:String, amount:Number)</td>
+        <td>None</td>
+        <td>TODO</td>
+    </tr>
+    <tr>
+        <td>Token.getBalance(from:Address, symbol:String)</td>
+        <td>Number</td>
+        <td>Get the token balance of the specified address.</td>
+    </tr>
+    <tr>
+        <td>Token.isMinter(address:Address, symbol:String)</td>
+        <td>Bool</td>
+        <td>Returns true if the token is a Minter and false otherwise.</td>
+    </tr>
+</table>

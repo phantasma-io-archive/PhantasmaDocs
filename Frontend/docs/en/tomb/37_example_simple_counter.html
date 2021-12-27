@@ -1,0 +1,22 @@
+<h4>Example: Simple Counter</h4> 
+<p>Simple contract that implements a global counter (that can be incremented by anyone who calls the contract).<br/>
+	Note that any global variable that is not generic must be initialized in the contract constructor.</p>
+
+<pre><code>
+contract test {
+	global counter: number;
+
+	constructor(owner:address)
+	{
+		counter:= 0;
+	}
+
+	public increment()
+	{
+		if (counter < 0){
+			throw "invalid state";
+		}
+		counter += 1;
+	}
+}
+</code></pre>

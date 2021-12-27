@@ -1,0 +1,46 @@
+<h4 id="leaderboard-library">Library: Leaderboard</h4>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Return type</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>Leaderboard.create(from:Address, boardName:String, capacity:Number)</td>
+        <td>None</td>
+        <td>To create a new leaderboard by the given address with a board name and a given capacity.</td>
+    </tr>
+    <tr>
+        <td>Leaderboard.getAddress(boardName:String, index:Number)</td>
+        <td>Address</td>
+        <td>Returns the address of the leaderboard, by the given board name and index.</td>
+    </tr>
+    <tr>
+        <td>Leaderboard.getScoreByIndex(boardName:String, index:Number)</td>
+        <td>Number</td>
+        <td>Returns the score that position, by the given board name and index.</td>
+    </tr>
+    <tr>
+        <td>Leaderboard.getScoreByAddress(boardName:String, target:Address)</td>
+        <td>Number</td>
+        <td>Returns the score of the address, by the given board name and the target address.</td>
+    </tr>
+    <tr>
+        <td>Leaderboard.getSize(boardName:String)</td>
+        <td>Number</td>
+        <td>Returns the size of the Leaderboard, by the given board name.</td>
+    </tr>
+    <tr>
+        <td>Leaderboard.insert(from:Address, target:Address, boardName:String, score:Number)</td>
+        <td>None</td>
+        <td>To insert a score into the Leaderboard, by the target address, board name and score.</td>
+    </tr>
+    <tr>
+        <td>Leaderboard.reset(from:Address, boardName:String)</td>
+        <td>None</td>
+        <td>To reset the Leaderboard, by the address and board name.</td>
+    </tr>
+</table>
