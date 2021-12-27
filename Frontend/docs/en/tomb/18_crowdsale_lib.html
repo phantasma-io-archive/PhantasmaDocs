@@ -1,0 +1,76 @@
+<h4 id="crowdsale-library">Library: Crowdsale</h4>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Return type</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>Crowdsale.create(from:Address, name:String, SaleFlags flags, startDate:Timestamp, endDate:Timestamp, sellSymbol:String, receiveSymbol:String, price:Number, globalSoftCap:Number, globalHardCap:Number, userSoftCap:Number, userHardCap:Number)</td>
+        <td>Hash</td>
+        <td>Returns a Hash of the sale created.</td>
+    </tr>
+    <tr>
+        <td>Crowdsale.isSaleActive(saleHash:Hash)</td>
+        <td>bool</td>
+        <td>Returns true if the sale is active, false otherwise.</td>
+    </tr>
+    <tr>
+        <td>Crowdsale.GetSaleParticipants(saleHash:Hash)</td>
+        <td>Address[]</td>
+        <td>Returns an Array of the addressess in by the saleHash.</td>
+    </tr>
+    <tr>
+        <td>Crowdsale.getSaleWhitelists(saleHash:Hash)</td>
+        <td>Address[]</td>
+        <td>Retruns the list of addresses whitelisted for the sale, by the saleHash.</td>
+    </tr>
+    <tr>
+        <td>Crowdsale.isWhitelisted(saleHash:Hash, address:Address)</td>
+        <td>bool</td>
+        <td>Returns true if the user is whitelisted for the sale, false otherwise.</td>
+    </tr>
+    <tr>
+        <td>Crowdsale.addToWhitelist(saleHash:Hash, target:Address)</td>
+        <td>None</td>
+        <td>To add a Address to the participate in the sale, by the saleHash and target address.</td></td>
+    </tr>
+    <tr>
+        <td>Crowdsale.removeFromWhitelist(saleHash:Hash, target:Address)</td>
+        <td>None</td>
+        <td>To remove a Address from the participate in the sale, by the saleHash and target address.</td>
+    </tr>
+    <tr>
+        <td>Crowdsale.getPurchasedAmount(saleHash:Hash, address:Address)</td>
+        <td>Number</td>
+        <td>Returns the Purchased amount.</td>
+    </tr>
+    <tr>
+        <td>Crowdsale.getSoldAmount(saleHash:Hash)</td>
+        <td>Number</td>
+        <td>Returns the amount that the sale has been sold.</td>
+    </tr>
+    <tr>
+        <td>Crowdsale.purchase(from:Address, saleHash:Hash, quoteSymbol:string, quoteAmount:Number)</td>
+        <td>None</td>
+        <td>To purchase the sale.</td>
+    </tr>
+    <tr>
+        <td>Crowdsale.closeSale(from:Address, saleHash:Hash)</td>
+        <td>None</td>
+        <td>To close a given saleHash.</td>
+    </tr>
+    <tr>
+        <td>Crowdsale.getLatestSaleHash()</td>
+        <td>Hash</td>
+        <td>Returns the last saleHash.</td>
+    </tr>
+    <tr>
+        <td>Crowdsale.EditSalePrice(saleHash:Hash, price:Number)</td>
+        <td>None</td>
+        <td>To edit the sale price the saleHash.</td>
+    </tr>
+</table>

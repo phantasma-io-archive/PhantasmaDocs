@@ -1,0 +1,51 @@
+<h4 id="mail-library">Library: Mail</h4>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Return type</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>Mail.pushMessage(from:Address, target:Address, archiveHash:Hash)</td>
+        <td>None</td>
+        <td>To push a message to the target user mailbox.</td>
+    </tr>
+    <tr>
+        <td>Mail.domainExists(domainName:String)</td>
+        <td>Bool</td>
+        <td>Returns true if the specified domain exists, false otherwise.</td>
+    </tr>
+    <tr>
+        <td>Mail.registerDomain(from:Address, domainName:String)</td>
+        <td>None</td>
+        <td>To register a domain, from an address and a domain name.</td>
+    </tr>
+    <tr>
+        <td>Mail.unregisterDomain(domainName:String)</td>
+        <td>None</td>
+        <td>To unregister a domain name.</td>
+    </tr>
+    <tr>
+        <td>Mail.migrateDomain(domainName:String, target:Address)</td>
+        <td>None</td>
+        <td>To migrate a domain to a new Address.</td>
+    </tr>
+    <tr>
+        <td>Mail.joinDomain(from:Address, domainName:String)</td>
+        <td>None</td>
+        <td>To a user join a domain.</td>
+    </tr>
+    <tr>
+        <td>Mail.leaveDomain(from:Address, domainName:String)</td>
+        <td>None</td>
+        <td>To a user leave a domain.</td>
+    </tr>
+    <tr>
+        <td>Mail.getUserDomain(target:Address)</td>
+        <td>String</td>
+        <td>To the the user domain.</td>
+    </tr>
+</table>

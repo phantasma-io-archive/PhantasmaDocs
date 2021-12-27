@@ -1,0 +1,23 @@
+<h4>Example: Token Flags</h4> 
+<p>
+	There are also some builtin enums, like TokenFlags.<br/>
+</p>	
+
+<pre><code>
+contract test {
+	import Runtime;
+	import Token;
+
+	public paySomething(from:address, amount:number, symbol:string)
+	{
+		Runtime.expect(Runtime.isWitness(from), "witness failed");
+
+		local flags:TokenFlags := Token.getFlags(symbol);
+
+		if (flags.isSet(TokenFlags.Fungible)) {
+			local thisAddr:address := $THIS_ADDRESS;
+			Token.transfer(from, thisAddr, "SOUL", price);
+		}
+	}
+}
+</code></pre>

@@ -1,0 +1,25 @@
+<h4>Example: Transfer Tokens</h4> 
+<p>
+	A contract that takes a payment in tokens from a user.<br/>
+	Showcases how to transfer tokens and how to use macro $THIS_ADDRESS to obtain address of the contract.
+</p>	
+
+<pre><code>
+contract test {
+	import Runtime;
+	import Token;
+
+	public paySomething(from:address, quantity:number)
+	{
+		Runtime.expect(Runtime.isWitness(from), "witness failed");
+
+		local price: number := 10;
+		price *= quantity;
+
+		local thisAddr:address := $THIS_ADDRESS;
+		Token.transfer(from, thisAddr, "SOUL", price);
+
+		// TODO after payment give something to 'from' address
+	}
+}
+</code></pre>

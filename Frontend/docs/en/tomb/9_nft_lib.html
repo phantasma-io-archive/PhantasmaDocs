@@ -1,0 +1,51 @@
+<h4 id="nft-library">Library: NFT</h4>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Return type</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>NFT.transfer(from:Address, to:Address, symbol:String, id:Number)</td>
+        <td>None</td>
+        <td>Transfer an NFT from one address to another, by the nftID and symbol.</td>
+    </tr>
+    <tr>
+        <td>NFT.mint(from:Address, to:Address, symbol:String, rom:Any, ram:Any, seriesID:Number)</td>
+        <td>None</td>
+        <td>Mint an NFT from one address to another, with the specific ROM and RAM, and the seriesID.</td>
+    </tr>
+    <tr>
+        <td>NFT.write(from:Address, symbol:String, tokenID:Number, ram:Any)</td>
+        <td>None</td>
+        <td>Write NFT is to update the RAM inside the NFT by the nftID.</td>
+    </tr>
+    <tr>
+        <td>NFT.burn(from:Address, symbol:String, id:Number)</td>
+        <td>None</td>
+        <td>Burn the nft by the NFTID.</td>
+    </tr>
+    <tr>
+        <td>NFT.infuse(from:Address, symbol:String, id:Number, infuseSymbol:String, infuseValue:Number)</td>
+        <td>None</td>
+        <td>Infuse the NFT with other tokens/NFT with a given amount.</td>
+    </tr>
+    <tr>
+        <td>NFT.createSeries(from:Address, symbol:String, seriesID:Number, maxSupply:Number, mode:Enum<TokenSeries>, nft:Module)</td>
+        <td>None</td>
+        <td>Creates a series of NFTs.</td>
+    </tr>
+    <tr>
+        <td>NFT.readROM<T>(symbol:String, id:Number)</td>
+        <td>T</td>
+        <td>Returns the ROM by the NFTID.</td>
+    </tr>
+    <tr>
+        <td>NFT.readRAM<T>(symbol:String, id:Number)</td>
+        <td>T</td>
+        <td>Returns the RAM by the NFTID.</td>
+    </tr>
+</table>

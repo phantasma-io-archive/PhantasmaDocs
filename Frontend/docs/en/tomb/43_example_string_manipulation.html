@@ -1,0 +1,36 @@
+<h4>Example: String manipulation</h4> 
+<p>The compiler supports generic types, including maps.<br/>
+	Maps are one of the few types that don't have to initialized in the constructor.<br/></p>
+	
+<pre><code>
+contract test {
+	import Array;
+	
+	public toUpper(s:string):string 
+	{        
+		local my_array: array<number>;		
+		
+		// extract chars from string into an array
+		my_array := s.toArray();	
+		
+		local length :number := Array.length(my_array);
+		local idx :number := 0;
+		
+		while (idx < length) {
+			local ch : number := my_array[idx];
+			
+			if (ch >= 97) {
+				if (ch <= 122) {				
+					my_array[idx] := ch - 32; 
+				}
+			}
+						
+			idx += 1;
+		}
+				
+		// convert the array back into a unicode string
+		local result:string := String.fromArray(my_array); 
+		return result;
+	}	
+}
+</code></pre>
