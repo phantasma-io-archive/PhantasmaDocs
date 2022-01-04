@@ -1,0 +1,77 @@
+<h4>Types</h4>
+
+<p>The registers for the Phantasma VM at each moment in execution time can hold values for one of the following types.</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Serialization Internal Value</th>
+            <th>Description</th>
+            <th>Available casts</th>
+        </tr>
+    </thead>
+
+	<tr>
+		<td>None</td>
+		<td>0</td>
+		<td>Almost equivalent to a "null" value. Represents an uninitialized value.</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Struct</td>
+		<td>1</td>
+		<td>Represents a complex object and can be used for structs, arrays and maps.</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Bytes</td>
+		<td>2</td>
+		<td>A variable length array of bytes.</td>
+		<td>Can be cast to: Number, String</td>
+	</tr>
+
+	<tr>
+		<td>Number</td>
+		<td>3</td>
+		<td>a 256-bit integer number.</td>
+		<td>Can be cast to: String</td>
+	</tr>
+
+	<tr>
+		<td>String</td>
+		<td>4</td>
+		<td>A variable length string of characters.</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Timestamp</td>
+		<td>5</td>
+		<td>A 32-bit Unix based timestamp.</td>
+		<td>Can be cast to: Number</td>
+	</tr>
+
+	<tr>
+		<td>Bool</td>
+		<td>6</td>
+		<td>A boolean object (true/false).</td>
+		<td>Can be cast to: Number, String</td>
+	</tr>
+
+	<tr>
+		<td>Enum</td>
+		<td>7</td>
+		<td>An enumerable value.</td>
+		<td>Can be cast to: Number</td>
+	</tr>
+
+	<tr>
+		<td>Object</td>
+		<td>8</td>
+		<td>Used to represent a complex object (non-native to the VM, eg: a C# class instance). In most cases cannot be serialized.</td>
+		<td>-</td>
+	</tr>
+</table>

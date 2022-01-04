@@ -1,0 +1,84 @@
+<h4>Opcodes</h4>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Opcode</th>
+            <th>Serialization Internal Value</th>
+			<th>Arguments</th>
+            <th>Description</th>
+            <th>Gas cost</th>
+        </tr>
+    </thead>
+
+<tr><td>NOP</td><td>0</td><td></td>-<td>Does nothing.</td><td>-</td></tr>
+
+<!-- register-->
+<tr><td>MOVE</td><td>1</td><td>A,B</td><td>Copies reg A to B by reference.</td><td>-</td></tr>
+<tr><td>COPY</td><td>2</td><td>A,B</td><td>Copies reg A to B by value.</td><td>-</td></tr>
+<tr><td>PUSH</td><td>3</td><td>A</td><td>Pushes value of reg A into the stack.</td><td>-</td></tr>
+<tr><td>POP</td><td>4</td><td>A</td><td>Pops a value from the stack and copies it into reg A.</td><td>-</td></tr>
+<tr><td>SWAP</td><td>5</td><td>A,B</td><td>Swaps reg A and B values.</td><td>-</td></tr>
+
+<!--flow-->
+<tr><td>CALL</td><td>6</td><td>Count,Offset</td><td>Creates a new context with Count registers and jumps to Offset.</td><td>-</td></tr>
+<tr><td>EXTCALL</td><td>7</td><td>A</td><td>Takes a string as method name from reg A and executes an interop call.</td><td>-</td></tr>
+<tr><td>JMP</td><td>8</td><td>A</td><td>Jumps to offset A.</td><td>-</td></tr>
+<tr><td>JMPIF</td><td>9</td><td>A,B</td><td>Jumps to offset A if reg B evaluates to true.</td><td>-</td></tr>
+<tr><td>JMPNOT</td><td>10</td><td>A,B</td><td>Jumps to offset A if reg B evaluates to false.</td><td>-</td></tr>
+<tr><td>RET</td><td>11</td><td>-</td><td>Terminates current context.</td><td>-</td></tr>
+<tr><td>THROW</td><td>12</td><td>A</td><td>Terminates current execution with an VM exception (with contents of reg A).</td><td>-</td></tr>
+
+<!--data-->
+<tr><td>LOAD</td><td>13</td><td>A,Type,Data</td><td>Loads the Data of the specified Type into reg A.</td><td>-</td></tr>
+<tr><td>CAST</td><td>14</td><td>A,B,Type</td><td>Casts the value of reg A into the specified Type and stores it in reg B.</td><td>-</td></tr>
+<tr><td>CAT</td><td>15</td><td>A,B,C</td><td>Merges content of reg A and reg B and puts result into reg C.</td><td>-</td></tr>
+<tr><td>RANGE</td><td>16</td>A,B,Index,Length<td></td><td>Copies sub-section of reg A based on the specified Index and Length and puts the result into reg B.</td><td>-</td></tr>
+<tr><td>LEFT</td><td>17</td><td>A,B,Length</td><td>Similar as RANGE but with index equals to zero.</td><td>-</td></tr>
+<tr><td>RIGHT</td><td>18</td><td>A,B,Length</td><td>Similar to RANGE but with the index being calculated by subtracting index from the content length of reg A.</td><td>-</td></tr>
+<tr><td>SIZE</td><td>19</td><td>A</td><td>Returns RAM size of reg A.</td><td>-</td></tr>
+<tr><td>COUNT</td><td>20</td><td>A</td><td>Returns number of elements if reg A is a struct, or 1 otherwise.</td><td>-</td></tr>
+
+<!--logical-->
+<tr><td>NOT</td><td>21</td><td>A,B</td><td>Negates value of reg A and put it into reg B.</td><td>-</td></tr>
+<tr><td>AND</td><td>22</td><td></td><td>Does AND operation of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+<tr><td>OR</td><td>23</td><td>A,B,C</td><td>Does OR operation of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+<tr><td>XOR</td><td>24</td><td>A,B,C</td><td>Does XOR operation of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+<tr><td>EQUAL</td><td>25</td><td>A,B,C</td><td>Does EQUAL operationg of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+<tr><td>LT</td><td>26</td><td>A,B,C</td><td>Does LT (less than) operation of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+<tr><td>GT</td><td>27</td><td>A,B,C</td><td>Does GT (greater than) operation of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+<tr><td>LTE</td><td>28</td><td>A,B,C</td><td>Does LTE (less or equal than) operation of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+<tr><td>GTE</td><td>29</td><td>A,B,C</td><td>Does GTE (great or equal than) operation of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+        
+<!--numeric-->
+<tr><td>INC</td><td>30</td><td>A</td><td>Increments value of reg A.</td><td>-</td></tr>
+<tr><td>DEC</td><td>31</td><td>A</td><td>Decrements value of reg A.</td><td>-</td></tr>
+<tr><td>SIGN</td><td>32</td><td>A,B</td><td>Returns the sign (1, -1 or 0) of reg A and puts it into reg B.</td><td>-</td></tr>
+<tr><td>NEGATE</td><td>33</td><td>A,B</td><td>Inverts the sign (1 or -1) of reg A and puts it into reg B.</td><td>-</td></tr>
+<tr><td>ABS</td><td>34</td><td>A</td><td>Puts the absolute value of reg A into reg B.</td><td>-</td></tr>
+<tr><td>ADD</td><td>35</td><td>A,B,C</td><td>Does ADD operation of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+<tr><td>SUB</td><td>36</td><td>A,B,C</td><td>Does SUB operation of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+<tr><td>MUL</td><td>37</td><td>A,B,C</td><td>Does MUL operation of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+<tr><td>DIV</td><td>38</td><td>A,B,C</td><td>Does DIV operation of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+<tr><td>MOD</td><td>39</td><td>A,B,C</td><td>Does MOD operation of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+<tr><td>SHL</td><td>40</td><td>A,B,C</td><td>Does SHL operation of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+<tr><td>SHR</td><td>41</td><td>A,B,C</td><td>Does SHR operation of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+<tr><td>MIN</td><td>42</td><td>A,B,C</td><td>Does MIN operation of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+<tr><td>MAX</td><td>43</td><td>A,B,C</td><td>Does MAX operation of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+<tr><td>POW</td><td>44</td><td>A,B,C</td><td>Does POW operation of reg A and reg B and puts the result into reg C.</td><td>-</td></tr>
+
+<!--context-->
+<tr><td>CTX</td><td>45</td><td>A,B</td><td>Takes a string from reg A, and if validate context name, puts a context instance into reg B.</td><td>-</td></tr>
+<tr><td>SWITCH</td><td>46</td><td>A</td><td>Switches execution to an external context stored in reg A.</td><td>-</td></tr>
+
+<!--array-->
+<tr><td>PUT</td><td>47</td><td>A,B,C</td><td>Puts content of reg A into field of reg B, where the field name is reg C.</td><td>-</td></tr>
+<tr><td>GET</td><td>48</td><td>A,B,C</td><td>Puts content of field of reg B into reg A, where the field name is reg C.</td><td>-</td></tr>
+<tr><td>CLEAR</td><td>49</td><td>A</td><td>Clears reg A (makes it have value of type None).</td><td>-</td></tr>
+<tr><td>UNPACK</td><td>50</td><td>A,B</td><td>Unpacks serialized struct stored in reg A and stores the result into reg B.</td><td>-</td></tr>
+<tr><td>PACK</td><td>51</td><td>-</td><td>Unused for now.</td><td>-</td></tr>
+
+<!--debugger-->
+<tr><td>DEBUG</td><td>52</td><td>-</td><td>Triggers a break when attached to a debugger, otherwise equivalent to NOP.</td><td>-</td></tr>
+
+</table>

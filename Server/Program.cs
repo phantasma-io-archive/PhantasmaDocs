@@ -82,6 +82,11 @@ namespace Phantasma.Docs
 
         static Dictionary<string, Docs> _docs = new Dictionary<string, Docs>();
 
+        private static string BeautifyName(string name)
+        {
+            name = name.Replace("example ", "example: ", StringComparison.OrdinalIgnoreCase);
+            return name.Replace("library ", "library: ", StringComparison.OrdinalIgnoreCase);
+        }
 
         private static Docs LoadDocs(string path, string code, string name, List<Topic> topics)
         {
@@ -96,7 +101,11 @@ namespace Phantasma.Docs
             {
                 var section = new Section();
                 section.icon = topic.icon;
-                section.title = topic.title;
+
+                // HACK makes some menu names more readable...
+                var topicName = BeautifyName(topic.title);
+
+                section.title = topicName;
                 section.link = topic.ID;
                 section.entries = new List<Entry>();
                 Entry tempEntry;
@@ -120,8 +129,13 @@ namespace Phantasma.Docs
                         var temp = Path.GetFileNameWithoutExtension(file).Split('_', 2);
 
                         entry.order = int.Parse(temp[0]);
-                        
-                        entry.name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(temp[1].Replace("_", " "));
+
+                        var entryName = temp[1].Replace("_", " ");
+
+                        // HACK makes some menu names more readable...
+                        entryName = BeautifyName(entryName);
+
+                        entry.name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(entryName);
                         entry.link = section.link + "-" + temp[1];
 
                         entry.content = File.ReadAllText(file);

@@ -1,0 +1,565 @@
+<h4>Interop</h4>
+
+<p>The interop calls work as a brige that allows the VM scripts to access Phantasma features written in native code.</p>
+<p>To do an interop call, a script should push all necessary arguments into the stack, put a method name into a register then use the CTX opcode followed by the SWITCH opcode.</p>
+<p>As interop calls do more work than normal opcodes, the gas cost is usually much larger than simpler operations.</p>
+
+<p>For deeper diving, the code implementation of the interop calls is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Blockchain/ExtCalls.cs">Github</a>.</p>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Arguments</th>
+            <th>Description</th>
+            <th>Gas cost</th>
+        </tr>
+    </thead>
+
+	<tr>
+		<td>Runtime.TransactionHash</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.Time</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.GasTarget</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.Validator</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.Context</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.PreviousContext</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.GenerateUID</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.Random</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.SetSeed</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.IsWitness</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.IsTrigger</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.IsMinter</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.Log</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.Notify</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.DeployContract</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.UpgradeContract</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.KillContract</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.GetBalance</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.TransferTokens</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.TransferBalance</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.MintTokens</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.BurnTokens</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.SwapTokens</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.TransferToken</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.MintToken</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.BurnToken</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.InfuseToken</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.ReadTokenROM</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.ReadTokenRAM</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.ReadToken</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.WriteToken</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.TokenExists</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.GetTokenDecimals</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.GetTokenFlags</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.AESDecrypt</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Runtime.AESEncrypt</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Nexus.BeginInit</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Nexus.EndInit</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Nexus.MigrateToken</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Nexus.CreateToken</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Nexus.CreateTokenSeries</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Nexus.CreateChain</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Nexus.CreatePlatform</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Nexus.CreateOrganization</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Nexus.SetPlatformTokenHash</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Organization.AddMember</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Organization.RemoveMember</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Organization.Kill</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Task.Start</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Task.Stop</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Task.Get</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Task.Current</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Data.Get</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Data.Set</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Data.Delete</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Map.Has</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Map.Get</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Map.Set</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Map.Remove</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Map.Count</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Map.Clear</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Map.Keys</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>List.Get</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>List.Add</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>List.Replace</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>List.RemoveAt</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>List.Count</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>List.Clear</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Account.Name</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Account.LastActivity</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Account.Transactions</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Oracle.Read</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Oracle.Price</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Oracle.Quote</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>ABI()</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Address()</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Hash()</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+
+	<tr>
+		<td>Timestamp()</td>
+		<td>-</td>
+		<td>TODO</td>
+		<td>-</td>
+	</tr>
+</table>
