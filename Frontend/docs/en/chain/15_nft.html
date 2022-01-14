@@ -1,5 +1,8 @@
 <h2 class="section-heading">NFTs</h2>
 <p>Phantasma native support for tokens also include proper builtin support for non-fungible tokens (aka NFTs), which can be minted on demand, with a single transaction currently being able to mint up to 100 NFTs, at a almost free cost.</p>
+
+<h4 id="nft-standard">Standard</h4>
+
 <p>NFTs in Phantasma support the following features:</p>
 <ul>
 <li>TokenID - A unique 256-bit number used to identify a NFT instance.</li>
@@ -10,4 +13,11 @@
 </ul>
 <p>Both ROM and ROM of a NFT just represent a variable size byte array, it's up for the dapps developers to chose the data structure of this blob. The <a href="#vm-tomb">TOMB compiler</a> abstracts both ROM and RAM into developer friendly custom structs, that make easy to read and write those fields.</p>
 <p>A developer wishing can easily query a <a href="#spook">Phantasma node</a> to obtain information about a specific NFT instance, using the available endpoint <a href="#api-GetNFT">GetNFT</a>.</p>
+
+
+<h4 id="nft-infusion">Infusion</h4>
+<p>Phantasma based NFTs can be infused with other Phantasma NFTs.<br>Infusion in this sense means that a NFT will contain other NFTs inside it. The NFTs that are inside can be obtained only by burning the parent NFT.
+<br>There is no limit, so infusion can be stacked, with multiple NFTs being infused inside other infused NFTs, recursively.
+<br>The <a href="#chain-staking">CROWN</a> NFT is an example of NFTs using infusion.</p>
+
 <p>For deeper diving, the code implementation of the tokens is available at <a href="https://github.com/phantasma-io/PhantasmaChain/blob/master/Phantasma.Blockchain/Tokens/TokenUtils.cs">Github</a>.</p>						

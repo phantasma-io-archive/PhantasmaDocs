@@ -1,5 +1,7 @@
 <h4 id="account-library">Library: Account</h4>
 
+<p>The Account library exposes methods to handle Phantasma <a href="#chain-accounts">accounts</a>.</p>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -11,56 +13,51 @@
     <tr>
         <td>Account.getName(from:Address)</td>
         <td>String</td>
-        <td>TODO</td>
+        <td>Returns the name of an account associated to the specified address, if any.</td>
     </tr>
     <tr>
         <td>Account.getLastActivity(from:Address)</td>
         <td>Timestamp</td>
-        <td>TODO</td>
+        <td>Returns a timestamp of the last known activity of the specified address.</td>
     </tr>
     <tr>
         <td>Account.registerName(target:Address, name:String)</td>
         <td>None</td>
-        <td>TODO</td>
+        <td>Registers a name for the specified address. Names must be fit specified rules (TODO write rules here). Must have a stake of at least 2 SOUL.</td>
     </tr>
     <tr>
         <td>Account.unregisterName(target:Address)</td>
         <td>None</td>
-        <td>TODO</td>
+        <td>Unregisters a name from an account. After unregistering, the name becomes available to use in other addresses.</td>
     </tr>
     <tr>
         <td>Account.registerScript(target:Address, script:Bytes, abiBytes:Bytes)</td>
         <td>None</td>
-        <td>TODO</td>
+        <td>Registers an account script to the specified address. An account script can contain multiple triggers for custom account behaviours.</td>
     </tr>
     <tr>
         <td>Account.hasScript(address:Address)</td>
         <td>Bool</td>
-        <td>TODO</td>
-    </tr>
-    <tr>
-        <td>Account.lookUpAddress(target:Address)</td>
-        <td>String</td>
-        <td>TODO</td>
+        <td>Returns true if the specified address has an account script registered to it.</td>
     </tr>
     <tr>
         <td>Account.lookUpScript(target:Address)</td>
         <td>Bytes</td>
-        <td>TODO</td>
+        <td>Returns the script of an account, if a script is registered.</td>
     </tr>
     <tr>
         <td>Account.lookUpABI(target:Address)</td>
         <td>Bytes</td>
-        <td>TODO</td>
+        <td>Returns the ABI of an account script, if a script is registered.</td>
     </tr>
     <tr>
         <td>Account.lookUpName(name:String)</td>
         <td>Address</td>
-        <td>TODO</td>
+        <td>Returns the address that registered the specified name, if any.</td>
     </tr>
     <tr>
         <td>Account.migrate(from:Address, target:Address)</td>
         <td>None</td>
-        <td>TODO</td>
+        <td>Migrates an account from one address to another. This will migrate everything, including stakes, storage and DAO memberships. Also any other contracts that support account migration will also receive a migration trigger (allowing them migrate data or do other actions).</td>
     </tr>
 </table>

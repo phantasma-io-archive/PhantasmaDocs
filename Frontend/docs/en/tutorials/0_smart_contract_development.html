@@ -56,3 +56,43 @@ contract hello
   <li>Use the command:<br><pre><code class="html">wallet deploy <path></code></pre>Where path is the full path to hello.pvm (or any other contract you want to deploy)</li>
   <li>Later if you need to upgrade a contract, use the command:<br><pre><code class="html">wallet upgrade <path></code></pre>Where path is the full path to the .pvm contract you want to upgrade.</li>  
 </ol>
+
+<h4>Testing smart contract</h4>
+<p>
+</p>
+<p>
+Once a contract is deployed, you can now interact with it by sending transations to the chain that call methods of the contract.<br>
+The easiest way to do is create a simple HTML page and add some contract calls via <a href="#section-link">Phantasma Link</a>.
+</p>
+<p>
+Another alternative is to use the <a href="https://teknopt.github.io/Phantasma-Contract-Tester/">contract tester tool</a>.
+<ol>
+<li>Download the repo from <a href="https://github.com/TeknoPT/Phantasma-Contract-Tester">Github</a></li>
+<li>Open Index.html</li>
+<li>Choose the API -> Localnet</li>
+<li>Choose the contract at -> "Select Contract"</li>
+<li>Choose the contract method at -> "Contract Methods"</li>
+<li>Connect to your desired wallet Poltergeist or Ecto at the bottom left.</li>
+<li>Fill the methods and InvokeScript or SendTransaction.</li>
+</ol>
+</p>
+
+<h4>Smart contract development tips</h4>
+<p>
+Some tips for developing better smart contracts:<br>
+<ul>
+<li>Make sure you always think of all possible validations and add them at the beginning of your contract methods with <a href="#tomb-library_runtime">Runtime.Expect</a></li>
+<li>Unless you specifically require an immutable smart contract, we recommend you to add an OnUpgrade trigger to make sure you can expand it as necessary and also fix bugs that might be detected.</li>
+<li>When updating contracts you can't change existing method names or parameters. However you can make existing methods throw a "deprecated" exception or similar if you don't want them to be used again.</li>
+<li>If your contract has a main address responsible for important operations, always add a "updateOwner", "changeAdmin" or equivalent method, to protect you in case your private keys get compromised.</li>
+</ul>
+</p>
+<p>
+
+<h>Development stages</h4>
+<ol>
+  <li>First develop and test it locally via a <a href="#spook-simnet">simnet</a>.</li>
+  <li>After everything seems to work fine move your testing to the next phase by deploying your contract in the <a href="#spook-testnet">global testnet</a>.</li>
+  <li>If everything passed all tests then the final step would to deploy in the <a href="#spook-mainnet">mainnet</a> (production).<br>Note that currentinly deploying in mainnet requires a developer to stake 50K SOUL. If your team does not hold this amount, an alternative is to talk with someone from <a href="#ecosystem-phantom_force">Phantom Force</a> to help you deploy.</li>
+</ol>
+</p>

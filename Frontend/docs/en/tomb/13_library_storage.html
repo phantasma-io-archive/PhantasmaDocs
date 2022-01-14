@@ -1,4 +1,5 @@
 <h4 id="storage-library">Library: Storage</h4>
+The Storage library allows a contract to interact with contract storage and also the decentralized <a href="#chain-storage">file storage</a> of Phantasma.
 
 <table class="table table-striped">
     <thead>
@@ -9,93 +10,68 @@
         </tr>
     </thead>
     <tr>
-        <td>Storage.read(contract:String, field:String, type:Number)</td>
-        <td>Any</td>
-        <td>TODO</td>
+        <td>Storage.read<T>(contract:String, field:String)</td>
+        <td>Generic<T></td>
+        <td>Reads a field from a contract.</td>
     </tr>
     <tr>
         <td>Storage.write(field:String, value:Any)</td>
         <td>None</td>
-        <td>TODO</td>
+        <td>Writes a field value. Due to security reasons, it's not possible to specify a contract, instead the current contract is used. If the current context is not a valid contract or is a read-only context, this method will fail.</td>
     </tr>
     <tr>
         <td>Storage.delete(field:String)</td>
         <td>None</td>
-        <td>TODO</td>
+        <td>Deletes a field. Same rules as Storage.write()</td>
     </tr>
     <tr>
         <td>Storage.calculateStorageSizeForStake(stakeAmount:Number)</td>
         <td>Number</td>
-        <td>TODO</td>
+        <td>Converts amount of staked SOUL into kilobytes of storage.</td>
     </tr>
     <tr>
         <td>Storage.createFile(target:Address, fileName:String, fileSize:Number, contentMerkle:Bytes, encryptionContent:Bytes)</td>
         <td>None</td>
-        <td>TODO</td>
+        <td>Creates a new decentralized file in the target address account. Note that since in Phantasma the actual file contents are not stored in the chain, only a content merkle should be provided.</td>
     </tr>
     <tr>
         <td>Storage.hasFile(target:Address, hash:Hash)</td>
         <td>Bool</td>
-        <td>TODO</td>
+        <td>Returns true if the target is storing a file with the specified hash, false otherwise.</td>
     </tr>
     <tr>
         <td>Storage.addFile(from:Address, target:Address, archiveHash:Hash)</td>
         <td>None</td>
-        <td>TODO</td>
+        <td>Copies a file with the specified hash into the target address storage.</td>
     </tr>
     <tr>
         <td>Storage.deleteFile(from:Address, targetHash:Hash)</td>
         <td>None</td>
-        <td>TODO</td>
+        <td>Deletes the file with the specified hash from the specified address storage.</td>
     </tr>
     <tr>
         <td>Storage.hasPermission(externalAddr:Address, target:Address)</td>
         <td>Bool</td>
-        <td>TODO</td>
+        <td>Returns true if external address has permission to add files to target address, false otherwise.</td>
     </tr>
     <tr>
         <td>Storage.addPermission(from:Address, externalAddr:Address)</td>
         <td>None</td>
-        <td>TODO</td>
+        <td>Adds permission to external address to add files to from address storage.</td>
     </tr>
     <tr>
         <td>Storage.deletePermission(from:Address, externalAddr:Address)</td>
         <td>None</td>
-        <td>TODO</td>
-    </tr>
-    <tr>
-        <td>Storage.migratePermission(target:Address, oldAddr:Address, newAddr:Address)</td>
-        <td>None</td>
-        <td>TODO</td>
-    </tr>
-    <tr>
-        <td>Storage.migrate(from:Address, target:Address)</td>
-        <td>None</td>
-        <td>TODO</td>
+        <td>Removes permission from external address to add files to from address storage.</td>
     </tr>
     <tr>
         <td>Storage.getUsedSpace(from:Address)</td>
         <td>Number</td>
-        <td>TODO</td>
+        <td>Returns how many kilobytes are being used as storage by the specified address.</td>
     </tr>
     <tr>
         <td>Storage.getAvailableSpace(from:Address)</td>
         <td>Number</td>
-        <td>TODO</td>
-    </tr>
-    <tr>
-        <td>Storage.GetUsedDataQuota(address:Address)</td>
-        <td>Number</td>
-        <td>TODO</td>
-    </tr>
-    <tr>
-        <td>Storage.writeData(target:Address, key:Bytes, value:Bytes)</td>
-        <td>None</td>
-        <td>TODO</td>
-    </tr>
-    <tr>
-        <td>Storage.deleteData(target:Address, key:Bytes)</td>
-        <td>None</td>
-        <td>TODO</td>
+        <td>Returns how many kilobytes are being available as storage by the specified address.</td>
     </tr>
 </table>

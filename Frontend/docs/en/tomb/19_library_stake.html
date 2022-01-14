@@ -11,22 +11,22 @@
     <tr>
         <td>Stake.getMasterThreshold()</td>
         <td>Number</td>
-        <td>TODO</td>
+        <td>Equivalent to calling Governance.getValue() for "MasterStakeThresholdTag".</td>
     </tr>
     <tr>
         <td>Stake.isMaster(address:Address)</td>
         <td>bool</td>
-        <td>TODO</td>
+        <td>Returns true if the specified address is a SOUL master, returns false otherwise.</td>
     </tr>
     <tr>
         <td>Stake.getMasterCount()</td>
         <td>Number</td>
-        <td>TODO</td>
+        <td>Return current number of SOUL masters.</td>
     </tr>
     <tr>
         <td>Stake.getClaimMasterCount(claimDate:Timestamp)</td>
         <td>Number</td>
-        <td>TODO</td>
+        <td>Returns how much SOUL is claimable via a master claim.</td>
     </tr>
     <tr>
         <td>Stake.getMasterClaimDate(claimDistance:Number)</td>
@@ -46,11 +46,6 @@
     <tr>
         <td>Stake.getMasterRewards(address:Address)</td>
         <td>Number</td>
-        <td>TODO</td>
-    </tr>
-    <tr>
-        <td>Stake.migrate(from:Address, to:Address)</td>
-        <td>None</td>
         <td>TODO</td>
     </tr>
     <tr>
@@ -76,12 +71,12 @@
     <tr>
         <td>Stake.getStakeTimestamp(from:Address)</td>
         <td>Timestamp</td>
-        <td>TODO</td>
+        <td>Returns timestamp of last stake for the specified address.</td>
     </tr>
     <tr>
         <td>Stake.getUnclaimed(from:Address)</td>
         <td>Number</td>
-        <td>Returns the unclaimed amount.</td>
+        <td>Returns the unclaimed KCAL amount for the specified address.</td>
     </tr>
     <tr>
         <td>Stake.claim(from:Address, stakeAddress:Address)</td>
@@ -91,36 +86,26 @@
     <tr>
         <td>Stake.getStake(address:Address)</td>
         <td>Number</td>
-        <td>TODO</td>
+        <td>Returns how much SOUL is staked at the specified address.</td>
     </tr>
     <tr>
         <td>Stake.getStorageStake(address:Address)</td>
         <td>Number</td>
-        <td>TODO</td>
+        <td>Returns how much SOUL is locked due to being used for storage.</td>
     </tr>
     <tr>
         <td>Stake.fuelToStake(fuelAmount:Number)</td>
         <td>Number</td>
-        <td>TODO</td>
+        <td>Converts KCAL amount to SOUL.</td>
     </tr>
     <tr>
         <td>Stake.stakeToFuel(stakeAmount:Number)</td>
         <td>Number</td>
-        <td>TODO</td>
+        <td>Converts SOUL amount to KCAL.</td>
     </tr>
     <tr>
         <td>Stake.getAddressVotingPower(address:Address)</td>
         <td>Number</td>
-        <td>TODO</td>
-    </tr>
-    <tr>
-        <td>Stake.updateRate()</td>
-        <td>None</td>
-        <td>TODO</td>
-    </tr>
-    <tr>
-        <td>Stake.getRate()</td>
-        <td>Number</td>
-        <td>Returns the stake rate.</td>
+        <td>Returns the normalized voting power of an address.</td>
     </tr>
 </table>

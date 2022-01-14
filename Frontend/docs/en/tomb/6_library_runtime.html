@@ -11,7 +11,7 @@
     <tr>
         <td>Runtime.expect(condition:Bool, error:String)</td>
         <td>None</td>
-        <td>To check if the condition is true, else returns the error, and the code below, won't be executed.</td> 
+        <td>Does nothing if the condition is true, otherwise terminates execution with the specified error message.</td> 
     </tr>
     <tr>
         <td>Runtime.log(message:String)</td>
@@ -21,41 +21,41 @@
     <tr>
         <td>Runtime.isWitness(address:Address)</td>
         <td>Bool</td>
-        <td>Check if is they the owner of that given Address.</td>
+        <td>Check if the specified address was witness to the transaction (eg: the address signed the transaction). Multiple addresses can be witness in the case of the multi-signature transactions.</td>
     </tr>
     <tr>
         <td>Runtime.isTrigger()</td>
         <td>Bool</td>
-        <td>Returns true if a trigger and false otherwise.</td>
+        <td>Returns true if current code is being ran inside trigger, returns false otherwise.</td>
     </tr>
     <tr>
         <td>Runtime.transactionHash()</td>
         <td>Hash</td>
-        <td>TODO</td>
+        <td>Returns the hash of the current executing transaction, if any.</td>
     </tr>
     <tr>
         <td>Runtime.deployContract(from:Address, contract:Module)</td>
         <td>None</td>
-        <td>TODO</td>
+        <td>Deploys a contract into the current chain.</td>
     </tr>
     <tr>
         <td>Runtime.upgradeContract(from:Address, contract:Module)</td>
         <td>None</td>
-        <td>TODO</td>
+        <td>Upgrades an existing contract, if the contract allows it.</td>
     </tr>
     <tr>
         <td>Runtime.gasTarget()</td>
         <td>Address</td>
-        <td>TODO</td>
+        <td>Returns the address that will receive part of the gas fees for the current transaction. A "Gas escrow" event must have happened already otherwise it will return an null address.</td>
     </tr>
     <tr>
         <td>Runtime.context()</td>
         <td>String</td>
-        <td>TODO</td>
+        <td>Returns the name of the current executing context. eg: Use this to validate that the current code can only be executed from a specific place.</td>
     </tr>
     <tr>
         <td>Runtime.previousContext()</td>
         <td>String</td>
-        <td>TODO</td>
+        <td>Returns the name of the caller context, if any. eg: Use this to validate that the current code can only be executed from a specific place.</td>
     </tr>
 </table>

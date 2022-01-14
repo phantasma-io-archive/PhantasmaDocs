@@ -1,5 +1,5 @@
 <h4 id="oracle-library">Library: Oracle</h4>
-
+<p>The Oracle library exposes access to the <a href="#chain-oracles">oracle</a> features of Phantasma</p>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -11,16 +11,16 @@
     <tr>
         <td>Oracle.read(url:String)</td>
         <td>None</td>
-        <td>TODO</td>
+        <td>Executes an URL read via oracles. The URL must be a valid Phantasma Oracle URL.</td>
     </tr>
     <tr>
         <td>Oracle.price(symbol:String)</td>
         <td>None</td>
-        <td>Retruns the price of the given symbol.</td>
+        <td>Reads the current price of the given symbol via oracles.</td>
     </tr>
     <tr>
         <td>Oracle.quote(baseSymbol:String, quoteSymbol:String, amount:Number)</td>
         <td>None</td>
-        <td>Returns the price converted to the given quote symbol with the given amount.</td>
+        <td>Returns the current price converted to the given quote symbol with the given amount, via oracles.</td>
     </tr>
 </table>

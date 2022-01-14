@@ -1,4 +1,5 @@
 <h4 id="governance-library">Library: Governance</h4>
+<p>The Governance library allows to interact with the decentralized <a href="#chain-governance">governance</a> of Phantasma.</p>
 
 <table class="table table-striped">
     <thead>
@@ -11,26 +12,21 @@
     <tr>
         <td>Governance.hasName(name:String)</td>
         <td>bool</td>
-        <td>TODO</td>
-    </tr>
-    <tr>
-        <td>Governance.gasValue(name:String)</td>
-        <td>bool</td>
-        <td>TODO</td>
+        <td>Returns true if a specific governance tag exists, false otherwise.</td>
     </tr>
     <tr>
         <td>Governance.createValue(name:String, initial:Number, serializedConstraints:Bytes)</td>
         <td>None</td>
-        <td>TODO</td>
+        <td>Creates a new governance tag and assigns an inital value to it, alongside optional contraints.</td>
     </tr>
     <tr>
         <td>Governance.getValue(name:String)</td>
         <td>Number</td>
-        <td>TODO</td>
+        <td>Returns the current value of a governance tag.</td>
     </tr>
     <tr>
         <td>Governance.setValue(name:String, value:Number)</td>
         <td>None</td>
-        <td>TODO</td>
+        <td>Alters the value of a governance tag. Consensus on the change must be achieved before calling this method, otherwise it will fail.</td>
     </tr>
 </table>

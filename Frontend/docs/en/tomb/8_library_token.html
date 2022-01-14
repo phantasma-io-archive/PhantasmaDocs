@@ -1,4 +1,5 @@
 <h4 id="token-library">Library: Token</h4>
+<p>The Token library allows contracts to create and transfer fungible tokens.<br>While some of the methods here also work for non-fungible tokens, see also the <a href="#nft-library">NFT</a> library.</p>
 
 <table class="table table-striped">
     <thead>
@@ -11,17 +12,17 @@
     <tr>
         <td>Token.create(from:Address, symbol:String, name:String, maxSupply:Number, decimals:Number, flags:Number, script:Bytes, abi:Bytes)</td>
         <td>None</td>
-        <td>Method used to create a new token.</td>
+        <td>Method used to create a new token. Note, as an exception, NFT are also created with this method.</td>
     </tr>
     <tr>
         <td>Token.exists(symbol:String)</td>
         <td>Bool</td>
-        <td>Returns true if the token exists and false otherwise.</td>
+        <td>Returns true if the token exists and false otherwise. Also works for NFTs.</td>
     </tr>
     <tr>
         <td>Token.getDecimals(symbol:String)</td>
         <td>Number</td>
-        <td>Returns the number of decimals of the token.</td>
+        <td>Returns the number of decimals of the token. For NFTs returns zero.</td>
     </tr>
     <tr>
         <td>Token.getFlags(symbol:String)</td>
@@ -55,8 +56,8 @@
     </tr>
     <tr>
         <td>Token.swap(targetChain:String, source:Address, destination:Address, symbol:String, amount:Number)</td>
-        <td>None</td>
-        <td>TODO</td>
+        <td>Number</td>
+        <td>Converts the specified amount of a token into other token. The returned value is the new amount, which is calculated based on current monetary values of both tokens (if available).</td>
     </tr>
     <tr>
         <td>Token.getBalance(from:Address, symbol:String)</td>
@@ -66,6 +67,6 @@
     <tr>
         <td>Token.isMinter(address:Address, symbol:String)</td>
         <td>Bool</td>
-        <td>Returns true if the token is a Minter and false otherwise.</td>
+        <td>Returns true if the address has Minter permissions for the specified toen symbol, returns false otherwise.</td>
     </tr>
 </table>
