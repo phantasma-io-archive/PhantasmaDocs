@@ -1,0 +1,34 @@
+<h4>Example: Multiple returns from a method</h4> 
+<p>
+	Showcases how to return multiple values at same time from a method.
+</p>	
+
+<div class="alert alert-secondary" role="alert">
+The current sample for this uses inline assembly as a way to work around TOMB current language limitations.<br>
+In the future there will be a builtin language syntax to express this without assembly.
+</div>
+
+<pre><code>
+contract test {
+	const MY_BOARD: string = "my_test_board";
+
+	// this method will return a list of addresses fetched from a leaderboard
+	// we could use a similar approach to return numbers, strings or structs
+	// it is also possible to return mixed types
+	// when consuming the result of this method from the REST API, use the 'results' array field instead of the 'result'
+
+	public getWinnerAddreses() // NOTE we specify no return type (equivalent to void in other languages)
+	{
+		local i:number := 0; // make sure we pre-assign a default value here to make sure the compiler does generate variable initialization code
+		while (i < 10) {
+			local ranked_addr:address := Leaderboard.getAddress(MY_BOARD, i);
+			
+			asm {
+				PUSH $ranked_addr	// here we use the $ symbol along with the name of local variable declared previously
+			}
+
+			i += 1;
+		}		
+	}
+}
+</code></pre>
