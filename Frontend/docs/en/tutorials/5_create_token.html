@@ -1,0 +1,25 @@
+<h2 class="section-heading">Creating a Phantasma Token</h2>
+
+<h4>Step 1 - Design your token</h4>
+<p>Deciding the values for the different parameters that define a blockchain token is a process usually described as <a href="https://101blockchains.com/tokenomics/">"tokenomics"</a><br>
+This usually means deciding the if token will have an infinite or capped supply, and if capped, then decide the total supply (how many tokens there will exist over a life time).<br>
+Other thing to decide it's also what's the initial supply, will the token start from zero or there will be a pre-mint.<br>
+Also the distribution of the token, it's a part of it reserved for the team or ecosystem, or will all of it go into investors or a community?<br>
+It's also very important to decide if a token will be fungible or not, but in this tutorial we will focus in fungible tokens as they are easier to explain and code.<br>
+Besides this, you should also decide if the token has any custom mechanisms builtin, for example, does minting of this token operate in a non-standard way?<br>
+Is the token pegged to another token?<br>
+Does the token has any custom fee when transfered to other users?<br>
+There are so many custom behaviours that can be coded into a token, it all depends on your project needs. Note that a token contract can have any public and private contract methods, so that besides adering to the Phantasma token standard, you can also have your own dapp custom features (and possibly also adhere to other standards as required).
+</p>
+
+
+<h4>Step 2 - Code your token contract</h4>
+<p>To code a token smart contract using TOMB, please refer to the following <a href="#tomb-example_fungible_token">tutorial</a><br>
+To compile and deploy a smart contract, please refer to the following <a href="#tutorials-smart_contract">tutorial</a><br>
+Like written in the other tutorials, make sure to test everything using a <a href="#spook-simnet">local network</a>, followed by a second test round using the global <a href="#spook-testnet">test network</a> then finally deploy in the <a href="#spook-mainnet">mainnet</a>.<br>
+We recomend that you make your contract ownership transferable and also that you make your contract upgradeable. You can make a contract immutable later if you are sure that everything works fine and nothing will change anymore.</p>
+
+<h4>Notes</h4>
+<p>Currently deploying a token in Phantasma mainnet requires a stake of 50 thousand SOUL tokens. Altough stakes are fully refundable, due to current market prices, this might be a very high value for your team to invest.
+However note this requirement is currently in effect as a way to avoid bad entities to pollute the network with scam tokens like happens in Ethereum.
+If your project is interesting, feel free to contact the Phantasma core team or any member of the <a href="#ecosystem-phantom_force">Phantom Force<a> and they will use their own stakes to deploy the token for you. Your token contract will have to support ownership transfer for this, even though we still recommend you to have this feature in any case, even if you deploy the token yourself.</p>
