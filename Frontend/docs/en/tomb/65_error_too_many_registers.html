@@ -1,0 +1,29 @@
+<h4>Error: Too many registers</h4> 
+
+<div class="alert alert-secondary" role="alert">
+This error happens in TOMB whenever you have a method (or several methods) that is doing too much stuff at once.<br>
+In other words, the compiler internally allocates registers for local variables, global variables and method arguments.
+The number of available registers is limited and thus if there are many things going on at same time, the compiler might ran out of registers.
+<p>
+However, to keep this from happening, the compiler already employs some optimizations for register allocation.
+<ul>
+<li>Method arguments take 1 register each, for this reason it is best to keep number of arguments low<br>TIP: use structs to turn several arguments into one</li>
+<li>Global variables use 1 register within methods that access them and use 0 registers otherwise<br>TIP: to save 1 register, create a method that reads/writes a global variable as method calls don't allocate registers</li>
+<li>Local variables use 1 register after they are declared and until the end of the current block<br>TIP: manually control when a local var register is deallocated by inserting {} blocks within your method</li>
+</ul>
+<p>
+If using local {} blocks to manually optimize register allocations is not enough for you, then the best way to fix it is to simplify the method, either by rewriting the logic to be simpler or split the method into several smaller methods.
+For example, if you have a public method that does several operations, you can split it into multiple private methods, one for each operation, then keep a public method that only calls the private methods.
+</div>
+
+<pre><code>
+	public exampleScopedLocalVars()
+	{
+		local a:number : = 1;
+		local b:number : = 2;
+		{		// you can insert scope blocks anywhere within a method
+			local c:number : = a + b;
+		}
+		local d:number : = a + b; // note that you can't use variable C here anywhere as it is no longer accessible
+	}
+</code></pre>
