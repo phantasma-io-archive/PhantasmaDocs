@@ -4,8 +4,35 @@
 </p>	
 
 <div class="alert alert-secondary" role="alert">
-The current sample for this uses inline assembly as a way to work around TOMB current language limitations.<br>
-In the future there will be a builtin language syntax to express this without assembly.
+When using the REST or RPC API to do a InvokeRawScript, in order to consume multiple values you have to use the 'results' array field instead of the 'result'.
+If instead of using the node APIs direct you are using a SDK or third party library, in case in you are getting only the first result instead of all, make sure their code it's up to date.
+</div>
+
+<pre><code>
+contract test {
+	const MY_BOARD: string = "my_test_board";
+
+	// this method will return a list of addresses fetched from a leaderboard
+	// we could use a similar approach to return numbers, strings or structs
+
+	public getWinnerAddreses() : address* // NOTE: we add an asterisk after the return type (it declares this method as a "multi-return")
+	{
+		local i:number := 0; 
+		while (i < 10) {
+			return  Leaderboard.getAddress(MY_BOARD, i); 
+			// NOTE: in "multi-return" methods a return won't terminate execution of the method unless its expression-less return
+			i += 1;
+		}		
+		
+		return; // NOTE: this is optional but a expression-less return like this forces a multi-return method to end
+		// any code here will never be reached (or will generate a compile error in latest TOMB version)
+	}
+}
+</code></pre>
+
+<div class="alert alert-secondary" role="alert">
+There is an alternative way for this that uses inline assembly, and used to be the work around TOMB language limitations before the multi-return feature was added.<br>
+In case you want to return multiple objects of different types, this is still the recommend approach.
 </div>
 
 <pre><code>
@@ -15,11 +42,10 @@ contract test {
 	// this method will return a list of addresses fetched from a leaderboard
 	// we could use a similar approach to return numbers, strings or structs
 	// it is also possible to return mixed types
-	// when consuming the result of this method from the REST API, use the 'results' array field instead of the 'result'
 
 	public getWinnerAddreses() // NOTE we specify no return type (equivalent to void in other languages)
 	{
-		local i:number := 0; // make sure we pre-assign a default value here to make sure the compiler does generate variable initialization code
+		local i:number := 0; 
 		while (i < 10) {
 			local ranked_addr:address := Leaderboard.getAddress(MY_BOARD, i);
 			
